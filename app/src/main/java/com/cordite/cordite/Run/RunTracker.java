@@ -1,4 +1,4 @@
-package com.cordite.cordite.Map;
+package com.cordite.cordite.Run;
 
 import android.location.Location;
 
@@ -17,9 +17,9 @@ class RunTracker {
         points = new ArrayList<>();
     }
 
-    void addPoint(Location location) {
-        points.add(new LatLng(location.getLatitude(), location.getLongitude()));
-    }
+//    void addPoint(Location location) {
+//        points.add(new LatLng(location.getLatitude(), location.getLongitude()));
+//    }
 
     void clear() {
         points = new ArrayList<>();

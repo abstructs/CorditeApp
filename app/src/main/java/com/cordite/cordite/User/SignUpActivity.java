@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.cordite.cordite.HomeActivity;
 import com.cordite.cordite.R;
@@ -15,8 +17,15 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+        Button submitBtn = findViewById(R.id.submitBtn);
 
-        startActivity(intent);
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+
+                startActivity(intent);
+            }
+        });
     }
 }

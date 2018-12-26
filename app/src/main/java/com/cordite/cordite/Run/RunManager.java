@@ -1,16 +1,24 @@
-package com.cordite.cordite.Map;
+package com.cordite.cordite.Run;
 
+import android.content.Context;
 import android.location.Location;
 import android.os.Looper;
+import android.view.View;
+import android.widget.TextView;
 
+import com.cordite.cordite.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.maps.GoogleMap;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 // Handle collecting and visualizing run data
-class RunManager {
+public class RunManager {
     private RunVisualizer visualizer;
     private RunTracker tracker;
 
@@ -22,10 +30,14 @@ class RunManager {
 
     private final int LOCATION_UPDATE_INTERVAL = 2500;
 
-    RunManager(FusedLocationProviderClient mFusedLocationClient, GoogleMap mMap) {
+//    private Context context;
+
+    public RunManager(FragmentManager fragmentManager, FusedLocationProviderClient mFusedLocationClient, GoogleMap mMap) {
         this.mFusedLocationClient = mFusedLocationClient;
-        this.visualizer = new RunVisualizer(mMap);
+
+        this.visualizer = new RunVisualizer(fragmentManager, mMap);
         this.tracker = new RunTracker();
+
         this.trackingEnabled = false;
     }
 
@@ -33,23 +45,22 @@ class RunManager {
         return this.trackingEnabled;
     }
 
-    boolean trackingEnabled() {
+    public boolean trackingEnabled() {
         return getTrackingEnabled();
     }
 
-    void startTracking() {
+    public void startTracking() {
         this.trackingEnabled = true;
         setupTracker();
     }
 
-    void stopTracking() {
+    public void stopTracking() {
         this.trackingEnabled = false;
         teardownTracker();
     }
 
     private void handleLocationUpdate(Location location) {
-        visualizer.updatePath(location);
-        tracker.addPoint(location);
+        visualizer.update(location);
     }
 
     private LocationCallback getLocationCallback() {
@@ -76,17 +87,18 @@ class RunManager {
 
     private void setupTracker() throws SecurityException {
         locationCallback = getLocationCallback();
-
+        visualizer.startTimer();
         mFusedLocationClient.requestLocationUpdates(getLocationRequest(), locationCallback, Looper.myLooper());
     }
 
     private void teardownTracker() {
         visualizer.clearPath();
+        visualizer.stopTimer();
+        visualizer.setDistance(0);
+        visualizer.setSpeedTxt(0);
 
         if(locationCallback != null) {
             mFusedLocationClient.removeLocationUpdates(locationCallback);
-
         }
     }
-
 }

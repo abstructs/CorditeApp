@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBtns() {
         Button loginBtn = findViewById(R.id.loginBtn);
-        Button signupBtn = findViewById(R.id.signupBtn);
+        Button signUpBtn = findViewById(R.id.signupBtn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        signupBtn.setOnClickListener(new View.OnClickListener() {
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, SignUpActivity.class);

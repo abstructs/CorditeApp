@@ -7,8 +7,12 @@
 
     <color name="colorSecondary">#37474f</color>
     <color name="colorSecondaryLight">#62727b</color>
-    <color name="colorSecondaryDark">#102027</color>
+    <color name="colorSecondaryDark">#101f27</color>
     <color name="secondaryText">#ffffff</color>
+
+    <color name="splashTextUnderlay">#92101f27</color>
+
+    <color name="pathColour">#D81B60</color>
 
     <color name="appBackground">#102027</color>
 

@@ -1,26 +1,51 @@
 import { Request, Response } from 'express';
 
-import User from '../models/User';
+import User, { UserModel } from '../models/User';
 
-export let getUsers = (req: Request, res: Response) => {
-    res.status(200).send("Hello world").end();
+export const getUsers = (req: Request, res: Response) => {
+    res.status(500).send("not implemented").end();
 };
 
-export let signup = (req: Request, res: Response) => {
-    const user = req.body['user'];
+export const signup = (req: Request, res: Response) => {
+    const user: UserModel = req.body['user'];
     
     if(user == undefined) {
         res.status(400).end();
         return;
     }
+    
+    User.create(user, (err, response) => {
+        if(err) {
+            console.error(err);
+            res.status(400).end();
+            return;
+        }
 
-    const promise: Promise<any> = User.create(user);
+        res.status(200).end();
+    });
+};
 
-    promise
-        .then(() => {
-            res.status(200).end();
-        })
-        .catch((err) => {
+export const emailTaken = (req: Request, res: Response) => {
+    const user = req.body['user'];
+
+    if(user == undefined) {
+        res.status(400).end();
+        return;
+    }
+
+    User.findOne({ email: user['email'] }, (err, response) => {
+        if(err) {
+            console.error(err);
             res.status(500).end();
-        });
+            return;
+        }
+
+        if(response == null) {
+            res.status(200).json({ emailTaken: false });
+        } else {
+            res.status(200).json({ emailTaken: true });
+        }
+
+        res.end();
+    });
 };

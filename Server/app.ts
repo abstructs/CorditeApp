@@ -4,6 +4,8 @@ import routes from './src/routes';
 
 const mongoUrl = "mongodb://localhost:27017/cordite";
 
+mongoose.set('useCreateIndex', true);
+
 mongoose.connect(mongoUrl, { useNewUrlParser: true }, (err) => {
     if(err) {
         console.error("Having problems connecting to mongo.");

@@ -10,13 +10,33 @@ exports.signup = function (req, res) {
         res.status(400).end();
         return;
     }
-    var promise = User_1["default"].create(user);
-    promise
-        .then(function () {
-        console.log("gucci");
+    User_1["default"].create(user, function (err, response) {
+        if (err) {
+            console.error(err);
+            res.status(400).end();
+            return;
+        }
         res.status(200).end();
-    })["catch"](function (err) {
-        console.error(err);
-        res.status(500).end();
+    });
+};
+exports.emailTaken = function (req, res) {
+    var user = req.body['user'];
+    if (user == undefined) {
+        res.status(400).end();
+        return;
+    }
+    User_1["default"].findOne({ email: user['email'] }, function (err, response) {
+        if (err) {
+            console.error(err);
+            res.status(500).end();
+            return;
+        }
+        if (response == null) {
+            res.status(200).json({ emailTaken: false });
+        }
+        else {
+            res.status(200).json({ emailTaken: true });
+        }
+        res.end();
     });
 };

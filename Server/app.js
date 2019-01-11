@@ -4,6 +4,7 @@ var express = require("express");
 var mongoose = require("mongoose");
 var routes_1 = require("./src/routes");
 var mongoUrl = "mongodb://localhost:27017/cordite";
+mongoose.set('useCreateIndex', true);
 mongoose.connect(mongoUrl, { useNewUrlParser: true }, function (err) {
     if (err) {
         console.error("Having problems connecting to mongo.");

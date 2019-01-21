@@ -7,30 +7,71 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.cordite.cordite.Api.APIClient;
+import com.cordite.cordite.Api.RunService;
+import com.cordite.cordite.Api.UserService;
 import com.cordite.cordite.Map.MapsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.JsonObject;
+
+import java.io.IOException;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+
+    private RunService runService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        this.runService = APIClient.getClient().create(RunService.class);
+
         setupToolbar();
         setupButtons();
+
+        getUserRuns();
+    }
+
+    private String getToken() {
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_preferences_key),
+                Context.MODE_PRIVATE);
+
+        return preferences.getString("token", "");
+    }
+
+    private void getUserRuns() {
+        class GetRuns extends AsyncTask<Void, Void, Void> {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                try {
+                    Response<JsonObject> response = runService.getUserRuns(getToken()).execute();
+
+                    System.out.println(response);
+                } catch(IOException e) {
+                    System.out.println("Bad request");
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+        }
+
+        new GetRuns().execute();
     }
 
     private void setupButtons() {

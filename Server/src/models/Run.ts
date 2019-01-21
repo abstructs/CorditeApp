@@ -1,6 +1,7 @@
 import * as mongoose from "mongoose";
 import { Timestamp, Double } from "bson";
 import { LocationModel } from "./Location";
+import { UserModel } from "./User";
 
 export type RunModel = mongoose.Document & {
     locations: Array<LocationModel>,
@@ -8,7 +9,8 @@ export type RunModel = mongoose.Document & {
     timeElapsed: Number,
     distanceTravelled: Number,
     timestamp: Timestamp,
-    rating: Number
+    rating: Number,
+    user: UserModel | Number
 };
 
 const runSchema = new mongoose.Schema({

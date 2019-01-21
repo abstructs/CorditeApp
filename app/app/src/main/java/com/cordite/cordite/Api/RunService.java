@@ -11,4 +11,7 @@ import retrofit2.http.POST;
 public interface RunService {
     @POST("runs")
     Call<JsonObject> saveRun(@Header("Authorization") String token, @Body Run run);
+
+    @POST("runs/myRuns")
+    Call<JsonObject> getUserRuns(@Header("Authorization") String token);
 }

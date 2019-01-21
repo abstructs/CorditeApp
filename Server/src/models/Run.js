@@ -2,6 +2,10 @@
 exports.__esModule = true;
 var mongoose = require("mongoose");
 var runSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     locations: {
         type: Array(),
         required: true

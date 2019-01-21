@@ -38,6 +38,8 @@ routes.get('/users', userController.getUsers);
 routes.post('/users/emailtaken', userController.emailTaken);
 routes.post('/users/signup', userController.signup);
 routes.post('/users/login', userController.login);
+
 routes.post('/runs', authenticateUser, runController.saveRun);
+routes.post('/runs/myRuns', authenticateUser, runController.getRuns);
 
 export default routes;

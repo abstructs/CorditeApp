@@ -1,22 +1,41 @@
 "use strict";
 exports.__esModule = true;
 var jwt = require("jsonwebtoken");
-var tokenSecret = "fake_secret";
-var tokenOptions = {
-    expiresIn: "7 days"
-};
-// export const getUsers = (req: Request, res: Response) => {
-//     res.status(500).send("not implemented").end();
-// };
-exports.saveRun = function (req, res) {
-    console.debug(req.headers);
+var Run_1 = require("../models/Run");
+exports.getRuns = function (req, res) {
     var token = req.get("Authorization");
     if (!token) {
-        res.status(400).end();
+        res.status(401).end();
         return;
     }
     var decoded = jwt.decode(token);
-    console.log(decoded);
+    var user_id = decoded["id"];
+    Run_1["default"].find({ user: user_id }, function (err, runs) {
+        if (err) {
+            console.error(err);
+            res.status(500).end();
+            return;
+        }
+        console.log(runs);
+        res.status(200).json({ runs: runs }).end();
+    });
+};
+exports.saveRun = function (req, res) {
+    var token = req.get("Authorization");
+    if (!token) {
+        res.status(401).end();
+        return;
+    }
+    var decoded = jwt.decode(token);
+    var user_id = decoded["id"];
     var run = req.body;
-    res.status(200).json({ success: true }).end();
+    run.user = user_id;
+    Run_1["default"].create(run, function (err, run) {
+        if (err) {
+            console.error(err);
+            res.status(500).end();
+            return;
+        }
+        res.status(200).end();
+    });
 };

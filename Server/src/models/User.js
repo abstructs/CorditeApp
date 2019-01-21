@@ -17,6 +17,18 @@ var userSchema = new mongoose.Schema({
         required: true,
         minlength: 6,
         maxlength: 30
+    },
+    firstName: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 50
+    },
+    lastName: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 50
     }
 });
 userSchema.pre("save", function (next) {

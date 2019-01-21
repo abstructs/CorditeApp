@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as mongoose from "mongoose";
+import * as morgan from "morgan";
 import routes from './src/routes';
 
 const mongoUrl = "mongodb://localhost:27017/cordite";

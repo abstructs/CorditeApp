@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt';
 
 import User, { UserModel } from '../models/User';
 
@@ -14,17 +15,16 @@ export const getUsers = (req: Request, res: Response) => {
 };
 
 export const signup = (req: Request, res: Response) => {
-    const user: UserModel = req.body['user'];
+    console.debug(req.body);
+
+    const { email, password, firstName, lastName } = req.body;
+
+    const userParams = { email, password, firstName, lastName };
     
-    if(user == undefined) {
-        res.status(400).end();
-        return;
-    }
-    
-    User.create(user, (err, user: UserModel) => {
+    User.create(userParams, (err, user: UserModel) => {
         if(err) {
-            console.error(err);
-            res.status(400).end();
+            console.debug(err);
+            res.status(500).end();
             return;
         }
 
@@ -37,14 +37,9 @@ export const signup = (req: Request, res: Response) => {
 };
 
 export const login = (req: Request, res: Response) => {
-    const user: UserModel = req.body['user'];
+    const { email, password } = req.body;
 
-    if(user == undefined) {
-        res.status(400).end();
-        return;
-    }
-
-    User.findOne({ email: user.email }, (err, user: UserModel) => {
+    User.findOne({ email }, (err, user: UserModel) => {
         if(err) {
             console.error(err);
             res.status(500).end();
@@ -52,25 +47,28 @@ export const login = (req: Request, res: Response) => {
         }
         
         if(user == null) {
-            res.status(400);
+            res.status(404).end();
             return;
         }
 
-        jwt.sign({ id: user._id }, tokenSecret, tokenOptions, (err, token) => {
-            if(err) throw err;
-
-            res.status(200).json({ token }).end();
+        bcrypt.compare(password, user.password, (err, isValid) => {
+            if(isValid) {
+                jwt.sign({ id: user._id }, tokenSecret, tokenOptions, (err, token) => {
+                    if(err) throw err;
+        
+                    res.status(200).json({ token }).end();
+                });
+            } else {
+                res.status(401).end();
+            }
         });
-    })
+    });
 };
 
 export const emailTaken = (req: Request, res: Response) => {
-    const user = req.body['user'];
+    console.debug(req.body);
 
-    if(user == undefined) {
-        res.status(400).end();
-        return;
-    }
+    const user = req.body;
 
     User.findOne({ email: user.email }, (err, response) => {
         if(err) {
@@ -80,7 +78,7 @@ export const emailTaken = (req: Request, res: Response) => {
         }
 
         if(response == null) {
-            res.status(400).json({ emailTaken: false });
+            res.status(200).json({ emailTaken: false });
         } else {
             res.status(200).json({ emailTaken: true });
         }

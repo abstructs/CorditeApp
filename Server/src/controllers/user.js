@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var jwt = require("jsonwebtoken");
+var bcrypt = require("bcrypt");
 var User_1 = require("../models/User");
 var tokenSecret = "fake_secret";
 var tokenOptions = {
@@ -10,15 +11,13 @@ exports.getUsers = function (req, res) {
     res.status(500).send("not implemented").end();
 };
 exports.signup = function (req, res) {
-    var user = req.body['user'];
-    if (user == undefined) {
-        res.status(400).end();
-        return;
-    }
-    User_1["default"].create(user, function (err, user) {
+    console.debug(req.body);
+    var _a = req.body, email = _a.email, password = _a.password, firstName = _a.firstName, lastName = _a.lastName;
+    var userParams = { email: email, password: password, firstName: firstName, lastName: lastName };
+    User_1["default"].create(userParams, function (err, user) {
         if (err) {
-            console.error(err);
-            res.status(400).end();
+            console.debug(err);
+            res.status(500).end();
             return;
         }
         jwt.sign({ id: user._id }, tokenSecret, tokenOptions, function (err, token) {
@@ -29,34 +28,34 @@ exports.signup = function (req, res) {
     });
 };
 exports.login = function (req, res) {
-    var user = req.body['user'];
-    if (user == undefined) {
-        res.status(400).end();
-        return;
-    }
-    User_1["default"].findOne({ email: user.email }, function (err, user) {
+    var _a = req.body, email = _a.email, password = _a.password;
+    User_1["default"].findOne({ email: email }, function (err, user) {
         if (err) {
             console.error(err);
             res.status(500).end();
             return;
         }
         if (user == null) {
-            res.status(400);
+            res.status(404).end();
             return;
         }
-        jwt.sign({ id: user._id }, tokenSecret, tokenOptions, function (err, token) {
-            if (err)
-                throw err;
-            res.status(200).json({ token: token }).end();
+        bcrypt.compare(password, user.password, function (err, isValid) {
+            if (isValid) {
+                jwt.sign({ id: user._id }, tokenSecret, tokenOptions, function (err, token) {
+                    if (err)
+                        throw err;
+                    res.status(200).json({ token: token }).end();
+                });
+            }
+            else {
+                res.status(401).end();
+            }
         });
     });
 };
 exports.emailTaken = function (req, res) {
-    var user = req.body['user'];
-    if (user == undefined) {
-        res.status(400).end();
-        return;
-    }
+    console.debug(req.body);
+    var user = req.body;
     User_1["default"].findOne({ email: user.email }, function (err, response) {
         if (err) {
             console.error(err);
@@ -64,7 +63,7 @@ exports.emailTaken = function (req, res) {
             return;
         }
         if (response == null) {
-            res.status(400).json({ emailTaken: false });
+            res.status(200).json({ emailTaken: false });
         }
         else {
             res.status(200).json({ emailTaken: true });

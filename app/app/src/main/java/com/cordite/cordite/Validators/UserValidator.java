@@ -17,8 +17,6 @@ import retrofit2.Response;
 
 public class UserValidator extends Validator {
 
-    private UserService userService;
-
     private UserValidator() {
 
     }

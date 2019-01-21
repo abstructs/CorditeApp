@@ -37,10 +37,21 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        this.userService = APIClient.getClient().create(UserService.class);
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_preferences_key),
+                Context.MODE_PRIVATE);
 
-        setupButtons();
-        setupFields();
+        if(preferences.contains("token")) {
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+
+            startActivity(intent);
+
+            finish();
+        } else {
+            this.userService = APIClient.getClient().create(UserService.class);
+
+            setupButtons();
+            setupFields();
+        }
     }
 
     private void setupButtons() {
@@ -139,6 +150,8 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
 
             startActivity(intent);
+
+            finish();
         }
     }
 

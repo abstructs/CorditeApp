@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.UserService;
 import com.cordite.cordite.HomeActivity;
+import com.cordite.cordite.MainActivity;
 import com.cordite.cordite.R;
 import com.cordite.cordite.Entities.User;
 import com.cordite.cordite.Validators.UserValidator;
@@ -44,10 +45,21 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        this.userService = APIClient.getClient().create(UserService.class);
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_preferences_key),
+                Context.MODE_PRIVATE);
 
-        setupButtons();
-        setupFields();
+        if(preferences.contains("token")) {
+            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+
+            startActivity(intent);
+
+            finish();
+        } else {
+            this.userService = APIClient.getClient().create(UserService.class);
+
+            setupButtons();
+            setupFields();
+        }
     }
 
     private void setupFields() {
@@ -171,6 +183,8 @@ public class SignUpActivity extends AppCompatActivity {
             Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
 
             startActivity(intent);
+
+            finish();
         } else {
             // redirect to login, sign-up worked but couldn't parse token.
             System.out.println("Response was null");

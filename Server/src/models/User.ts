@@ -36,7 +36,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 1,
         maxlength: 50
-    }
+    },
+    runs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Run' }]
+}, {
+    timestamps: true
 });
 
 userSchema.pre<UserModel>("save", function(next) {

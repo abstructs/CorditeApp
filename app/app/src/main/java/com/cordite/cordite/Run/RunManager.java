@@ -13,6 +13,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.maps.GoogleMap;
 
+import java.util.Stack;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -57,6 +59,10 @@ public class RunManager {
     public void stopTracking() {
         this.trackingEnabled = false;
         teardownTracker();
+    }
+
+    public Stack<Location> getLocationStack() {
+        return this.visualizer.getLocationStack();
     }
 
     private void handleLocationUpdate(Location location) {

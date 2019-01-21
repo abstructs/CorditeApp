@@ -1,21 +1,28 @@
 package com.cordite.cordite.Map;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
-import androidx.fragment.app.FragmentActivity;
+import retrofit2.Response;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
+import com.cordite.cordite.Api.APIClient;
+import com.cordite.cordite.Api.RunService;
+import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
-import com.cordite.cordite.Run.RunDataFragment;
 import com.cordite.cordite.Run.RunManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -29,6 +36,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.JsonObject;
+
+import java.io.IOException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.Stack;
+import java.util.concurrent.TimeUnit;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -39,12 +54,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 
+    private RunService runService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
         setupToolbar();
+
+        this.runService = APIClient.getClient().create(RunService.class);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -139,8 +158,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-
-
 //    private LocationCallback getLocationCallback() {
 //        return new LocationCallback() {
 //            @Override
@@ -170,19 +187,88 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         runManager.stopTracking();
     }
 
-    private void setupBtns() {
+    private void setupButtons() {
         final FloatingActionButton trackFab = findViewById(R.id.trackFab);
 
         trackFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(runManager.trackingEnabled()) {
-                    stopTracking();
+                    showStopTrackingDialog();
                 } else {
                     startTracking();
                 }
             }
         });
+    }
+
+    private Run getRun() {
+        Run run = new Run();
+
+        run.locations = runManager.getLocationStack();
+        run.averageSpeed = 0;
+        run.timeElapsed = 0;
+        run.distanceTravelled = 0;
+        run.rating = 0;
+
+        return run;
+    }
+
+    private String getToken() {
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_preferences_key),
+                Context.MODE_PRIVATE);
+
+        return preferences.getString("token", "");
+    }
+
+    private void saveRunAndExit() {
+        final Run run = getRun();
+
+        class SaveRun extends AsyncTask<Void, Void, Boolean> {
+            @Override
+            protected Boolean doInBackground(Void... voids) {
+                try {
+                    Response<JsonObject> response = runService.saveRun(getToken(), run).execute();
+
+                    System.out.println(response);
+
+                } catch(IOException e) {
+                    System.out.println("Bad request");
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean aBoolean) {
+                stopTracking();
+            }
+        }
+
+        new SaveRun().execute();
+    }
+
+    private void showStopTrackingDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+
+        builder.setMessage("Done with your run?")
+                .setPositiveButton("Yes, save and exit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        saveRunAndExit();
+                    }
+                })
+                .setNegativeButton("No, continue", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
     }
 
     private void setupTracker(GoogleMap mMap) {
@@ -199,7 +285,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         try {
-            setupBtns();
+            setupButtons();
             setupTracker(mMap);
             setupMap();
 

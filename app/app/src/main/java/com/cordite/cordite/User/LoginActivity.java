@@ -70,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
         this.passwordInput = findViewById(R.id.passwordInput);
     }
 
-    // returns a boolean indicating whether the request was successful
     private Response<JsonObject> makeLoginRequest(User user) {
         Call<JsonObject> call = userService.login(user);
 

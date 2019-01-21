@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Stack;
 
 import androidx.fragment.app.FragmentManager;
 
@@ -30,6 +31,8 @@ class RunVisualizer {
 
     private final int MAX_TIMER_AMOUNT = 3600000;
 
+    Stack<Location> locationStack;
+
     RunVisualizer(FragmentManager fragmentManager, GoogleMap mMap) {
         RunDataFragment runDataFragment = (RunDataFragment) fragmentManager.findFragmentById(R.id.runData);
 
@@ -40,6 +43,8 @@ class RunVisualizer {
         polylinePath = mMap.addPolyline(new PolylineOptions()
             .color(fragmentView.getContext().getColor(R.color.pathColour))
             .width(12));
+
+        locationStack = new Stack<>();
 
         setDistance(0);
     }
@@ -59,6 +64,8 @@ class RunVisualizer {
     }
 
     void update(Location location) {
+        locationStack.push(location);
+
         updateSpeed(location);
         updateDistance(location);
         updatePolylinePoints(location);
@@ -102,6 +109,8 @@ class RunVisualizer {
             }
         };
     }
+
+    Stack<Location> getLocationStack() { return this.locationStack; }
 
     void startTimer() {
         timer.start();

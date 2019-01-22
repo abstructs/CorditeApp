@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -23,8 +24,8 @@ public class Run {
     @SerializedName("distanceTravelled")
     public double distanceTravelled;
 
-    @SerializedName("timestamp")
-    public Timestamp timestamp;
+    @SerializedName("date")
+    public String date;
 
     @SerializedName("rating")
     public int rating;

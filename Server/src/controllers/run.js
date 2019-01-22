@@ -17,7 +17,7 @@ exports.getRuns = function (req, res) {
             return;
         }
         console.log(runs);
-        res.status(200).json({ runs: runs }).end();
+        res.status(200).json(runs).end();
     });
 };
 exports.saveRun = function (req, res) {

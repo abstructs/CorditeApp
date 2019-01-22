@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.cordite.cordite.Home.HomeActivity;
 import com.cordite.cordite.User.LoginActivity;
 import com.cordite.cordite.User.SignUpActivity;
 

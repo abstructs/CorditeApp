@@ -24,7 +24,7 @@ export const getRuns = (req: Request, res: Response) => {
 
         console.log(runs);
 
-        res.status(200).json({ runs }).end();
+        res.status(200).json(runs).end();
     });
 };
 

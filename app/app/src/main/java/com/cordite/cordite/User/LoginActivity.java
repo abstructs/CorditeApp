@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Response;
 
-import android.accounts.NetworkErrorException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,13 +17,11 @@ import android.widget.Toast;
 import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.UserService;
 import com.cordite.cordite.Entities.User;
-import com.cordite.cordite.HomeActivity;
+import com.cordite.cordite.Home.HomeActivity;
 import com.cordite.cordite.R;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -1,7 +1,10 @@
 package com.cordite.cordite.Api;
 
 import com.cordite.cordite.Entities.Run;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -13,5 +16,5 @@ public interface RunService {
     Call<JsonObject> saveRun(@Header("Authorization") String token, @Body Run run);
 
     @POST("runs/myRuns")
-    Call<JsonObject> getUserRuns(@Header("Authorization") String token);
+    Call<JsonArray> getUserRuns(@Header("Authorization") String token);
 }

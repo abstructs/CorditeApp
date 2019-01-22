@@ -8,7 +8,6 @@ import android.accounts.NetworkErrorException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Network;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -18,14 +17,10 @@ import android.widget.Toast;
 
 import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.UserService;
-import com.cordite.cordite.HomeActivity;
-import com.cordite.cordite.MainActivity;
+import com.cordite.cordite.Home.HomeActivity;
 import com.cordite.cordite.R;
 import com.cordite.cordite.Entities.User;
-import com.cordite.cordite.Validators.UserValidator;
 import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;

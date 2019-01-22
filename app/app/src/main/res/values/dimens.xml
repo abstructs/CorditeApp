@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_spacing">8dp</dimen>
+    <dimen name="card_padding">8dp</dimen>
+    <dimen name="btn_left_padding">8dp</dimen>
+</resources>

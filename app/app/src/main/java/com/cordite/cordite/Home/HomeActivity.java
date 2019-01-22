@@ -1,4 +1,4 @@
-package com.cordite.cordite;
+package com.cordite.cordite.Home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -15,17 +15,25 @@ import android.view.View;
 
 import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.RunService;
-import com.cordite.cordite.Api.UserService;
+import com.cordite.cordite.Deserializers.RunDeserializer;
+import com.cordite.cordite.Entities.Run;
+import com.cordite.cordite.MainActivity;
 import com.cordite.cordite.Map.MapsActivity;
+import com.cordite.cordite.R;
+import com.cordite.cordite.Run.RunAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
@@ -33,6 +41,11 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
 
     private RunService runService;
+
+    private RecyclerView recyclerView;
+    private RunAdapter runAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +67,38 @@ public class HomeActivity extends AppCompatActivity {
         return preferences.getString("token", "");
     }
 
-    private void getUserRuns() {
-        class GetRuns extends AsyncTask<Void, Void, Void> {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                try {
-                    Response<JsonObject> response = runService.getUserRuns(getToken()).execute();
+    private void populateJournal(ArrayList<Run> runs) {
+        this.runAdapter = new RunAdapter(runs);
+        this.layoutManager = new LinearLayoutManager(HomeActivity.this);
+        this.recyclerView = findViewById(R.id.recyclerView);
 
-                    System.out.println(response);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(runAdapter);
+    }
+
+    private ArrayList<Run> convertJsonToRuns(JsonArray jsonArray) {
+        ArrayList<Run> runs = new ArrayList<>();
+
+        RunDeserializer deserializer = new RunDeserializer();
+
+        for(JsonElement element : jsonArray) {
+            Run run = deserializer.deserialize(element, Run.class, null);
+            runs.add(run);
+        }
+
+        return runs;
+    }
+
+    private void getUserRuns() {
+
+        class GetRuns extends AsyncTask<Void, Void, ArrayList<Run>> {
+            @Override
+            protected ArrayList<Run> doInBackground(Void... voids) {
+                try {
+                    Response<JsonArray> response = runService.getUserRuns(getToken()).execute();
+
+                    return convertJsonToRuns(response.body().getAsJsonArray());
                 } catch(IOException e) {
                     System.out.println("Bad request");
                     e.printStackTrace();
@@ -69,7 +106,13 @@ public class HomeActivity extends AppCompatActivity {
 
                 return null;
             }
+
+            @Override
+            protected void onPostExecute(ArrayList<Run> runs) {
+                populateJournal(runs);
+            }
         }
+
 
         new GetRuns().execute();
     }

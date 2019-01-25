@@ -303,6 +303,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
+    public void onBackPressed() {
+        if(runManager.trackingEnabled()) {
+            showStopTrackingDialog();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
 

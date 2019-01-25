@@ -34,14 +34,14 @@
             android:stepSize="1" />
 
         <TextView
-            android:id="@+id/distance"
+            android:id="@+id/distanceTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="13.2KM in 17 minutes" />
 
         <TextView
-            android:id="@+id/speed"
+            android:id="@+id/speedTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -52,6 +52,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/viewBtn"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="64dp"
         android:layout_height="wrap_content"

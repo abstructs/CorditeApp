@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.RunService;
@@ -56,6 +57,13 @@ public class HomeActivity extends AppCompatActivity {
 
         setupToolbar();
         setupButtons();
+
+        getUserRuns();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         getUserRuns();
     }
@@ -109,7 +117,11 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(ArrayList<Run> runs) {
-                populateJournal(runs);
+                if(runs != null) {
+                    populateJournal(runs);
+                } else {
+                    Toast.makeText(HomeActivity.this, "Server error", Toast.LENGTH_SHORT).show();
+                }
             }
         }
 
@@ -118,16 +130,16 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setupButtons() {
-        FloatingActionButton trackFab = findViewById(R.id.trackFab);
-
-        trackFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
-
-                startActivity(intent);
-            }
-        });
+//        FloatingActionButton trackFab = findViewById(R.id.trackFab);
+//
+//        trackFab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
+//
+//                startActivity(intent);
+//            }
+//        });
     }
 
     private void logout() {
@@ -141,6 +153,8 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(HomeActivity.this, MainActivity.class);
 
         startActivity(intent);
+
+        finish();
     }
 
     @Override
@@ -158,6 +172,7 @@ public class HomeActivity extends AppCompatActivity {
 
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        actionBar.setIcon(R.drawable.ic_play);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 

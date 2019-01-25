@@ -16,6 +16,8 @@ public class RunDeserializer implements JsonDeserializer<Run> {
 
         JsonObject obj = json.getAsJsonObject();
 
+//        JsonArray objArray = obj.getAsJsonArray("locations");
+
         double averageSpeed = obj.get("averageSpeed").getAsDouble();
         int timeElapsed = obj.get("timeElapsed").getAsInt();
         int rating = obj.get("rating").getAsInt();

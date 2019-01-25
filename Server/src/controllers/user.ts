@@ -24,7 +24,7 @@ export const signup = (req: Request, res: Response) => {
     User.create(userParams, (err, user: UserModel) => {
         if(err) {
             console.debug(err);
-            res.status(500).end();
+            res.status(400).end();
             return;
         }
 

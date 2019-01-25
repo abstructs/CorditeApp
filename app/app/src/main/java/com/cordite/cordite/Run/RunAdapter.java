@@ -1,12 +1,22 @@
 package com.cordite.cordite.Run;
 
+import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
+import android.media.Rating;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
+import com.google.android.material.button.MaterialButton;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -27,11 +37,24 @@ public class RunAdapter extends RecyclerView.Adapter<RunAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView dateTxt;
+        public TextView avgSpeedTxt;
+        public TextView distanceTxt;
+        public Button viewBtn;
+        public RatingBar ratingBar;
+        public Context context;
+        public ImageView imageView;
 
-        public MyViewHolder(View v) {
+        public MyViewHolder(final View v) {
             super(v);
 
             this.dateTxt = v.findViewById(R.id.dateTxt);
+            this.avgSpeedTxt = v.findViewById(R.id.speedTxt);
+            this.distanceTxt = v.findViewById(R.id.distanceTxt);
+            this.viewBtn = v.findViewById(R.id.viewBtn);
+            this.ratingBar = v.findViewById(R.id.ratingBar);
+            this.imageView = v.findViewById(R.id.imageView);
+            this.context = v.getContext();
+
         }
     }
 
@@ -48,8 +71,25 @@ public class RunAdapter extends RecyclerView.Adapter<RunAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.dateTxt.setText(runs.get(position).date);
+    public void onBindViewHolder(final @NonNull MyViewHolder holder, int position) {
+        final Run run = runs.get(position);
+
+        holder.dateTxt.setText(run.date);
+        holder.ratingBar.setRating(run.rating);
+        holder.distanceTxt.setText(String.valueOf(run.distanceTravelled) + "KM in " + run.timeElapsed + "ms");
+        holder.avgSpeedTxt.setText(String.valueOf(run.averageSpeed) + "KM/h Average Speed");
+//        holder.imageView.setImageDrawable(R.drawable.placeholder);
+//        holder.
+
+        holder.viewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View ref) {
+                Intent intent = new Intent(holder.context, RunViewActivity.class);
+                // TODO: Send run data
+
+                holder.context.startActivity(intent);
+            }
+        });
     }
 
     @Override

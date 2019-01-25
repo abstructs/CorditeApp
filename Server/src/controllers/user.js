@@ -17,7 +17,7 @@ exports.signup = function (req, res) {
     User_1["default"].create(userParams, function (err, user) {
         if (err) {
             console.debug(err);
-            res.status(500).end();
+            res.status(400).end();
             return;
         }
         jwt.sign({ id: user._id }, tokenSecret, tokenOptions, function (err, token) {

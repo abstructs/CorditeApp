@@ -4,6 +4,15 @@
 
     <string name="shared_preferences_key">shared_preferences</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- <report-types> -->
+    <string name="trailClosed">Trail Closed</string>
+    <string name="photo">Take A Photo</string>
+
+    <string name="construction">Construction</string>
+    <string name="coolPlace">Cool Place</string>
+
+    <string name="beCareful">Be Careful</string>
+    <string name="waterFountain">Water</string>
+    <!-- </report-types>-->
+
 </resources>

@@ -172,7 +172,7 @@ public class HomeActivity extends AppCompatActivity {
 
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        actionBar.setIcon(R.drawable.ic_play);
+//        actionBar.setIcon(R.drawable.ic_play);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
@@ -189,12 +189,19 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.logout:
                         logout();
                         return true;
+                    case R.id.play:
+                        Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
+
+                        startActivity(intent);
+                        return true;
                 }
 
                 return false;
             }
         });
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -203,6 +210,7 @@ public class HomeActivity extends AppCompatActivity {
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

@@ -71,7 +71,7 @@
                     android:id="@+id/speedTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0 km/h"
+                    android:text="0.0 km/h"
                     android:textAlignment="center" />
             </LinearLayout>
 
@@ -100,7 +100,7 @@
                     android:id="@+id/distanceTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0 km"
+                    android:text="0.0 m"
                     android:textAlignment="center" />
             </LinearLayout>
 

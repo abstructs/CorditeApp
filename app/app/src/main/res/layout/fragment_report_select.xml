@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reportSelectLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D91b1b1b"
+    android:orientation="vertical"
+    tools:context=".Report.ReportSelectFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:gravity="center"
+            android:text="Notify Other Users" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="@dimen/reportSelectItemSize"
+                android:layout_height="@dimen/reportSelectItemSize"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/trailClosedBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@drawable/ic_closed" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/trailClosed" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/reportSelectItemSize"
+                android:layout_height="@dimen/reportSelectItemSize"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/photoBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@drawable/ic_photo"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/photo" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="@dimen/reportSelectItemSize"
+                android:layout_height="@dimen/reportSelectItemSize"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/constructionBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@drawable/ic_careful"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/construction" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/reportSelectItemSize"
+                android:layout_height="@dimen/reportSelectItemSize"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/coolPlaceBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_check" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/coolPlace" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="@dimen/reportSelectItemSize"
+                android:layout_height="@dimen/reportSelectItemSize"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/beCarefulBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@drawable/ic_warning"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/beCareful" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/reportSelectItemSize"
+                android:layout_height="@dimen/reportSelectItemSize"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/waterBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@drawable/ic_water"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/waterFountain" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

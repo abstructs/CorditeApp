@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import retrofit2.Response;
 
 import android.Manifest;
@@ -17,12 +19,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridView;
 
 import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.RunService;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
+import com.cordite.cordite.Report.ReportSelectFragment;
 import com.cordite.cordite.Run.RunManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -32,7 +37,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -68,6 +75,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
+
         if(mapFragment != null) {
             mapFragment.getMapAsync(this);
         } else {
@@ -76,6 +84,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
     }
+
+//    private void setupReports() {
+//        GridView gridView = findViewById(R.id.reportList);
+
+//        gridView.setAdapter();
+//    }
 
     public int indexOf(String element, String[] items) {
         int i = 0;
@@ -96,7 +110,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Location location = task.getResult();
 
                 if(location != null) {
-                    animateMapCameraToLocation(task.getResult());
+                    animateMapCameraToLocation(location);
                 } else {
                     Log.wtf("map", "couldn't find location");
                 }
@@ -172,6 +186,27 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //    private void setupTracker() throws SecurityException {
 //        mFusedLocationClient.requestLocationUpdates(getLocationRequest(), getLocationCallback(), Looper.myLooper());
 //    }
+
+    public void addReport(String report) {
+        System.out.println(report);
+
+        final MarkerOptions options = new MarkerOptions();
+
+        Task<Location> task = getLastKnownLocation();
+
+        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if(location != null) {
+                    LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+                    options.position(latLng);
+
+                    mMap.addMarker(options);
+                }
+            }
+        });
+    }
 
     private void startTracking() {
         FloatingActionButton trackFab = findViewById(R.id.trackFab);
@@ -299,7 +334,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         BottomAppBar bottomAppBar = findViewById(R.id.bottomAppBar);
 
         setSupportActionBar(bottomAppBar);
-
     }
 
     @Override
@@ -316,5 +350,29 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
 
         return true;
+    }
+
+    private void showReportSelectionMenu() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        transaction.add(R.id.reportSelectLayout, ReportSelectFragment.newInstance());
+        transaction.addToBackStack(null);
+
+//        transaction.add(R.id.reportSelectLayout, ReportSelectFragment.class);
+//        transaction.add()
+
+        transaction.commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.sendReportItem:
+                showReportSelectionMenu();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

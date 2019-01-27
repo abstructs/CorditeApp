@@ -3,4 +3,6 @@
     <dimen name="card_spacing">8dp</dimen>
     <dimen name="card_padding">8dp</dimen>
     <dimen name="btn_left_padding">8dp</dimen>
+    <dimen name="reportSelectItemMargin">16dp</dimen>
+    <dimen name="reportSelectItemSize">124dp</dimen>
 </resources>

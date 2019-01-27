@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
 
-    private static String baseUrl = "http://10.4.66.143:3000";
+    private static String baseUrl = "http://192.168.1.174:3000";
 
     public static Retrofit getClient() {
         return new Retrofit.Builder()

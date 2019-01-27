@@ -3,10 +3,10 @@
 
     <group >
         <item
-            android:id="@+id/report"
+            android:id="@+id/sendReportItem"
             android:title="Send A Report" />
         <item
-            android:id="@+id/explore"
+            android:id="@+id/exploreItem"
             android:title="Explore" />
     </group>
 </menu>

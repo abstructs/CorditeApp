@@ -39,7 +39,7 @@ public class ReportSelectFragment extends Fragment {
     private void setupButtons(View view) {
         FrameLayout layout = view.findViewById(R.id.reportSelectLayout);
 
-        ImageButton trailClosedBtn = view.findViewById(R.id.trailClosedBtn);
+        final ImageButton trailClosedBtn = view.findViewById(R.id.trailClosedBtn);
         ImageButton photoBtn = view.findViewById(R.id.photoBtn);
 
         ImageButton constructionBtn = view.findViewById(R.id.constructionBtn);
@@ -51,13 +51,13 @@ public class ReportSelectFragment extends Fragment {
         trailClosedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("trail closed");
+                System.out.println("trail clicked");
                 Activity activity = getActivity();
 
                 if(activity instanceof MapsActivity) {
                     MapsActivity mapsActivity = (MapsActivity) activity;
 
-                    mapsActivity.addReport("");
+                    mapsActivity.addReport(ReportType.trailClosed);
                 }
             }
         });

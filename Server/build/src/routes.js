@@ -2,6 +2,7 @@
 exports.__esModule = true;
 var userController = require("./controllers/user");
 var runController = require("./controllers/run");
+var reportController = require("./controllers/report");
 var express = require("express");
 var bodyParser = require("body-parser");
 var morgan = require("morgan");
@@ -34,4 +35,5 @@ routes.post('/users/signup', userController.signup);
 routes.post('/users/login', userController.login);
 routes.post('/runs', authenticateUser, runController.saveRun);
 routes.post('/runs/myRuns', authenticateUser, runController.getRuns);
+routes.post('/reports', authenticateUser, reportController.saveReport);
 exports["default"] = routes;

@@ -1,30 +1,62 @@
 import * as mongoose from "mongoose";
-import { Timestamp, Double } from "bson";
 
 export type LocationModel = mongoose.Document & {
     mAltitude: Number,
     mBearing: Number,
     mBearingAccuracyDegrees: Number,
-    mElapsedRealtimeNanos: Timestamp,
+    mElapsedRealtimeNanos: Number,
     mFieldsMask: Number,
     mHorizontalAccuracyMeters: Number,
-    mLatitude: Double,
-    mLongitude: Double,
+    mLatitude: Number,
+    mLongitude: Number,
     mProvider: String,
     mSpeed: Number,
     mSpeedAccuracyMetersPerSecond: Number,
-    mTime: Timestamp,
+    mTime: Number,
     mVerticalAccuracyMeters: Number,
 };
 
-// export type LatLng = { latitude: number, longitude: number };
-
-// const locationSchema = new mongoose.Schema({
-
-// });
-
-// const Location = mongoose.model("Location", locationSchema);
-
-// Location.createIndexes();
-
-// export default Location;
+export const LocationSchema = new mongoose.Schema({
+    mAltitude: {
+        type: Number
+    },
+    mBearing: {
+        type: Number
+    },
+    mBearingAccuracyDegrees: {
+        type: Number
+    },
+    mElapsedRealtimeNanos: {
+        type: Number
+    },
+    mFieldsMask: {
+        type: Number
+    },
+    mHorizontalAccuracyMeters: {
+        type: Number
+    },
+    mLatitude: {
+        type: Number,
+        required: true
+    },
+    mLongitude: {
+        type: Number,
+        required: true
+    },
+    mProvider: {
+        type: String,
+        required: true
+    },
+    mSpeed: {
+        type: Number
+    },
+    mSpeedAccuracyMetersPerSecond: {
+        type: Number
+    },
+    mTime: {
+        type: Number
+    },
+    mVerticalAccuracyMeters: {
+        type: Number
+    },
+});

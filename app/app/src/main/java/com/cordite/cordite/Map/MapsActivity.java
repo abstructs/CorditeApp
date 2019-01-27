@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import retrofit2.Call;
 import retrofit2.Response;
 
 import android.Manifest;
@@ -24,10 +25,14 @@ import android.view.View;
 import android.widget.GridView;
 
 import com.cordite.cordite.Api.APIClient;
+import com.cordite.cordite.Api.ReportService;
 import com.cordite.cordite.Api.RunService;
+import com.cordite.cordite.Deserializers.ReportDeserializer;
+import com.cordite.cordite.Entities.Report;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
 import com.cordite.cordite.Report.ReportSelectFragment;
+import com.cordite.cordite.Report.ReportType;
 import com.cordite.cordite.Run.RunManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -43,6 +48,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
@@ -62,6 +68,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 
     private RunService runService;
+    private ReportService reportService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +78,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setupToolbar();
 
         this.runService = APIClient.getClient().create(RunService.class);
+        this.reportService = APIClient.getClient().create(ReportService.class);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -84,12 +92,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
     }
-
-//    private void setupReports() {
-//        GridView gridView = findViewById(R.id.reportList);
-
-//        gridView.setAdapter();
-//    }
 
     public int indexOf(String element, String[] items) {
         int i = 0;
@@ -154,10 +156,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 18f));
     }
 
-//    private void moveMapCameraToLocation(Location location) {
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 15f));
-//    }
-
     private String[] getLocationProvider() {
         return new String[]{ Manifest.permission.ACCESS_FINE_LOCATION};
     }
@@ -172,40 +170,64 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-//    private LocationCallback getLocationCallback() {
-//        return new LocationCallback() {
-//            @Override
-//            public void onLocationResult(LocationResult locationResult) {
-//                Location location = locationResult.getLastLocation();
-//                if(location != null)
-//                    updatePath(location);
-//            }
-//        };
-//    }
-
-//    private void setupTracker() throws SecurityException {
-//        mFusedLocationClient.requestLocationUpdates(getLocationRequest(), getLocationCallback(), Looper.myLooper());
-//    }
-
-    public void addReport(String report) {
-        System.out.println(report);
-
-        final MarkerOptions options = new MarkerOptions();
-
+    public void addReport(final ReportType reportType) {
         Task<Location> task = getLastKnownLocation();
 
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
                 if(location != null) {
-                    LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                    Report report = new Report();
 
-                    options.position(latLng);
+                    report.location = location;
+                    report.type = reportType;
 
-                    mMap.addMarker(options);
+                    saveReportAndAddToMap(report);
                 }
             }
         });
+    }
+
+    private void saveReportAndAddToMap(final Report report) {
+        class SaveReport extends AsyncTask<Void, Void, Report> {
+            @Override
+            protected Report doInBackground(Void... voids) {
+                try {
+                    Response<JsonObject> response = reportService.saveReport(getToken(), report).execute();
+
+                    JsonObject body = response.body();
+
+                    ReportDeserializer reportDeserializer = new ReportDeserializer();
+
+                    if(body != null) {
+                        JsonElement reportObj = body.get("report");
+
+                        if(reportObj != null) {
+                            return reportDeserializer.deserialize(reportObj, Report.class, null);
+                        }
+                    }
+                } catch(IOException e) {
+                    System.out.println("bad request");
+                    e.printStackTrace();
+                }
+
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Report report) {
+                if(report != null) {
+                    System.out.println(report.type);
+                    System.out.println(report.location);
+                } else {
+                    // TODO: Show error
+                }
+
+            }
+        }
+
+        new SaveReport().execute();
     }
 
     private void startTracking() {
@@ -358,9 +380,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         transaction.add(R.id.reportSelectLayout, ReportSelectFragment.newInstance());
         transaction.addToBackStack(null);
-
-//        transaction.add(R.id.reportSelectLayout, ReportSelectFragment.class);
-//        transaction.add()
+        transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
 
         transaction.commit();
     }

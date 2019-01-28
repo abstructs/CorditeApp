@@ -21,38 +21,34 @@ public class UserValidator extends Validator {
 
     }
 
-    public static List<String> getSyncEmailErrors(String email) throws NetworkErrorException {
+    public static List<String> getEmailErrors(String email) {
         ArrayList<String> errors = new ArrayList<>();
 
         if(!validLength(email, 1, 50)) {
             errors.add("Email should be between 1 and 50 characters");
         }
 
-        if(emailTaken(email)) {
-            errors.add("That email is already taken");
-        }
-
         return errors;
     }
 
-    private static boolean emailTaken(String email) throws NetworkErrorException {
-        User user = new User();
-
-        user.email = email;
-
-        try {
-            Response<JsonObject> response = APIClient.getClient().create(UserService.class)
-                    .emailTaken(user).execute();
-
-            if(response.isSuccessful() && response.body() != null) {
-                return response.body().get("emailTaken").getAsBoolean();
-            }
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-
-        throw new NetworkErrorException();
-    }
+//    private static boolean emailTaken(String email) throws NetworkErrorException {
+//        User user = new User();
+//
+//        user.email = email;
+//
+//        try {
+//            Response<JsonObject> response = APIClient.getClient().create(UserService.class)
+//                    .emailTaken(user).execute();
+//
+//            if(response.isSuccessful() && response.body() != null) {
+//                return response.body().get("emailTaken").getAsBoolean();
+//            }
+//        } catch(IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        throw new NetworkErrorException();
+//    }
 
     public static List<String> getPasswordErrors(String password) {
         ArrayList<String> errors = new ArrayList<>();

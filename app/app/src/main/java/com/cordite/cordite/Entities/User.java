@@ -1,20 +1,11 @@
 package com.cordite.cordite.Entities;
 
-import android.accounts.NetworkErrorException;
-import android.net.Network;
-
-import com.cordite.cordite.Api.APIClient;
-import com.cordite.cordite.Api.UserService;
 import com.cordite.cordite.Validators.UserValidator;
-import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import retrofit2.Response;
 
 public class User {
     @SerializedName("firstName")
@@ -29,27 +20,39 @@ public class User {
     @SerializedName("password")
     public String password;
 
+    private HashMap<ErrorKey, List<String>> errors;
+
+    public User() {
+        this.errors = new HashMap<>();
+    }
+
     public enum ErrorKey {
         EMAIL, PASSWORD, FIRST_NAME, LAST_NAME
     }
 
-    private HashMap<ErrorKey, List<String>> cachedErrors;
-
-    // prevents from making additional network requests when we don't have to
-    public HashMap<ErrorKey, List<String>> getCachedErrors() {
-        return this.cachedErrors;
+    public HashMap<ErrorKey, List<String>> getErrors() {
+        return this.errors;
     }
 
-    public HashMap<ErrorKey, List<String>> getErrors() throws NetworkErrorException {
-        HashMap<ErrorKey, List<String>> errors = new HashMap();
+    public void addError(ErrorKey key, String errorMsg) {
+        List<String> itemErrors = this.errors.get(key);
 
-        errors.put(ErrorKey.EMAIL, UserValidator.getSyncEmailErrors(this.email));
+        if(itemErrors != null) {
+            itemErrors.add(errorMsg);
+        } else {
+            itemErrors = new ArrayList<>();
+            itemErrors.add(errorMsg);
+        }
+
+        System.out.println("hi");
+
+        this.errors.put(key, itemErrors);
+    }
+
+    public void setErrors() {
+        errors.put(ErrorKey.EMAIL, UserValidator.getEmailErrors(this.email));
         errors.put(ErrorKey.PASSWORD, UserValidator.getPasswordErrors(this.password));
         errors.put(ErrorKey.FIRST_NAME, UserValidator.getFirstNameErrors(this.firstName));
         errors.put(ErrorKey.LAST_NAME, UserValidator.getLastNameErrors(this.lastName));
-
-        cachedErrors = errors;
-
-        return errors;
     }
 }

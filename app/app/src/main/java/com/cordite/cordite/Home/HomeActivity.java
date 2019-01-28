@@ -26,6 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
@@ -99,34 +102,21 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void getUserRuns() {
+        Call<JsonArray> request = runService.getUserRuns(getToken());
 
-        class GetRuns extends AsyncTask<Void, Void, ArrayList<Run>> {
+        request.enqueue(new Callback<JsonArray>() {
             @Override
-            protected ArrayList<Run> doInBackground(Void... voids) {
-                try {
-                    Response<JsonArray> response = runService.getUserRuns(getToken()).execute();
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                ArrayList<Run> runs = convertJsonToRuns(response.body().getAsJsonArray());
 
-                    return convertJsonToRuns(response.body().getAsJsonArray());
-                } catch(IOException e) {
-                    System.out.println("Bad request");
-                    e.printStackTrace();
-                }
-
-                return null;
+                populateJournal(runs);
             }
 
             @Override
-            protected void onPostExecute(ArrayList<Run> runs) {
-                if(runs != null) {
-                    populateJournal(runs);
-                } else {
-                    Toast.makeText(HomeActivity.this, "Server error", Toast.LENGTH_SHORT).show();
-                }
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+                Toast.makeText(HomeActivity.this, "Server error", Toast.LENGTH_SHORT).show();
             }
-        }
-
-
-        new GetRuns().execute();
+        });
     }
 
     private void setupButtons() {

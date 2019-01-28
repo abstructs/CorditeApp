@@ -2,13 +2,12 @@ package com.cordite.cordite.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
-import android.accounts.NetworkErrorException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +21,6 @@ import com.cordite.cordite.R;
 import com.cordite.cordite.Entities.User;
 import com.google.gson.JsonObject;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -70,55 +68,70 @@ public class SignUpActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signUp(getUser());
+                checkForErrorsAndSignUp(getUser());
             }
         });
     }
 
-    private void signUp(final User user) {
-        class SubmitSignUpForm extends AsyncTask<Void, Void, Response<JsonObject>> {
-            @Override
-            protected Response<JsonObject> doInBackground(Void... voids) {
-                if(thereAreNoErrors(user)) {
-                    return makeSignUpRequest(user);
-                }
-
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Response<JsonObject> response) {
-                if(response == null || !response.isSuccessful()) {
-                    showErrors(user);
-                } else {
-                    handleSignUpSuccess(response);
-                }
+    private boolean thereAreErrors(final User user) {
+        System.out.println(user.getErrors());
+        for(List<String> errors : user.getErrors().values()) {
+            if(errors.size() != 0) {
+                return true;
             }
         }
 
-        new SubmitSignUpForm().execute();
+        return false;
     }
 
-    private boolean thereAreNoErrors(User user) {
-        try {
-            for (List<String> errors : user.getErrors().values()) {
-                if (errors.size() != 0) {
-                    return false;
+    private void signUp(final User user) {
+        Call<JsonObject> request = userService.signUp(user);
+
+        request.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                handleSuccess(response);
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Toast.makeText(SignUpActivity.this, "Network error! :(", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void checkForErrorsAndSignUp(final User user) {
+        Call<JsonObject> emailTakenReq = userService.emailTaken(user);
+
+        emailTakenReq.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                boolean emailTaken = response.body().get("emailTaken").getAsBoolean();
+
+                user.setErrors();
+
+                if(emailTaken) {
+                    user.addError(User.ErrorKey.EMAIL, "That email is already taken");
+                }
+
+                if(thereAreErrors(user)) {
+                    showErrors(user);
+                } else {
+                    signUp(user);
                 }
             }
-        } catch(NetworkErrorException e) {
-            e.printStackTrace();
-            return false;
-        }
 
-        return true;
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Toast.makeText(SignUpActivity.this, "Network error! :(", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void showErrors(User user) {
-
         Toast.makeText(SignUpActivity.this, "Oh no! Check for errors!.", Toast.LENGTH_SHORT).show();
 
-        HashMap<User.ErrorKey, List<String>> errors = user.getCachedErrors();
+        HashMap<User.ErrorKey, List<String>> errors = user.getErrors();
 
         List<String> emailErrors = errors.get(User.ErrorKey.EMAIL);
         List<String> passwordErrors = errors.get(User.ErrorKey.PASSWORD);
@@ -151,38 +164,20 @@ public class SignUpActivity extends AppCompatActivity {
         return user;
     }
 
-    // returns a boolean indicating whether the request was successful
-    private Response<JsonObject> makeSignUpRequest(User user) {
-        Call<JsonObject> call = userService.signUp(user);
+    private void handleSuccess(Response<JsonObject> response) {
+        String token = response.body().get("token").getAsString();
 
-        try {
-            return call.execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.shared_preferences_key),
+                Context.MODE_PRIVATE).edit();
 
-        return null;
-    }
+        editor.putString("token", token);
 
-    private void handleSignUpSuccess(Response<JsonObject> response) {
-        if(response != null && response.body() != null) {
-            String token = response.body().get("token").getAsString();
+        editor.apply();
 
-            SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.shared_preferences_key),
-                    Context.MODE_PRIVATE).edit();
+        Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
 
-            editor.putString("token", token);
+        startActivity(intent);
 
-            editor.apply();
-
-            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
-
-            startActivity(intent);
-
-            finish();
-        } else {
-            // redirect to login, sign-up worked but couldn't parse token.
-            System.out.println("Response was null");
-        }
+        finish();
     }
 }

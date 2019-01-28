@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 
 //    private boolean thereAreNoErrors(User user) {
 //        try {
-//            for (List<String> errors : user.getErrors().values()) {
+//            for (List<String> errors : user.setErrors().values()) {
 //                if (errors.size() != 0) {
 //                    return false;
 //                }

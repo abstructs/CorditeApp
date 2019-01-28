@@ -8,6 +8,7 @@ import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.Manifest;
@@ -23,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.ReportService;
@@ -44,6 +46,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -93,7 +96,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
     }
 
-    public int indexOf(String element, String[] items) {
+    private void getReports(final Location location) {
+        Call<JsonObject> request = reportService.getReports(getToken(), location);
+
+        request.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                System.out.println(call);
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private int indexOf(String element, String[] items) {
         int i = 0;
         for(String item : items) {
             if(item.equals(element))
@@ -153,7 +172,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void animateMapCameraToLocation(Location location) {
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 18f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 16f));
     }
 
     private String[] getLocationProvider() {
@@ -221,7 +240,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     System.out.println(report.type);
                     System.out.println(report.location);
                 } else {
-                    // TODO: Show error
+                    Toast.makeText(MapsActivity.this, "Something went wrong adding the report", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -285,9 +304,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             protected Boolean doInBackground(Void... voids) {
                 try {
+                    // TODO: Show post run form to get rating and log data
                     Response<JsonObject> response = runService.saveRun(getToken(), run).execute();
 
-                    System.out.println(response);
+//                    System.out.println(response);
 
                 } catch(IOException e) {
                     System.out.println("Bad request");

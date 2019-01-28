@@ -1,11 +1,8 @@
 package com.cordite.cordite.Report;
 
 import android.app.Activity;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -28,18 +25,25 @@ public class ReportSelectFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_report_select, container, false);
 
-        setupButtons(view);
+        setupMapsActivityButtons(view);
 
         return view;
     }
 
-    private void setupButtons(View view) {
+    private void setupMapsActivityButtons(View view) {
+        final Activity activity = getActivity();
+
+        if(!(activity instanceof MapsActivity)) {
+            return;
+        }
+
+        final MapsActivity mapsActivity = (MapsActivity) activity;
+
         FrameLayout layout = view.findViewById(R.id.reportSelectLayout);
 
-        final ImageButton trailClosedBtn = view.findViewById(R.id.trailClosedBtn);
+        ImageButton trailClosedBtn = view.findViewById(R.id.trailClosedBtn);
         ImageButton photoBtn = view.findViewById(R.id.photoBtn);
 
         ImageButton constructionBtn = view.findViewById(R.id.constructionBtn);
@@ -51,56 +55,55 @@ public class ReportSelectFragment extends Fragment {
         trailClosedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("trail clicked");
-                Activity activity = getActivity();
-
-                if(activity instanceof MapsActivity) {
-                    MapsActivity mapsActivity = (MapsActivity) activity;
-
-                    mapsActivity.addReport(ReportType.trailClosed);
-                }
+                mapsActivity.addReport(ReportType.trailClosed);
+                activity.onBackPressed();
             }
         });
 
         photoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("photo");
+                mapsActivity.addReport(ReportType.photo);
+                activity.onBackPressed();
             }
         });
 
         constructionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("construction");
+                mapsActivity.addReport(ReportType.construction);
+                activity.onBackPressed();
             }
         });
 
         coolPlaceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("cool place");
+                mapsActivity.addReport(ReportType.coolPlace);
+                activity.onBackPressed();
             }
         });
 
         beCarefulBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("be careful");
+                mapsActivity.addReport(ReportType.beCareful);
+                activity.onBackPressed();
             }
         });
 
         waterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("water");
+                mapsActivity.addReport(ReportType.waterFountain);
+                activity.onBackPressed();
             }
         });
 
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().onBackPressed();
+                activity.onBackPressed();
             }
         });
     }

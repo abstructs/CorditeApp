@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.cordite.cordite.R;
 import com.cordite.cordite.Report.ReportType;
@@ -12,12 +14,18 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.gson.annotations.SerializedName;
 
-public class Report {
+public class Report implements Parcelable {
     @SerializedName("location")
     public Location location;
 
     @SerializedName("type")
     public ReportType type;
+
+    public transient double distanceTo;
+
+    public transient String address;
+
+    public transient String timestamp;
 
     private Context context;
 
@@ -65,5 +73,15 @@ public class Report {
         drawable.draw(canvas);
 
         return bitmap;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

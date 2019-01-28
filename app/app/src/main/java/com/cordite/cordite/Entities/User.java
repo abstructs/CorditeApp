@@ -44,8 +44,6 @@ public class User {
             itemErrors.add(errorMsg);
         }
 
-        System.out.println("hi");
-
         this.errors.put(key, itemErrors);
     }
 

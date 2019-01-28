@@ -35,7 +35,7 @@ export const getReports = (req: Request, res: Response) => {
     const location: LocationModel = req.body;
 
     const token = req.get("Authorization");
-
+    
     if(!token) {
         res.status(401).end();
         return;

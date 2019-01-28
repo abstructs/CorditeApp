@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import retrofit2.Call;
@@ -22,6 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.cordite.cordite.Api.APIClient;
@@ -32,6 +34,7 @@ import com.cordite.cordite.Entities.Report;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
 import com.cordite.cordite.Report.ReportSelectFragment;
+import com.cordite.cordite.Report.ReportShowFragment;
 import com.cordite.cordite.Report.ReportType;
 import com.cordite.cordite.Run.RunManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -65,12 +68,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private RunService runService;
     private ReportService reportService;
 
+    private Fragment showReportFragment;
+    private Fragment selectReportFragment;
+    private Fragment runDataFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
         setupToolbar();
+//        setupFragments();
 
         this.runService = APIClient.getClient().create(RunService.class);
         this.reportService = APIClient.getClient().create(ReportService.class);
@@ -88,6 +96,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
     }
 
+//    private void setupFragments() {
+//        FrameLayout showReportLayout = findViewById(R.id.reportShowLayout);
+//
+////        showReportLayout.setY(-100);
+//    }
+
     private void addReportToMap(Report report) {
         MarkerOptions markerOptions = new MarkerOptions();
 
@@ -99,7 +113,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         markerOptions.icon(report.getIcon(MapsActivity.this));
 
-        mMap.addMarker(markerOptions);
+//        markerOptions
+
+        Marker marker = mMap.addMarker(markerOptions);
+
+        marker.setTag(report);
     }
 
     private void getReportsAndAddToMap(final Location location) {
@@ -331,6 +349,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         runManager = new RunManager(getSupportFragmentManager(), mFusedLocationClient, mMap);
     }
 
+    private void showReport(Report report) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        ReportShowFragment fragment = ReportShowFragment.newInstance(report);
+
+        this.showReportFragment = fragment;
+
+        transaction.setCustomAnimations(R.animator.slide_in_top, R.animator.slide_out_top, R.animator.slide_in_top, R.animator.slide_out_top);
+        transaction.replace(R.id.reportShowLayout, fragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+    }
+
     private void setupMap() throws SecurityException {
         mMap.setMyLocationEnabled(true);
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.map_style));
@@ -338,7 +371,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                // TODO: Open fragment and center camera on marker
+                Report report = (Report) marker.getTag();
+
+                showReport(report);
 
                 return true;
             }
@@ -378,11 +413,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onBackPressed() {
-        if(runManager.trackingEnabled()) {
+        if(showReportFragment != null) {
+            showReportFragment = null;
+        } else if(runManager.trackingEnabled()) {
             showStopTrackingDialog();
-        } else {
-            super.onBackPressed();
+            return;
         }
+
+        super.onBackPressed();
     }
 
     @Override
@@ -396,9 +434,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
-        transaction.add(R.id.reportSelectLayout, ReportSelectFragment.newInstance());
+        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
+        transaction.replace(R.id.reportSelectLayout, ReportSelectFragment.newInstance());
         transaction.addToBackStack(null);
-        transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
 
         transaction.commit();
     }

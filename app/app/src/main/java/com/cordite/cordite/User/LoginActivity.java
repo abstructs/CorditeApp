@@ -2,6 +2,7 @@ package com.cordite.cordite.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.content.Context;
@@ -67,18 +68,6 @@ public class LoginActivity extends AppCompatActivity {
         this.passwordInput = findViewById(R.id.passwordInput);
     }
 
-    private Response<JsonObject> makeLoginRequest(User user) {
-        Call<JsonObject> call = userService.login(user);
-
-        try {
-            return call.execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
     private User getUser() {
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
@@ -91,48 +80,35 @@ public class LoginActivity extends AppCompatActivity {
         return user;
     }
 
-//    private boolean thereAreNoErrors(User user) {
-//        try {
-//            for (List<String> errors : user.setErrors().values()) {
-//                if (errors.size() != 0) {
-//                    return false;
-//                }
-//            }
-//        } catch(NetworkErrorException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//
-//        return true;
-//    }
-
     private void login(final User user) {
-        class SubmitLoginForm extends AsyncTask<Void, Void, Response<JsonObject>> {
-            @Override
-            protected Response<JsonObject> doInBackground(Void... voids) {
-                return makeLoginRequest(user);
-            }
+        Call<JsonObject> request = userService.login(user);
 
+        request.enqueue(new Callback<JsonObject>() {
             @Override
-            protected void onPostExecute(Response<JsonObject> response) {
-                if(response == null) {
-                    Toast.makeText(LoginActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                } else if(response.code() == 200) {
-                    handleLoginSuccess(response);
-                } else if(response.code() == 401) {
-                    passwordInput.setError("Invalid password");
-                    Toast.makeText(LoginActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
-                } else if(response.code() == 404) {
-                    emailInput.setError("Email not found");
-                    Toast.makeText(LoginActivity.this, "Email not found", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                switch(response.code()) {
+                    case 200:
+                        handleSuccess(response);
+                        break;
+                    case 401:
+                        passwordInput.setError("Invalid password");
+                        Toast.makeText(LoginActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 404:
+                        emailInput.setError("Email not found");
+                        Toast.makeText(LoginActivity.this, "Email not found", Toast.LENGTH_SHORT).show();
+                        break;
                 }
             }
-        }
 
-        new SubmitLoginForm().execute();
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "Network error! :(", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void handleLoginSuccess(Response<JsonObject> response) {
+    private void handleSuccess(Response<JsonObject> response) {
         if(response.body() != null) {
             String token = response.body().get("token").getAsString();
 

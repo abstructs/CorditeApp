@@ -7,11 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.cordite.cordite.Api.APIClient;
@@ -22,11 +20,9 @@ import com.cordite.cordite.MainActivity;
 import com.cordite.cordite.Map.MapsActivity;
 import com.cordite.cordite.R;
 import com.cordite.cordite.Run.RunAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.util.ArrayList;

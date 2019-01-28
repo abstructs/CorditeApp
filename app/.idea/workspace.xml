@@ -11,16 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd2ab5ae-0985-47ba-b125-f2cd57ac37be" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/ReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/ReportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Home/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Home/HomeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportSelectFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportSelectFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/SignUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/SignUpActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Validators/UserValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Validators/UserValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/raw/map_style.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/raw/map_style.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +46,7 @@
         <counts>
           <entry key="class" value="1" />
           <entry key="gradle" value="5" />
-          <entry key="java" value="150" />
+          <entry key="java" value="152" />
           <entry key="json" value="2" />
           <entry key="properties" value="1" />
           <entry key="xml" value="75" />
@@ -64,7 +56,7 @@
         <counts>
           <entry key="CLASS" value="1" />
           <entry key="Groovy" value="5" />
-          <entry key="JAVA" value="150" />
+          <entry key="JAVA" value="152" />
           <entry key="JSON" value="2" />
           <entry key="Properties" value="1" />
           <entry key="XML" value="75" />
@@ -74,7 +66,7 @@
         <counts>
           <entry key="dummy" value="4" />
           <entry key="gradle" value="7" />
-          <entry key="java" value="26119" />
+          <entry key="java" value="26387" />
           <entry key="txt" value="610" />
           <entry key="xml" value="2418" />
         </counts>
@@ -82,7 +74,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="7" />
-          <entry key="JAVA" value="26119" />
+          <entry key="JAVA" value="26387" />
           <entry key="PLAIN_TEXT" value="614" />
           <entry key="XML" value="2418" />
         </counts>
@@ -115,29 +107,41 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Home/HomeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="118" column="11" selection-start-line="118" selection-start-column="11" selection-end-line="118" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1264">
-              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+            <state relative-caret-position="374">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/SignUpActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="169" column="36" lean-forward="true" selection-start-line="169" selection-start-column="36" selection-end-line="169" selection-end-column="36" />
+            <state relative-caret-position="162">
+              <caret line="97" column="20" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
               <folding>
                 <element signature="e#2131#2299#0" expanded="true" />
                 <element signature="e#2298#2299#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/Report.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -178,10 +182,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/RunService.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+            <state relative-caret-position="255">
+              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -220,7 +224,6 @@
       <find>road</find>
       <find>zoom</find>
       <find>animate</find>
-      <find>async</find>
       <find>thereareno</find>
       <find>signup</find>
       <find>thereareerror</find>
@@ -235,6 +238,7 @@
       <find>showerrors</find>
       <find>seterrors</find>
       <find>checkfor</find>
+      <find>async</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -252,7 +256,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunVisualizer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Helpers/UserHelper.java" />
@@ -288,10 +291,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/raw/map_style.json" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/ReportService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Home/HomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Validators/UserValidator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/SignUpActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Home/HomeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java" />
       </list>
     </option>
   </component>
@@ -513,7 +517,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49895614" visible="true" weight="0.3297568" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49895614" visible="true" weight="0.3297568" />
       <window_info id="Structure" order="2" sideWeight="0.50104386" side_tool="true" weight="0.3297568" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -521,7 +525,7 @@
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Run" order="0" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" visible="true" weight="0.34652114" />
+      <window_info anchor="bottom" id="Logcat" order="1" visible="true" weight="0.34652114" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.3287858" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3287858" />
@@ -782,13 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/Report.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/raw/map_style.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2820">
@@ -820,16 +817,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="26" column="57" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -919,20 +906,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1264">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Home/HomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="118" column="11" selection-start-line="118" selection-start-column="11" selection-end-line="118" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -945,12 +918,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/SignUpActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="169" column="36" lean-forward="true" selection-start-line="169" selection-start-column="36" selection-end-line="169" selection-end-column="36" />
+        <state relative-caret-position="162">
+          <caret line="97" column="20" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
           <folding>
             <element signature="e#2131#2299#0" expanded="true" />
             <element signature="e#2298#2299#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/Report.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Home/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
         </state>
       </provider>
     </entry>

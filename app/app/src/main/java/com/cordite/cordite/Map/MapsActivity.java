@@ -42,6 +42,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -95,6 +96,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
         markerOptions.position(latLng);
+
+        markerOptions.icon(report.getIcon(MapsActivity.this));
 
         mMap.addMarker(markerOptions);
     }
@@ -331,6 +334,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void setupMap() throws SecurityException {
         mMap.setMyLocationEnabled(true);
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.map_style));
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                // TODO: Open fragment and center camera on marker
+
+                return true;
+            }
+        });
 
         Task<Location> task = getLastKnownLocation();
 

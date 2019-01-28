@@ -21,3 +21,20 @@ exports.saveReport = function (req, res) {
         res.status(200).json({ report: report }).end();
     });
 };
+exports.getReports = function (req, res) {
+    console.debug(req.body);
+    // const location = req.body.get("location");
+    var token = req.get("Authorization");
+    if (!token) {
+        res.status(401).end();
+        return;
+    }
+    Report_1["default"].find({}, function (err, reports) {
+        if (err) {
+            console.error(err);
+            res.status(500).end();
+            return;
+        }
+        res.status(200).json(reports).end();
+    });
+};

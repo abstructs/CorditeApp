@@ -55,7 +55,7 @@ public class ReportSelectFragment extends Fragment {
         trailClosedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapsActivity.addReport(ReportType.trailClosed);
+                mapsActivity.saveReport(ReportType.trailClosed);
                 activity.onBackPressed();
             }
         });
@@ -63,7 +63,7 @@ public class ReportSelectFragment extends Fragment {
         photoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapsActivity.addReport(ReportType.photo);
+                mapsActivity.saveReport(ReportType.photo);
                 activity.onBackPressed();
             }
         });
@@ -71,7 +71,7 @@ public class ReportSelectFragment extends Fragment {
         constructionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapsActivity.addReport(ReportType.construction);
+                mapsActivity.saveReport(ReportType.construction);
                 activity.onBackPressed();
             }
         });
@@ -79,7 +79,7 @@ public class ReportSelectFragment extends Fragment {
         coolPlaceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapsActivity.addReport(ReportType.coolPlace);
+                mapsActivity.saveReport(ReportType.coolPlace);
                 activity.onBackPressed();
             }
         });
@@ -87,7 +87,7 @@ public class ReportSelectFragment extends Fragment {
         beCarefulBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapsActivity.addReport(ReportType.beCareful);
+                mapsActivity.saveReport(ReportType.beCareful);
                 activity.onBackPressed();
             }
         });
@@ -95,7 +95,7 @@ public class ReportSelectFragment extends Fragment {
         waterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapsActivity.addReport(ReportType.waterFountain);
+                mapsActivity.saveReport(ReportType.waterFountain);
                 activity.onBackPressed();
             }
         });

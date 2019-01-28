@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 
 import Report, { ReportModel } from '../models/Report';
+import { LocationModel } from 'src/models/Location';
 
 export const saveReport = (req: Request, res: Response) => {
     const token = req.get("Authorization");
@@ -27,5 +28,26 @@ export const saveReport = (req: Request, res: Response) => {
         }
 
         res.status(200).json({ report }).end();
+    });
+};
+
+export const getReports = (req: Request, res: Response) => {
+    const location: LocationModel = req.body;
+
+    const token = req.get("Authorization");
+
+    if(!token) {
+        res.status(401).end();
+        return;
+    }
+
+    Report.find({}, (err, reports) => {
+        if(err) {
+            console.error(err);
+            res.status(500).end();
+            return;
+        }
+
+        res.status(200).json(reports).end();
     });
 };

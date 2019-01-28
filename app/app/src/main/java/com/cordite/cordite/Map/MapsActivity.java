@@ -44,20 +44,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import java.io.IOException;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.Stack;
-import java.util.concurrent.TimeUnit;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -94,17 +87,36 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
     }
 
-    private void getReports(final Location location) {
-        Call<JsonObject> request = reportService.getReports(getToken(), location);
+    private void addReportToMap(Report report) {
+        MarkerOptions markerOptions = new MarkerOptions();
 
-        request.enqueue(new Callback<JsonObject>() {
+        Location location = report.location;
+
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        markerOptions.position(latLng);
+
+        mMap.addMarker(markerOptions);
+    }
+
+    private void getReportsAndAddToMap(final Location location) {
+        Call<JsonArray> request = reportService.getReports(getToken(), location);
+
+        request.enqueue(new Callback<JsonArray>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                System.out.println(call);
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                ReportDeserializer reportDeserializer = new ReportDeserializer();
+                JsonArray body = response.body();
+
+                for(JsonElement element : body) {
+                    Report report = reportDeserializer.deserialize(element, Report.class, null);
+
+                    addReportToMap(report);
+                }
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<JsonArray> call, Throwable t) {
 
             }
         });
@@ -187,7 +199,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    public void addReport(final ReportType reportType) {
+    public void saveReport(final ReportType reportType) {
         Task<Location> task = getLastKnownLocation();
 
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -217,7 +229,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 Report report = reportDeserializer.deserialize(reportObj, Report.class, null);
 
-                // TODO: add to map
+                addReportToMap(report);
             }
 
             @Override
@@ -319,6 +331,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void setupMap() throws SecurityException {
         mMap.setMyLocationEnabled(true);
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.map_style));
+
+        Task<Location> task = getLastKnownLocation();
+
+        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                getReportsAndAddToMap(location);
+            }
+        });
+
 //        mMap.getUiSettings().setMyLocationButtonEnabled(false);
     }
 

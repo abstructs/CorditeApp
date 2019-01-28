@@ -44,5 +44,6 @@ routes.post('/runs', authenticateUser, runController.saveRun);
 routes.post('/runs/myRuns', authenticateUser, runController.getRuns);
 
 routes.post('/reports', authenticateUser, reportController.saveReport);
+routes.post('/reports/aroundMe', authenticateUser, reportController.getReports);
 
 export default routes;

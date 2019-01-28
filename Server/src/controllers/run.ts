@@ -51,6 +51,6 @@ export const saveRun = (req: Request, res: Response) => {
             return;
         }
 
-        res.status(200).end();
+        res.status(200).json(run).end();
     });
 };

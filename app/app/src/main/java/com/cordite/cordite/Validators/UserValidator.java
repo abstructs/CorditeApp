@@ -31,25 +31,6 @@ public class UserValidator extends Validator {
         return errors;
     }
 
-//    private static boolean emailTaken(String email) throws NetworkErrorException {
-//        User user = new User();
-//
-//        user.email = email;
-//
-//        try {
-//            Response<JsonObject> response = APIClient.getClient().create(UserService.class)
-//                    .emailTaken(user).execute();
-//
-//            if(response.isSuccessful() && response.body() != null) {
-//                return response.body().get("emailTaken").getAsBoolean();
-//            }
-//        } catch(IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        throw new NetworkErrorException();
-//    }
-
     public static List<String> getPasswordErrors(String password) {
         ArrayList<String> errors = new ArrayList<>();
 

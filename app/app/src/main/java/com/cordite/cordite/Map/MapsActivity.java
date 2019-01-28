@@ -16,14 +16,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.Toast;
 
 import com.cordite.cordite.Api.APIClient;
@@ -208,45 +206,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void saveReportAndAddToMap(final Report report) {
-        class SaveReport extends AsyncTask<Void, Void, Report> {
+        Call<JsonObject> request = reportService.saveReport(getToken(), report);
+
+        request.enqueue(new Callback<JsonObject>() {
             @Override
-            protected Report doInBackground(Void... voids) {
-                try {
-                    Response<JsonObject> response = reportService.saveReport(getToken(), report).execute();
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                JsonElement reportObj = response.body().get("report");
 
-                    JsonObject body = response.body();
+                ReportDeserializer reportDeserializer = new ReportDeserializer();
 
-                    ReportDeserializer reportDeserializer = new ReportDeserializer();
+                Report report = reportDeserializer.deserialize(reportObj, Report.class, null);
 
-                    if(body != null) {
-                        JsonElement reportObj = body.get("report");
-
-                        if(reportObj != null) {
-                            return reportDeserializer.deserialize(reportObj, Report.class, null);
-                        }
-                    }
-                } catch(IOException e) {
-                    System.out.println("bad request");
-                    e.printStackTrace();
-                }
-
-
-                return null;
+                // TODO: add to map
             }
 
             @Override
-            protected void onPostExecute(Report report) {
-                if(report != null) {
-                    System.out.println(report.type);
-                    System.out.println(report.location);
-                } else {
-                    Toast.makeText(MapsActivity.this, "Something went wrong adding the report", Toast.LENGTH_SHORT).show();
-                }
-
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Toast.makeText(MapsActivity.this, "Network error! :(", Toast.LENGTH_SHORT).show();
             }
-        }
-
-        new SaveReport().execute();
+        });
     }
 
     private void startTracking() {
@@ -282,10 +260,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Run run = new Run();
 
         run.locations = runManager.getLocationStack();
-        run.averageSpeed = 0;
-        run.timeElapsed = 0;
-        run.distanceTravelled = 0;
-        run.rating = 0;
 
         return run;
     }
@@ -297,33 +271,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return preferences.getString("token", "");
     }
 
-    private void saveRunAndExit() {
-        final Run run = getRun();
+    private void saveRunAndExit(final Run run) {
+        System.out.println(run);
 
-        class SaveRun extends AsyncTask<Void, Void, Boolean> {
+        Call<JsonObject> request = runService.saveRun(getToken(), run);
+
+        request.enqueue(new Callback<JsonObject>() {
             @Override
-            protected Boolean doInBackground(Void... voids) {
-                try {
-                    // TODO: Show post run form to get rating and log data
-                    Response<JsonObject> response = runService.saveRun(getToken(), run).execute();
-
-//                    System.out.println(response);
-
-                } catch(IOException e) {
-                    System.out.println("Bad request");
-                    e.printStackTrace();
-                }
-
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Boolean aBoolean) {
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 stopTracking();
             }
-        }
 
-        new SaveRun().execute();
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                // TODO: save locally for upload later
+                Toast.makeText(MapsActivity.this, "Network error! :(", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void showStopTrackingDialog() {
@@ -333,7 +297,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .setPositiveButton("Yes, save and exit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        saveRunAndExit();
+                        saveRunAndExit(getRun());
                     }
                 })
                 .setNegativeButton("No, continue", new DialogInterface.OnClickListener() {

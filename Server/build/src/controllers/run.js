@@ -36,6 +36,6 @@ exports.saveRun = function (req, res) {
             res.status(500).end();
             return;
         }
-        res.status(200).end();
+        res.status(200).json(run).end();
     });
 };

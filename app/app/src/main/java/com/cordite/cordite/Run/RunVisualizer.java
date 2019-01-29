@@ -1,7 +1,5 @@
 package com.cordite.cordite.Run;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.location.Location;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -18,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Stack;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 class RunVisualizer {
@@ -34,7 +33,7 @@ class RunVisualizer {
     Stack<Location> locationStack;
 
     RunVisualizer(FragmentManager fragmentManager, GoogleMap mMap) {
-        RunDataFragment runDataFragment = (RunDataFragment) fragmentManager.findFragmentById(R.id.runData);
+        RunDataFragment runDataFragment = (RunDataFragment) fragmentManager.findFragmentById(R.id.runDataFragment);
 
         fragmentView = runDataFragment.getView();
 

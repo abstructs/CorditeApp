@@ -22,4 +22,8 @@ public class RunDataFragment extends Fragment {
 
         return inflater.inflate(R.layout.fragment_run_data, container, false);
     }
+
+    public static RunDataFragment newInstance() {
+        return new RunDataFragment();
+    }
 }

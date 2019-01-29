@@ -23,7 +23,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
 import com.cordite.cordite.Api.APIClient;
@@ -36,6 +38,7 @@ import com.cordite.cordite.R;
 import com.cordite.cordite.Report.ReportSelectFragment;
 import com.cordite.cordite.Report.ReportShowFragment;
 import com.cordite.cordite.Report.ReportType;
+import com.cordite.cordite.Run.RunDataFragment;
 import com.cordite.cordite.Run.RunManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -78,7 +81,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_maps);
 
         setupToolbar();
-//        setupFragments();
 
         this.runService = APIClient.getClient().create(RunService.class);
         this.reportService = APIClient.getClient().create(ReportService.class);
@@ -349,7 +351,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         runManager = new RunManager(getSupportFragmentManager(), mFusedLocationClient, mMap);
     }
 
-    private void showReport(Report report) {
+    private void hideRunDataFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        final View view = fragmentManager.findFragmentById(R.id.runDataFragment).getView();
+
+        view.animate().alpha(0).setDuration(400).start();
+    }
+
+    private void showRunDataFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        final View view = fragmentManager.findFragmentById(R.id.runDataFragment).getView();
+
+        view.animate().alpha(1).setDuration(400).start();
+    }
+
+    private void showReportFragment(Report report) {
+        hideRunDataFragment();
+
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
@@ -373,9 +393,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public boolean onMarkerClick(Marker marker) {
                 Report report = (Report) marker.getTag();
 
-                showReport(report);
+                if(report != null ){
+                    animateMapCameraToLocation(report.location);
 
-                return true;
+                    showReportFragment(report);
+
+                    return true;
+                }
+
+                return false;
             }
         });
 
@@ -415,6 +441,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onBackPressed() {
         if(showReportFragment != null) {
             showReportFragment = null;
+            showRunDataFragment();
         } else if(runManager.trackingEnabled()) {
             showStopTrackingDialog();
             return;
@@ -430,7 +457,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
-    private void showReportSelectionMenu() {
+    private void showReportSelectionFragment() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
@@ -445,7 +472,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.sendReportItem:
-                showReportSelectionMenu();
+                showReportSelectionFragment();
                 return true;
         }
 

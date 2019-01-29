@@ -14,11 +14,16 @@
         tools:context=".Map.MapsActivity" />
 
     <fragment
-        android:id="@+id/runData"
+        android:id="@+id/runDataFragment"
         android:name="com.cordite.cordite.Run.RunDataFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Map.MapsActivity" />
+
+    <FrameLayout
+        android:id="@+id/runDataLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <!--<fragment-->
     <!--android:id="@+id/reportList"-->

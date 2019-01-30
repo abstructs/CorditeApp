@@ -23,8 +23,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
@@ -38,7 +36,6 @@ import com.cordite.cordite.R;
 import com.cordite.cordite.Report.ReportSelectFragment;
 import com.cordite.cordite.Report.ReportShowFragment;
 import com.cordite.cordite.Report.ReportType;
-import com.cordite.cordite.Run.RunDataFragment;
 import com.cordite.cordite.Run.RunManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -50,6 +47,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -58,6 +57,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -74,6 +76,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Fragment showReportFragment;
     private Fragment selectReportFragment;
     private Fragment runDataFragment;
+
+    private Polygon circleHighlight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -356,7 +360,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         final View view = fragmentManager.findFragmentById(R.id.runDataFragment).getView();
 
-        view.animate().alpha(0).setDuration(400).start();
+        view.animate().alpha(0).setDuration(400).setInterpolator(new DecelerateInterpolator()).start();
     }
 
     private void showRunDataFragment() {
@@ -364,7 +368,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         final View view = fragmentManager.findFragmentById(R.id.runDataFragment).getView();
 
-        view.animate().alpha(1).setDuration(400).start();
+        view.animate().alpha(1).setDuration(400).setInterpolator(new DecelerateInterpolator()).start();
     }
 
     private void showReportFragment(Report report) {
@@ -384,6 +388,67 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         transaction.commit();
     }
 
+    // Taken from StackOverflow
+    // Link: https://stackoverflow.com/a/42509627
+    private Iterable<LatLng> drawHole(LatLng center, double radius) {
+        int points = 50; // number of corners of inscribed polygon
+
+        final float EARTH_RADIUS = 6371;
+
+        double radiusLatitude = Math.toDegrees(radius / EARTH_RADIUS);
+        double radiusLongitude = radiusLatitude / Math.cos(Math.toRadians(center.latitude));
+
+        List<LatLng> result = new ArrayList<>(points);
+
+        double anglePerCircleRegion = 2 * Math.PI / points;
+
+        for (int i = 0; i < points; i++) {
+            double theta = i * anglePerCircleRegion;
+            double latitude = center.latitude + (radiusLatitude * Math.sin(theta)) + 0.000175;
+            double longitude = center.longitude + (radiusLongitude * Math.cos(theta));
+
+            result.add(new LatLng(latitude, longitude));
+        }
+
+        return result;
+    }
+
+    // Taken from StackOverflow
+    // Link: https://stackoverflow.com/a/42509627
+    private List<LatLng> drawBoundaries() {
+        final float delta = 0.01f;
+
+        return new ArrayList<LatLng>() {{
+            add(new LatLng(90 - delta, -180 + delta));
+            add(new LatLng(0, -180 + delta));
+            add(new LatLng(-90 + delta, -180 + delta));
+            add(new LatLng(-90 + delta, 0));
+            add(new LatLng(-90 + delta, 180 - delta));
+            add(new LatLng(0, 180 - delta));
+            add(new LatLng(90 - delta, 180 - delta));
+            add(new LatLng(90 - delta, 0));
+            add(new LatLng(90 - delta, -180 + delta));
+        }};
+    }
+
+    private void removeCircleHighlight() {
+        if(circleHighlight != null) {
+            circleHighlight.remove();
+            circleHighlight = null;
+        }
+    }
+
+    private void addCircleHighlight(Location center) {
+        PolygonOptions polygonOptions = new PolygonOptions();
+
+        polygonOptions.fillColor(getColor(R.color.overlay));
+        polygonOptions.addAll(drawBoundaries());
+        polygonOptions.addHole(drawHole(new LatLng(center.getLatitude(), center.getLongitude()), 0.05));
+        polygonOptions.strokeWidth(0);
+
+        circleHighlight = mMap.addPolygon(polygonOptions);
+    }
+
     private void setupMap() throws SecurityException {
         mMap.setMyLocationEnabled(true);
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.map_style));
@@ -391,17 +456,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Report report = (Report) marker.getTag();
+            Report report = (Report) marker.getTag();
 
-                if(report != null ){
-                    animateMapCameraToLocation(report.location);
+            if(report != null) {
+                animateMapCameraToLocation(report.location);
 
-                    showReportFragment(report);
+                addCircleHighlight(report.location);
+                showReportFragment(report);
 
-                    return true;
-                }
+                return true;
+            }
 
-                return false;
+            return false;
             }
         });
 
@@ -437,11 +503,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setSupportActionBar(bottomAppBar);
     }
 
+    private void clearShowReportFragment() {
+        showReportFragment = null;
+        removeCircleHighlight();
+    }
+
     @Override
     public void onBackPressed() {
         if(showReportFragment != null) {
-            showReportFragment = null;
+            clearShowReportFragment();
             showRunDataFragment();
+        } else if(selectReportFragment != null) {
+            selectReportFragment = null;
         } else if(runManager.trackingEnabled()) {
             showStopTrackingDialog();
             return;
@@ -461,8 +534,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
+        ReportSelectFragment fragment = ReportSelectFragment.newInstance();
+
+        selectReportFragment = fragment;
+
         transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
-        transaction.replace(R.id.reportSelectLayout, ReportSelectFragment.newInstance());
+        transaction.replace(R.id.reportSelectLayout, fragment);
         transaction.addToBackStack(null);
 
         transaction.commit();

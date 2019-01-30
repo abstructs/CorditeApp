@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 
 import Report, { ReportModel } from '../models/Report';
-import { LocationModel } from 'src/models/Location';
+import { LocationModel } from '../models/Location';
 
 export const saveReport = (req: Request, res: Response) => {
     const token = req.get("Authorization");

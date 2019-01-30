@@ -3,8 +3,8 @@
     <objectAnimator
         android:duration="@android:integer/config_mediumAnimTime"
         android:valueFrom="0dp"
-        android:valueTo="-200dp"
+        android:valueTo="@dimen/negativeReportShowSize"
         android:valueType="floatType"
         android:propertyName="y"
-        android:interpolator="@android:interpolator/accelerate_decelerate"/>
+        android:interpolator="@android:interpolator/accelerate_decelerate" />
 </set>

@@ -22,8 +22,7 @@ exports.saveReport = function (req, res) {
     });
 };
 exports.getReports = function (req, res) {
-    console.debug(req.body);
-    // const location = req.body.get("location");
+    var location = req.body;
     var token = req.get("Authorization");
     if (!token) {
         res.status(401).end();

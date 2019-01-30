@@ -5,4 +5,7 @@
     <dimen name="btn_left_padding">8dp</dimen>
     <dimen name="reportSelectItemMargin">16dp</dimen>
     <dimen name="reportSelectItemSize">124dp</dimen>
+
+    <dimen name="reportShowSize">150dp</dimen>
+    <dimen name="negativeReportShowSize">-150dp</dimen>
 </resources>

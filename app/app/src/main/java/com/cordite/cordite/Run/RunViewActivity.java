@@ -29,8 +29,8 @@ public class RunViewActivity extends AppCompatActivity {
         String timeElasped = intent.getStringExtra("runViewTimeTxt");
 
         TextView dateTextView = findViewById(R.id.dateTextView);
-        TextView avgSpeedDistanceView = findViewById(R.id.distanceAvgSpeed);
-        TextView timeElaspedView = findViewById(R.id.runViewTimeTxt);
+        TextView avgSpeedDistanceView = findViewById(R.id.distanceAvgSpeedTextView);
+        TextView timeElaspedView = findViewById(R.id.runViewTimeTextView);
 
         String avgMessage = "You traveled a distance of "+distanceTxt +" KM, at an average speed of "+ averageSpeed+ " KM/h";
         String timeMessage = "The journey took you " + timeElasped;

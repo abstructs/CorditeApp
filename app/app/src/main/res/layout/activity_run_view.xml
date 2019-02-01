@@ -43,13 +43,13 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/distanceAvgSpeed"
+                    android:id="@+id/distanceAvgSpeedTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="You travelled 17KM at an average speed of 13KM/h." />
 
                 <TextView
-                    android:id="@+id/runViewTimeTxt"
+                    android:id="@+id/runViewTimeTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="The journey took you 34 minutes." />

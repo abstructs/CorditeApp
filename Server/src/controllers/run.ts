@@ -23,7 +23,7 @@ export const getRuns = (req: Request, res: Response) => {
         }
 
         console.log(runs);
-
+        //recives null 
         res.status(200).json(runs).end();
     });
 };
@@ -50,7 +50,7 @@ export const saveRun = (req: Request, res: Response) => {
             res.status(500).end();
             return;
         }
-
+        //somehow our run is saved here as a null
         res.status(200).json(run).end();
     });
 };

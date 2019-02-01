@@ -75,6 +75,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void populateJournal(ArrayList<Run> runs) {
+
         this.runAdapter = new RunAdapter(runs);
         this.layoutManager = new LinearLayoutManager(HomeActivity.this);
         this.recyclerView = findViewById(R.id.recyclerView);

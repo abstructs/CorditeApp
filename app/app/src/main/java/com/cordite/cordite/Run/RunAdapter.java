@@ -85,7 +85,16 @@ public class RunAdapter extends RecyclerView.Adapter<RunAdapter.MyViewHolder> {
             @Override
             public void onClick(View ref) {
                 Intent intent = new Intent(holder.context, RunViewActivity.class);
-                // TODO: Send run data
+
+                String runViewDateTxt =  String.valueOf(run.date);
+                String runViewDistanceTxt = String.valueOf(run.distanceTravelled);
+                String runViewAvgSpeedTxt = String.valueOf(run.averageSpeed);
+                String runViewTimeTxt = String.valueOf(run.timeElapsed);
+
+                intent.putExtra("runViewDateTxt",runViewDateTxt);
+                intent.putExtra("runViewDistanceTxt",runViewDistanceTxt);
+                intent.putExtra("runViewAvgSpeedTxt",runViewAvgSpeedTxt);
+                intent.putExtra("runViewTimeTxt",runViewTimeTxt);
 
                 holder.context.startActivity(intent);
             }

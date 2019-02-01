@@ -17,6 +17,8 @@ var getDistance = function (location1, location2) {
     var deltaMean = (point1.latitude + point2.latitude) / 2;
     var square = (Math.pow((deltaLat), 2)) + (Math.pow(Math.cos(deltaMean) * deltaLong, 2));
     var distanceOfPoints = radius * Math.sqrt(square);
+    var roundedDist = distanceOfPoints.toPrecision(1);
+    distanceOfPoints = Number(roundedDist);
     return distanceOfPoints;
 };
 var calculateRunStats = function (locations) {
@@ -25,10 +27,6 @@ var calculateRunStats = function (locations) {
     var prevLocation = locations[0];
     var totalDistance = 0;
     var totalSpeed = prevLocation.mSpeed.valueOf();
-    // for (let i = 0; i < locations.length; i++) {
-    //     console.log(locations[i]);
-    // }
-    console.log(locations.length);
     for (var i = 1; i < locations.length; i++) {
         var location_1 = locations[i];
         totalDistance += getDistance(prevLocation, location_1).valueOf();
@@ -36,6 +34,8 @@ var calculateRunStats = function (locations) {
         prevLocation = locations[i];
     }
     var averageSpeed = totalSpeed / locations.length;
+    var roundedAverageSpeed = averageSpeed.toPrecision(1);
+    averageSpeed = Number(roundedAverageSpeed);
     var timeElapsed = (locations[locations.length - 1]["mTime"].valueOf()) - (locations[0]["mTime"].valueOf());
     console.log("Distance: " + totalDistance);
     return { averageSpeed: averageSpeed, totalDistance: totalDistance, timeElapsed: timeElapsed };

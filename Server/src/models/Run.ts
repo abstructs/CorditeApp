@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
-import { Timestamp, Double } from "bson";
-import { LocationModel, LocationSchema } from "./Location";
+import { Timestamp } from "bson";
+import { LocationModel } from "./Location";
 import { UserModel } from "./User";
 
 const getDistance = (location1: LocationModel, location2: LocationModel): Number => {
@@ -8,7 +8,7 @@ const getDistance = (location1: LocationModel, location2: LocationModel): Number
     const radians = (Math.PI / 180);
 
     const point1 = {
-        latitude: location1.mLatitude.valueOf()  * radians,
+        latitude: location1.mLatitude.valueOf() * radians,
         longitude: location1.mLongitude.valueOf() * radians
     }
 
@@ -23,7 +23,11 @@ const getDistance = (location1: LocationModel, location2: LocationModel): Number
     const deltaMean = (point1.latitude + point2.latitude) / 2;
 
     const square = (Math.pow((deltaLat), 2)) + (Math.pow(Math.cos(deltaMean) * deltaLong, 2));
-    const distanceOfPoints = radius * Math.sqrt(square);
+
+    let distanceOfPoints = radius * Math.sqrt(square);
+    const roundedDist: String = distanceOfPoints.toPrecision(1);
+
+    distanceOfPoints = Number(roundedDist);
 
     return distanceOfPoints;
 }
@@ -36,10 +40,6 @@ const calculateRunStats = (locations: Array<LocationModel>): { averageSpeed: Num
 
     let totalSpeed: number = prevLocation.mSpeed.valueOf();
 
-    // for (let i = 0; i < locations.length; i++) {
-    //     console.log(locations[i]);
-    // }
-    console.log(locations.length)
     for (let i = 1; i < locations.length; i++) {
         const location = locations[i];
 
@@ -49,7 +49,10 @@ const calculateRunStats = (locations: Array<LocationModel>): { averageSpeed: Num
         prevLocation = locations[i];
     }
 
-    const averageSpeed: number = totalSpeed / locations.length
+    let averageSpeed: number = totalSpeed / locations.length
+    const roundedAverageSpeed: String = averageSpeed.toPrecision(1);
+    averageSpeed = Number(roundedAverageSpeed)
+
     const timeElapsed: number = (locations[locations.length - 1]["mTime"].valueOf()) - (locations[0]["mTime"].valueOf());
     console.log("Distance: " + totalDistance)
     return { averageSpeed, totalDistance, timeElapsed };
@@ -93,9 +96,9 @@ const runSchema = new mongoose.Schema({
 runSchema.pre<RunModel>("save", function (next) {
 
     let runnerStats = calculateRunStats(this.locations);
-   
+
     this.averageSpeed = runnerStats.averageSpeed;
-    this.distanceTravelled =runnerStats.totalDistance;
+    this.distanceTravelled = runnerStats.totalDistance;
     this.timeElapsed = runnerStats.timeElapsed;
 
     next();

@@ -16,9 +16,7 @@ var getDistance = function (location1, location2) {
     var deltaLong = (point2.longitude - point1.longitude);
     var deltaMean = (point1.latitude + point2.latitude) / 2;
     var square = (Math.pow((deltaLat), 2)) + (Math.pow(Math.cos(deltaMean) * deltaLong, 2));
-    var distanceOfPoints = radius * Math.sqrt(square);
-    var roundedDist = distanceOfPoints.toPrecision(1);
-    distanceOfPoints = Number(roundedDist);
+    var distanceOfPoints = Number((radius * Math.sqrt(square)).toFixed(3));
     return distanceOfPoints;
 };
 var calculateRunStats = function (locations) {
@@ -33,11 +31,8 @@ var calculateRunStats = function (locations) {
         totalSpeed += location_1.mSpeed.valueOf();
         prevLocation = locations[i];
     }
-    var averageSpeed = totalSpeed / locations.length;
-    var roundedAverageSpeed = averageSpeed.toPrecision(1);
-    averageSpeed = Number(roundedAverageSpeed);
+    var averageSpeed = Number((totalSpeed / locations.length).toFixed(1));
     var timeElapsed = (locations[locations.length - 1]["mTime"].valueOf()) - (locations[0]["mTime"].valueOf());
-    console.log("Distance: " + totalDistance);
     return { averageSpeed: averageSpeed, totalDistance: totalDistance, timeElapsed: timeElapsed };
 };
 var runSchema = new mongoose.Schema({

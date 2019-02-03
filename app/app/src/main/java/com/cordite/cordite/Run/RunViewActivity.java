@@ -9,6 +9,14 @@ import android.widget.TextView;
 import com.cordite.cordite.Home.HomeActivity;
 import com.cordite.cordite.R;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 public class RunViewActivity extends AppCompatActivity {
 
     @Override
@@ -16,8 +24,7 @@ public class RunViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_view);
 
-        Intent intent = getIntent();
-        populateFields(intent);
+        populateFields(getIntent());
 
     }
 
@@ -26,18 +33,17 @@ public class RunViewActivity extends AppCompatActivity {
         String dateTxt = intent.getStringExtra("runViewDateTxt");
         String distanceTxt = intent.getStringExtra("runViewDistanceTxt");
         String averageSpeed = intent.getStringExtra("runViewAvgSpeedTxt");
-        String timeElasped = intent.getStringExtra("runViewTimeTxt");
+        String timeElapsed = intent.getStringExtra("runViewTimeTxt");
 
         TextView dateTextView = findViewById(R.id.dateTextView);
         TextView avgSpeedDistanceView = findViewById(R.id.distanceAvgSpeedTextView);
-        TextView timeElaspedView = findViewById(R.id.runViewTimeTextView);
+        TextView timeElapsedView = findViewById(R.id.runViewTimeTextView);
 
-        String avgMessage = "You traveled a distance of "+distanceTxt +" KM, at an average speed of "+ averageSpeed+ " KM/h";
-        String timeMessage = "The journey took you " + timeElasped;
+        String avgMessage = "You traveled a distance of " + distanceTxt + " KM, at an average speed of " + averageSpeed + " KM/h";
+        String timeMessage = "The journey took you " + timeElapsed;
 
         dateTextView.setText(dateTxt);
         avgSpeedDistanceView.setText(avgMessage);
-        timeElaspedView.setText(timeMessage);
+        timeElapsedView.setText(timeMessage);
     }
-
 }

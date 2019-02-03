@@ -19,15 +19,10 @@ const getDistance = (location1: LocationModel, location2: LocationModel): Number
 
     const deltaLat = (point2.latitude - point1.latitude);
     const deltaLong = (point2.longitude - point1.longitude);
-
     const deltaMean = (point1.latitude + point2.latitude) / 2;
-
     const square = (Math.pow((deltaLat), 2)) + (Math.pow(Math.cos(deltaMean) * deltaLong, 2));
-
-    let distanceOfPoints = radius * Math.sqrt(square);
-    const roundedDist: String = distanceOfPoints.toPrecision(1);
-
-    distanceOfPoints = Number(roundedDist);
+   
+    let distanceOfPoints = Number((radius * Math.sqrt(square)).toFixed(3));
 
     return distanceOfPoints;
 }
@@ -49,12 +44,10 @@ const calculateRunStats = (locations: Array<LocationModel>): { averageSpeed: Num
         prevLocation = locations[i];
     }
 
-    let averageSpeed: number = totalSpeed / locations.length
-    const roundedAverageSpeed: String = averageSpeed.toPrecision(1);
-    averageSpeed = Number(roundedAverageSpeed)
+    let averageSpeed = Number((totalSpeed / locations.length).toFixed(1));
 
     const timeElapsed: number = (locations[locations.length - 1]["mTime"].valueOf()) - (locations[0]["mTime"].valueOf());
-    console.log("Distance: " + totalDistance)
+
     return { averageSpeed, totalDistance, timeElapsed };
 }
 
@@ -94,13 +87,12 @@ const runSchema = new mongoose.Schema({
     });
 
 runSchema.pre<RunModel>("save", function (next) {
-
     let runnerStats = calculateRunStats(this.locations);
 
     this.averageSpeed = runnerStats.averageSpeed;
     this.distanceTravelled = runnerStats.totalDistance;
     this.timeElapsed = runnerStats.timeElapsed;
-
+    
     next();
 });
 

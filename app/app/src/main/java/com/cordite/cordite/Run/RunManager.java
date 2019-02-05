@@ -70,6 +70,7 @@ public class RunManager {
     }
 
     private LocationCallback getLocationCallback() {
+
         return new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {

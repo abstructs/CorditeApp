@@ -18,7 +18,10 @@ import com.google.android.material.button.MaterialButton;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.TimeZone;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -78,16 +81,11 @@ public class RunAdapter extends RecyclerView.Adapter<RunAdapter.MyViewHolder> {
         holder.ratingBar.setRating(run.rating);
         holder.distanceTxt.setText(String.valueOf(run.distanceTravelled) + "KM in " + run.timeElapsed + "ms");
         holder.avgSpeedTxt.setText(String.valueOf(run.averageSpeed) + "KM/h Average Speed");
-//        holder.imageView.setImageDrawable(R.drawable.placeholder);
-//        holder.
 
         holder.viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View ref) {
-                Intent intent = new Intent(holder.context, RunViewActivity.class);
-                // TODO: Send run data
-
-                holder.context.startActivity(intent);
+                holder.context.startActivity(setJournalItemIntent(run, holder.context));
             }
         });
     }
@@ -95,5 +93,21 @@ public class RunAdapter extends RecyclerView.Adapter<RunAdapter.MyViewHolder> {
     @Override
     public int getItemCount() {
         return runs.size();
+    }
+
+    private Intent setJournalItemIntent(Run run, Context context) {
+        Intent intent = new Intent(context, RunViewActivity.class);
+
+        String runViewDateTxt = String.valueOf(run.date);
+        String runViewDistanceTxt = String.valueOf(run.distanceTravelled);
+        String runViewAvgSpeedTxt = String.valueOf(run.averageSpeed);
+        String runViewTimeTxt = String.valueOf(run.timeElapsed);
+
+        intent.putExtra("runViewDateTxt", runViewDateTxt);
+        intent.putExtra("runViewDistanceTxt", runViewDistanceTxt);
+        intent.putExtra("runViewAvgSpeedTxt", runViewAvgSpeedTxt);
+        intent.putExtra("runViewTimeTxt", runViewTimeTxt);
+
+        return intent;
     }
 }

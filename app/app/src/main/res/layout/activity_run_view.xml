@@ -36,19 +36,20 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/dateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="January 10th, 2019"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/distanceAvgSpeedTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="You travelled 17KM at an average speed of 13KM/h." />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/runViewTimeTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="The journey took you 34 minutes." />

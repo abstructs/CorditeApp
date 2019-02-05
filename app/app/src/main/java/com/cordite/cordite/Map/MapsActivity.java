@@ -503,7 +503,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setSupportActionBar(bottomAppBar);
     }
 
-    private void clearShowReportFragment() {
+    private void clear4004000() {
         showReportFragment = null;
         removeCircleHighlight();
     }
@@ -522,6 +522,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         super.onBackPressed();
     }
+
+    private void clearShowReportFragment() {
+        showReportFragment = null;
+        removeCircleHighlight();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

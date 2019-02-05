@@ -1,5 +1,7 @@
 package com.cordite.cordite.Deserializers;
 
+import android.os.Build;
+
 import com.cordite.cordite.Entities.Run;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -11,8 +13,12 @@ import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
+
 
 public class RunDeserializer implements JsonDeserializer<Run> {
     @Override
@@ -29,11 +35,15 @@ public class RunDeserializer implements JsonDeserializer<Run> {
         int rating = obj.get("rating").getAsInt();
         double distanceTravelled = obj.get("distanceTravelled").getAsDouble();
 
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
 
         try {
-            Date convertedDate = date.parse(obj.get("createdAt").getAsString());
-            run.date = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(convertedDate);
+
+            SimpleDateFormat dateObj = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+            dateObj.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date mongoDate = dateObj.parse(obj.get("createdAt").getAsString());
+
+            run.date = mongoDate.toString();
+
         } catch (ParseException e) {
             e.printStackTrace();
         }

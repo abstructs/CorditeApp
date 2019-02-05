@@ -35,11 +35,11 @@ public class RunDeserializer implements JsonDeserializer<Run> {
         int rating = obj.get("rating").getAsInt();
         double distanceTravelled = obj.get("distanceTravelled").getAsDouble();
 
-
         try {
 
             SimpleDateFormat dateObj = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
             dateObj.setTimeZone(TimeZone.getTimeZone("UTC"));
+
             Date mongoDate = dateObj.parse(obj.get("createdAt").getAsString());
 
             run.date = mongoDate.toString();

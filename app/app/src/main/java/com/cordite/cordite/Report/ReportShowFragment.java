@@ -58,7 +58,12 @@ public class ReportShowFragment extends Fragment {
         FrameLayout layout = view.findViewById(R.id.reportViewLayout);
 
         TextView typeTxt = view.findViewById(R.id.typeTxt);
+        TextView locationTxt = view.findViewById(R.id.addressTxt);
 
+        String longitude = String.valueOf(report.location.getLongitude());
+        String latitude = String.valueOf(report.location.getLatitude());
+
+        locationTxt.append(longitude + ", "+latitude);
         typeTxt.setText(report.type.toString());
 
         layout.setOnClickListener(new View.OnClickListener() {

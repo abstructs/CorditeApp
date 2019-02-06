@@ -378,7 +378,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         FragmentTransaction transaction = manager.beginTransaction();
 
         ReportShowFragment fragment = ReportShowFragment.newInstance(report);
-
+        
         this.showReportFragment = fragment;
 
         transaction.setCustomAnimations(R.animator.slide_in_top, R.animator.slide_out_top, R.animator.slide_in_top, R.animator.slide_out_top);

@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 var jwt = require("jsonwebtoken");
-var Run_1 = require("../models/Run");
 var Report_1 = require("../models/Report");
+var Run_1 = require("../models/Run");
 exports.saveReport = function (req, res) {
     var token = req.get("Authorization");
     if (!token) {
@@ -47,5 +47,5 @@ exports.getReportDistance = function (req, res) {
         return;
     }
     ;
-    console.log(res.status(200).json({ distance: Run_1.getDistance(location1, location2) }).end());
+    res.status(200).json({ distance: Run_1.getDistance(location1, location2) }).end();
 };

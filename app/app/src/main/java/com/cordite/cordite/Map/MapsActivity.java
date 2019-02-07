@@ -375,15 +375,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void showReportFragment(final Report report) {
         hideRunDataFragment();
 
-        Task<Location> task = getLastKnownLocation();
+        Task<Location> userLocation = getLastKnownLocation();
 
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+        userLocation.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
                 calculateUserDistanceFromReport(report,location);
             }
         });
-
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -401,9 +400,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void calculateUserDistanceFromReport(final Report report, Location userLocation) {
         Location reportLocation = report.location;
+
         ArrayList<Location> locations = new ArrayList<>();
         locations.add(userLocation);
         locations.add(reportLocation);
+
         Call<JsonObject> request = reportService.getUserDistance(getToken(),locations);
 
         request.enqueue(new Callback<JsonObject>() {
@@ -417,7 +418,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-
+                Toast.makeText(MapsActivity.this, "Network error! :(", Toast.LENGTH_SHORT).show();
             }
         });
     }

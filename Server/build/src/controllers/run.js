@@ -16,8 +16,6 @@ exports.getRuns = function (req, res) {
             res.status(500).end();
             return;
         }
-        console.log(runs);
-        //recives null 
         res.status(200).json(runs).end();
     });
 };
@@ -37,7 +35,6 @@ exports.saveRun = function (req, res) {
             res.status(500).end();
             return;
         }
-        //somehow our run is saved here as a null
         res.status(200).json(run).end();
     });
 };

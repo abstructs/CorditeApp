@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
-
 import Run, { RunModel } from '../models/Run';
-import { runInContext } from 'vm';
 
 export const getRuns = (req: Request, res: Response) => {
     const token = req.get("Authorization");
@@ -22,9 +20,6 @@ export const getRuns = (req: Request, res: Response) => {
             res.status(500).end();
             return;
         }
-
-        console.log(runs);
-        //recives null 
         res.status(200).json(runs).end();
     });
 };
@@ -51,7 +46,6 @@ export const saveRun = (req: Request, res: Response) => {
             res.status(500).end();
             return;
         }
-        //somehow our run is saved here as a null
         res.status(200).json(run).end();
     });
 };

@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
+import distance, {getDistance} from '../models/Run'
+
 
 import Report, { ReportModel } from '../models/Report';
 import { LocationModel } from '../models/Location';
@@ -50,4 +52,18 @@ export const getReports = (req: Request, res: Response) => {
 
         res.status(200).json(reports).end();
     });
+};
+
+export const getReportDistance = (req: Request, res: Response) => {
+    const location1: LocationModel = req.body[0];
+    const location2: LocationModel = req.body[1];
+   
+    const token = req.get("Authorization");
+    
+    if(!token) {
+        res.status(401).end();
+        return;
+    }
+   ;
+    res.status(200).json({ distance: getDistance(location1,location2)}).end();
 };

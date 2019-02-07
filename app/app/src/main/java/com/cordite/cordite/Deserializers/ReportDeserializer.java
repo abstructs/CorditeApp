@@ -15,6 +15,7 @@ import java.lang.reflect.Type;
 public class ReportDeserializer implements JsonDeserializer<Report> {
     @Override
     public Report deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+
         Report report = new Report();
         LocationDeserializer locationDeserializer = new LocationDeserializer();
 

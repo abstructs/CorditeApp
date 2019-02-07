@@ -26,6 +26,7 @@ const getDistance = (location1: LocationModel, location2: LocationModel): Number
 
     return distanceOfPoints;
 }
+export {getDistance};
 
 const calculateRunStats = (locations: Array<LocationModel>): { averageSpeed: Number, totalDistance: Number, timeElapsed: Number } => {
     if (locations.length == 0) return;

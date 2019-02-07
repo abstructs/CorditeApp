@@ -19,6 +19,7 @@ var getDistance = function (location1, location2) {
     var distanceOfPoints = Number((radius * Math.sqrt(square)).toFixed(3));
     return distanceOfPoints;
 };
+exports.getDistance = getDistance;
 var calculateRunStats = function (locations) {
     if (locations.length == 0)
         return;

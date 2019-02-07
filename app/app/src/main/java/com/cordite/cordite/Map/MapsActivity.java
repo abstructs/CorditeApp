@@ -30,6 +30,7 @@ import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.ReportService;
 import com.cordite.cordite.Api.RunService;
 import com.cordite.cordite.Deserializers.ReportDeserializer;
+import com.cordite.cordite.Deserializers.ReportDistanceDeserializer;
 import com.cordite.cordite.Entities.Report;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
@@ -371,8 +372,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         view.animate().alpha(1).setDuration(400).setInterpolator(new DecelerateInterpolator()).start();
     }
 
-    private void showReportFragment(Report report) {
+    private void showReportFragment(final Report report) {
         hideRunDataFragment();
+
+        Task<Location> task = getLastKnownLocation();
+
+        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                calculateUserDistanceFromReport(report,location);
+            }
+        });
+
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -386,6 +397,29 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         transaction.addToBackStack(null);
 
         transaction.commit();
+    }
+
+    private void calculateUserDistanceFromReport(final Report report, Location userLocation) {
+        Location reportLocation = report.location;
+        ArrayList<Location> locations = new ArrayList<>();
+        locations.add(userLocation);
+        locations.add(reportLocation);
+        Call<JsonObject> request = reportService.getUserDistance(getToken(),locations);
+
+        request.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                //TODO: Create deserializer for response.
+                ReportDistanceDeserializer reportDistanceDeserializer = new ReportDistanceDeserializer();
+                JsonObject body = response.body();
+                report.distanceTo = reportDistanceDeserializer.deserialize(body, Report.class, null);
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
     }
 
     // Taken from StackOverflow

@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 
 import Run, { RunModel } from '../models/Run';
+import { runInContext } from 'vm';
 
 export const getRuns = (req: Request, res: Response) => {
     const token = req.get("Authorization");

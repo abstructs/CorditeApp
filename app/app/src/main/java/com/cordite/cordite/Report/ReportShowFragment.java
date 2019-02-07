@@ -41,7 +41,10 @@ public class ReportShowFragment extends Fragment {
         if (getArguments() != null) {
             report = (Report) getArguments().get(ARG_PARAM);
         }
+
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,15 +57,20 @@ public class ReportShowFragment extends Fragment {
         return view;
     }
 
+
     private void setupFields(View view) {
         FrameLayout layout = view.findViewById(R.id.reportViewLayout);
 
         TextView typeTxt = view.findViewById(R.id.typeTxt);
         TextView locationTxt = view.findViewById(R.id.addressTxt);
+        TextView distanceTxt = view.findViewById(R.id.distanceToTxt);
+        //call method to send current loction
 
         String longitude = String.valueOf(report.location.getLongitude());
         String latitude = String.valueOf(report.location.getLatitude());
+        String distance = String.valueOf(report.distanceTo);
 
+        distanceTxt.append(distance);
         locationTxt.append(longitude + ", "+latitude);
         typeTxt.setText(report.type.toString());
 
@@ -73,4 +81,5 @@ public class ReportShowFragment extends Fragment {
             }
         });
     }
+
 }

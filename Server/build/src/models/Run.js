@@ -16,7 +16,7 @@ var getDistance = function (location1, location2) {
     var deltaLong = (point2.longitude - point1.longitude);
     var deltaMean = (point1.latitude + point2.latitude) / 2;
     var square = (Math.pow((deltaLat), 2)) + (Math.pow(Math.cos(deltaMean) * deltaLong, 2));
-    var distanceOfPoints = Number((radius * Math.sqrt(square)).toFixed(3));
+    var distanceOfPoints = radius * Math.sqrt(square);
     return distanceOfPoints;
 };
 exports.getDistance = getDistance;

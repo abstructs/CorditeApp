@@ -1,5 +1,7 @@
 package com.cordite.cordite.Report;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -13,6 +15,10 @@ import android.widget.TextView;
 
 import com.cordite.cordite.Entities.Report;
 import com.cordite.cordite.R;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 
 public class ReportShowFragment extends Fragment {
@@ -41,10 +47,7 @@ public class ReportShowFragment extends Fragment {
         if (getArguments() != null) {
             report = (Report) getArguments().get(ARG_PARAM);
         }
-
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,12 +65,21 @@ public class ReportShowFragment extends Fragment {
 
         TextView typeTxt = view.findViewById(R.id.typeTxt);
         TextView distanceTxt = view.findViewById(R.id.distanceToTxt);
+        TextView addressTxt = view.findViewById(R.id.addressTxt);
+        TextView timeStamp = view.findViewById(R.id.timestampTxt);
 
-        String distance = String.valueOf(report.distanceTo);
 
-        distanceTxt.setText(distance);
+        try {
+            addressTxt.setText(getAddress(report.location.getLatitude(), report.location.getLongitude()));
+        } catch(IOException e) {
+            // todo: inform user with toast
+            e.printStackTrace();
+        }
+
+        distanceTxt.setText(String.valueOf(report.distanceTo));
         distanceTxt.append(getString(R.string.KM));
-        typeTxt.setText(report.type.toString());
+        typeTxt.setText(fromCamelCase(report.type.toString()));
+        timeStamp.setText(String.valueOf(report.timestamp));
 
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +87,33 @@ public class ReportShowFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+    }
+
+    private String fromCamelCase(String str) {
+        if(str.length() == 0) return "";
+
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(Character.toUpperCase(str.charAt(0)));
+
+        for(int i = 1; i < str.length(); i++) {
+            char strChar = str.charAt(i);
+
+            if(Character.isUpperCase(strChar)) {
+                builder.append(" ");
+                builder.append(strChar);
+            } else {
+                builder.append(strChar);
+            }
+        }
+        return builder.toString();
+    }
+
+    private String getAddress(double latitude, double longitude) throws IOException{
+
+        Geocoder geocoder = new Geocoder(this.getContext(), Locale.getDefault());
+        List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+        return addresses.get(0).getAddressLine(0);
     }
 
 }

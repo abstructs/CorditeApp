@@ -21,6 +21,4 @@ public interface ReportService {
     @POST("reports/aroundMe")
     Call<JsonArray> getReports(@Header("Authorization") String token, @Body Location location);
 
-    @POST("reports/report")
-    Call<JsonObject> getUserDistance(@Header("Authorization") String token, @Body ArrayList<Location> locations);
 }

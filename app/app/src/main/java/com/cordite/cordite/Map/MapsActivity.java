@@ -58,7 +58,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -376,11 +375,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         hideRunDataFragment();
 
         Task<Location> userLocation = getLastKnownLocation();
-
         userLocation.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                calculateUserDistanceFromReport(report,location);
+               report.distanceTo = getDistance(report,location);
             }
         });
 
@@ -397,30 +395,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         transaction.commit();
     }
+    private double getDistance(Report report, Location location){
+        double lon1 = report.location.getLongitude();
+        double lon2 = location.getLongitude();
+        double lat1 = report.location.getLatitude();
+        double lat2 = location.getLatitude();
+        double theta = lon1 - lon2;
 
-    private void calculateUserDistanceFromReport(final Report report, Location userLocation) {
-        Location reportLocation = report.location;
+        double dist = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2)) +
+                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
 
-        ArrayList<Location> locations = new ArrayList<>();
-        locations.add(userLocation);
-        locations.add(reportLocation);
+        dist = Math.acos(dist);
+        dist = Math.toDegrees(dist);
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1.609344;
 
-        Call<JsonObject> request = reportService.getUserDistance(getToken(),locations);
+        dist = Math.round(dist * 100.0) / 100.0;
 
-        request.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                //TODO: Create deserializer for response.
-                ReportDistanceDeserializer reportDistanceDeserializer = new ReportDistanceDeserializer();
-                JsonObject body = response.body();
-                report.distanceTo = reportDistanceDeserializer.deserialize(body, Report.class, null);
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Toast.makeText(MapsActivity.this, "Network error! :(", Toast.LENGTH_SHORT).show();
-            }
-        });
+        return dist;
     }
 
     // Taken from StackOverflow

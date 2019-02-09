@@ -21,32 +21,32 @@
                 android:id="@+id/typeTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Type" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/distanceToTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Distance To" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/addressTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Address:" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/timestampTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Timestamp" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/likesTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Likes" />
+                android:text="" />
         </LinearLayout>
 
     </LinearLayout>

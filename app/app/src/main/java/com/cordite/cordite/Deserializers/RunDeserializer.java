@@ -51,7 +51,7 @@ public class RunDeserializer implements JsonDeserializer<Run> {
         run.timeElapsed = timeElapsed;
         run.averageSpeed = averageSpeed;
         run.rating = rating;
-        run.distanceTravelled = distanceTravelled;
+        run.distanceTravelled = Math.round(distanceTravelled * 100d) / 1000d;
 
         return run;
     }

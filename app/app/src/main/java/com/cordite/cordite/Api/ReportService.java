@@ -6,6 +6,8 @@ import com.cordite.cordite.Entities.Report;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -18,4 +20,5 @@ public interface ReportService {
 
     @POST("reports/aroundMe")
     Call<JsonArray> getReports(@Header("Authorization") String token, @Body Location location);
+
 }

@@ -30,6 +30,7 @@ import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.ReportService;
 import com.cordite.cordite.Api.RunService;
 import com.cordite.cordite.Deserializers.ReportDeserializer;
+import com.cordite.cordite.Deserializers.ReportDistanceDeserializer;
 import com.cordite.cordite.Entities.Report;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
@@ -57,7 +58,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -371,14 +371,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         view.animate().alpha(1).setDuration(400).setInterpolator(new DecelerateInterpolator()).start();
     }
 
-    private void showReportFragment(Report report) {
+    private void showReportFragment(final Report report) {
         hideRunDataFragment();
+
+        Task<Location> userLocation = getLastKnownLocation();
+        userLocation.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+               report.distanceTo = getDistance(report,location);
+            }
+        });
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
         ReportShowFragment fragment = ReportShowFragment.newInstance(report);
-
+        
         this.showReportFragment = fragment;
 
         transaction.setCustomAnimations(R.animator.slide_in_top, R.animator.slide_out_top, R.animator.slide_in_top, R.animator.slide_out_top);
@@ -386,6 +394,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         transaction.addToBackStack(null);
 
         transaction.commit();
+    }
+    private double getDistance(Report report, Location location){
+        double lon1 = report.location.getLongitude();
+        double lon2 = location.getLongitude();
+        double lat1 = report.location.getLatitude();
+        double lat2 = location.getLatitude();
+        double theta = lon1 - lon2;
+
+        double dist = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2)) +
+                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
+
+        dist = Math.acos(dist);
+        dist = Math.toDegrees(dist);
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1.609344;
+
+        dist = Math.round(dist * 100.0) / 100.0;
+
+        return dist;
     }
 
     // Taken from StackOverflow

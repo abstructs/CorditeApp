@@ -63,9 +63,9 @@
                     android:id="@+id/photoBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_photo"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/ic_photo" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -92,9 +92,9 @@
                     android:id="@+id/constructionBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_construction"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/ic_construction" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -113,8 +113,8 @@
                     android:id="@+id/coolPlaceBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/transparent"
                     android:layout_gravity="center"
+                    android:backgroundTint="@android:color/transparent"
                     android:src="@drawable/ic_check" />
 
                 <TextView
@@ -143,9 +143,9 @@
                     android:id="@+id/beCarefulBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_warning"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/ic_warning" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -165,9 +165,9 @@
                     android:id="@+id/waterBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_water"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/ic_water" />
 
                 <TextView
                     android:id="@+id/textView7"

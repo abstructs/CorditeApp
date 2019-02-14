@@ -6,15 +6,221 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="DATER" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="system.out" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="532c799d-54ae-4585-a647-460b3606fbb0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/bcrypt/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/bcrypt/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/body-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/body-parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/bson/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/bson/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/connect/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/connect/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/events/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/events/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/express-serve-static-core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/express-serve-static-core/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/express/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/express/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/mime/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/mime/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/mongodb/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/mongodb/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/mongoose/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/mongoose/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/node/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/node/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/range-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/range-parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/@types/serve-static/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/@types/serve-static/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/accepts/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/accepts/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/array-flatten/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/array-flatten/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/async/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/async/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/build/Release/bcrypt_lib.node" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/build/Release/bcrypt_lib.node" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/build/config.gypi" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/build/config.gypi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/lib/binding/bcrypt_lib.node" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/lib/binding/bcrypt_lib.node" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/abbrev/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/abbrev/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/ansi-regex/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/ansi-regex/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/aproba/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/aproba/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/are-we-there-yet/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/are-we-there-yet/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/balanced-match/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/balanced-match/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/brace-expansion/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/brace-expansion/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/chownr/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/chownr/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/code-point-at/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/code-point-at/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/concat-map/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/concat-map/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/console-control-strings/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/console-control-strings/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/core-util-is/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/core-util-is/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/debug/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/debug/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/deep-extend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/deep-extend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/delegates/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/delegates/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/detect-libc/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/detect-libc/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/fs-minipass/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/fs-minipass/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/fs.realpath/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/fs.realpath/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/gauge/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/gauge/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/glob/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/glob/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/has-unicode/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/has-unicode/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/iconv-lite/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/iconv-lite/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/ignore-walk/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/ignore-walk/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/inflight/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/inflight/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/inherits/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/inherits/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/ini/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/ini/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/is-fullwidth-code-point/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/is-fullwidth-code-point/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/isarray/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/isarray/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minimatch/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minimatch/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minimist/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minimist/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minipass/node_modules/safe-buffer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minipass/node_modules/safe-buffer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minipass/node_modules/yallist/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minipass/node_modules/yallist/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minipass/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minipass/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minizlib/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/minizlib/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/mkdirp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/mkdirp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/ms/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/ms/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/needle/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/needle/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/node-pre-gyp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/node-pre-gyp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/nopt/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/nopt/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/npm-bundled/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/npm-bundled/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/npm-packlist/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/npm-packlist/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/npmlog/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/npmlog/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/number-is-nan/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/number-is-nan/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/object-assign/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/object-assign/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/once/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/once/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/os-homedir/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/os-homedir/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/os-tmpdir/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/os-tmpdir/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/osenv/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/osenv/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/path-is-absolute/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/path-is-absolute/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/process-nextick-args/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/process-nextick-args/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/rc/node_modules/minimist/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/rc/node_modules/minimist/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/rc/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/rc/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/readable-stream/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/readable-stream/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/rimraf/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/rimraf/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/safe-buffer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/safe-buffer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/safer-buffer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/safer-buffer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/sax/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/sax/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/semver/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/semver/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/set-blocking/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/set-blocking/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/signal-exit/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/signal-exit/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/string-width/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/string-width/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/string_decoder/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/string_decoder/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/strip-ansi/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/strip-ansi/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/strip-json-comments/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/strip-json-comments/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/tar/node_modules/safe-buffer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/tar/node_modules/safe-buffer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/tar/node_modules/yallist/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/tar/node_modules/yallist/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/tar/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/tar/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/util-deprecate/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/util-deprecate/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/wide-align/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/wide-align/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/wrappy/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/node_modules/wrappy/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bcrypt/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bcrypt/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bluebird/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bluebird/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/body-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/body-parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bson/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bson/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/bytes/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/bytes/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/content-disposition/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/content-disposition/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/content-type/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/content-type/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/cookie-signature/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/cookie-signature/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/cookie/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/cookie/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/debug/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/debug/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/depd/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/depd/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/destroy/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/destroy/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/ee-first/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/ee-first/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/encodeurl/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/encodeurl/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/escape-html/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/escape-html/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/etag/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/etag/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/express/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/express/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/finalhandler/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/finalhandler/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/forwarded/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/forwarded/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/fresh/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/fresh/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/http-errors/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/http-errors/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/iconv-lite/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/iconv-lite/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/inherits/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/inherits/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/ipaddr.js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/ipaddr.js/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/kareem/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/kareem/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/lodash/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/lodash/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/media-typer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/media-typer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/memory-pager/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/memory-pager/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/merge-descriptors/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/merge-descriptors/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/methods/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/methods/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/mime-db/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/mime-db/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/mime-types/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/mime-types/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/mime/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/mime/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/mongodb-core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/mongodb-core/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/mongodb/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/mongodb/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/mongoose-legacy-pluralize/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/mongoose-legacy-pluralize/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/mongoose/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/mongoose/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/mpath/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/mpath/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/mquery/node_modules/debug/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/mquery/node_modules/debug/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/mquery/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/mquery/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/ms/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/ms/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/nan/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/nan/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/negotiator/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/negotiator/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/on-finished/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/on-finished/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/parseurl/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/parseurl/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/path-to-regexp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/path-to-regexp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/proxy-addr/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/proxy-addr/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/qs/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/qs/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/range-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/range-parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/raw-body/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/raw-body/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/regexp-clone/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/regexp-clone/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/require_optional/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/require_optional/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/resolve-from/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/resolve-from/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/safe-buffer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/safe-buffer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/safer-buffer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/safer-buffer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/saslprep/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/saslprep/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/semver/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/semver/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/send/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/send/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/serve-static/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/serve-static/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/setprototypeof/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/setprototypeof/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/sliced/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/sliced/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/sparse-bitfield/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/sparse-bitfield/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/statuses/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/statuses/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/type-is/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/type-is/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/unpipe/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/unpipe/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/utils-merge/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/utils-merge/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/node_modules/vary/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/node_modules/vary/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_alpha02_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_alpha02_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_0_0_alpha3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_0_0_alpha3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_alpha02_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_alpha02_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_16_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_16_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_location_16_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_location_16_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_maps_16_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_maps_16_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_places_placereport_16_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_places_placereport_16_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_16_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_show.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_show.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_select.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_select.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,38 +239,43 @@
     <session id="1225976924">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.67" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="1" />
           <entry key="gradle" value="2" />
-          <entry key="java" value="2" />
+          <entry key="java" value="26" />
           <entry key="properties" value="1" />
-          <entry key="xml" value="3" />
+          <entry key="xml" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
           <entry key="Groovy" value="2" />
-          <entry key="JAVA" value="2" />
+          <entry key="JAVA" value="26" />
           <entry key="Properties" value="1" />
-          <entry key="XML" value="3" />
+          <entry key="XML" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="284" />
-          <entry key="xml" value="53" />
+          <entry key="java" value="1712" />
+          <entry key="txt" value="95" />
+          <entry key="xml" value="65" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="284" />
-          <entry key="XML" value="53" />
+          <entry key="JAVA" value="1712" />
+          <entry key="PLAIN_TEXT" value="95" />
+          <entry key="XML" value="65" />
         </counts>
       </usages-collector>
     </session>
@@ -128,45 +339,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportShowFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDeserializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="46" column="22" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_run_data.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
-          <provider editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_show.xml">
-          <provider editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="343">
+              <caret line="92" column="55" selection-start-line="92" selection-start-column="55" selection-end-line="92" selection-end-column="55" />
+              <folding>
+                <element signature="e#996#997#0" expanded="true" />
+                <element signature="e#1034#1035#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/RunDeserializer.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
+            <state relative-caret-position="138">
+              <caret line="571" column="67" selection-start-line="571" selection-start-column="67" selection-end-line="571" selection-end-column="67" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -177,42 +379,63 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunDataFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="255">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunManager.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunViewActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+            <state relative-caret-position="150">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunAdapter.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="251">
+              <caret line="97" column="3" selection-start-line="97" selection-start-column="3" selection-end-line="97" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/Report.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Home/HomeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="25" column="35" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="35" />
+            <state relative-caret-position="240">
+              <caret line="83" column="39" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/report_list_item.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="38" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_list.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_select.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -242,8 +465,15 @@
       <find>gettime</find>
       <find>saveR</find>
       <find>getTim</find>
-      <find>report</find>
       <find>show</find>
+      <find>explor</find>
+      <find>report</find>
+      <find>getreports</find>
+      <find>showreportlist</find>
+      <find>reports =</find>
+      <find>getitemcount</find>
+      <find>adapter</find>
+      <find>layoutmanager</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -255,28 +485,33 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_run_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunViewActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Home/HomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDistanceDeserializer.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/ReportService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportType.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportShowFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/RunDeserializer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDeserializer.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_show.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/report_list_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_select.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListAdapter.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="978" />
-    <option name="height" value="1050" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="828" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -284,6 +519,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app-app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -334,7 +586,27 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="cordite" type="462c0819:PsiDirectoryNode" />
+              <item name="Api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cordite" type="462c0819:PsiDirectoryNode" />
               <item name="Deserializers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cordite" type="462c0819:PsiDirectoryNode" />
+              <item name="Home" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="app" type="b2602c69:ProjectViewProjectNode" />
@@ -352,7 +624,36 @@
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cordite" type="462c0819:PsiDirectoryNode" />
+              <item name="Report" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cordite" type="462c0819:PsiDirectoryNode" />
+              <item name="Run" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="drawable" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="app" type="b2602c69:ProjectViewProjectNode" />
@@ -383,29 +684,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app-app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="setting&#9;ACTION&#9;WelcomeScreen.Settings&#10;avd&#9;ACTION&#9;WelcomeScreen.RunAndroidAvdManager&#10;SDK&#9;ACTION&#9;WelcomeScreen.RunAndroidSdkManager" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="device.picker.selection" value="Pixel_2_API_26" />
+    <property name="device.picker.selection" value="Pixel_API_26" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -505,109 +789,43 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="828" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.11137441" side_tool="true" weight="0.1802949" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.63380283" visible="true" weight="0.30563003" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.63380283" visible="true" weight="0.30543634" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.36619717" side_tool="true" weight="0.30563003" />
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
-      <window_info anchor="bottom" id="Run" order="0" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49377593" weight="0.33986014" />
-      <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.49788433" weight="0.32867134" />
+      <window_info anchor="bottom" id="Run" order="0" weight="0.32880434" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49377593" visible="true" weight="0.3396739" />
+      <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.49788433" weight="0.32744566" />
       <window_info anchor="bottom" id="Debug" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49435824" weight="0.32867134" />
+      <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49435824" weight="0.32744566" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5062241" side_tool="true" weight="0.10042433" />
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49365303" visible="true" weight="0.40419582" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49365303" weight="0.4035326" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32867134" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Preview" order="5" />
+      <window_info anchor="right" id="Preview" order="5" weight="0.3297568" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/debug/res/values/google_maps_api.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="128" selection-start-line="22" selection-start-column="89" selection-end-line="22" selection-end-column="128" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/journal_item.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunTracker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/content/Context.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="1686" column="25" selection-start-line="1686" selection-start-column="25" selection-end-line="1686" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Home/HomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/os/Looper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2397">
-          <caret line="163" selection-start-line="163" selection-end-line="163" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/util/Date.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4471">
-          <caret line="307" column="8" selection-start-line="307" selection-start-column="8" selection-end-line="307" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/time/Instant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1853">
-          <caret line="200" column="19" selection-start-line="200" selection-start-column="19" selection-end-line="200" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/content/Context.java" />
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/os/Looper.java" />
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/util/Date.java" />
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/time/Instant.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_run_view.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
@@ -638,27 +856,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/text/DateFormat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6902">
-          <caret line="453" column="28" selection-start-line="453" selection-start-column="28" selection-end-line="453" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunViewActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/view/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="314" column="7" lean-forward="true" selection-start-line="314" selection-start-column="7" selection-end-line="314" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/text/DateFormat.java" />
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/view/Menu.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="474">
@@ -673,13 +872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportSelectFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.5.0/5c17035548a41ec60f00291163d36596a23ddd1a/retrofit-2.5.0-sources.jar!/retrofit2/Call.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="421">
@@ -687,21 +879,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_list.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_select.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="5397" column="15" lean-forward="true" selection-start-line="5397" selection-start-column="15" selection-end-line="5397" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/app/Activity.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -723,20 +901,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/a1a1a038385777d979017eea195f4ae3/jars/classes.jar!/com/google/android/gms/tasks/Task.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/location/Location.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/a1a1a038385777d979017eea195f4ae3/jars/classes.jar!/com/google/android/gms/tasks/Task.class" />
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/location/Location.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDistanceDeserializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -754,13 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/ReportService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -768,13 +927,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/lang/Double.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/lang/Double.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -782,52 +935,128 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/lang/StringBuilder.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/lang/StringBuilder.java" />
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/location/Geocoder.java" />
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/location/Address.java" />
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/text/SimpleDateFormat.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDeserializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="297" column="7" selection-start-line="297" selection-start-column="7" selection-end-line="297" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/location/Geocoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="46" column="29" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/location/Address.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="33" column="44" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8959">
-          <caret line="590" column="1" selection-start-line="590" selection-start-column="1" selection-end-line="590" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/text/SimpleDateFormat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8908">
-          <caret line="587" selection-start-line="587" selection-end-line="587" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportShowFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        <state relative-caret-position="450">
+          <caret line="46" column="22" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/RunDeserializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
+        <state relative-caret-position="735">
           <caret line="49" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/Report.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="25" column="35" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_show.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/journal_item.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_run_data.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="1152" column="16" selection-start-line="1152" selection-start-column="16" selection-end-line="1152" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportSelectFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="34" column="46" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="46" />
+          <folding>
+            <element signature="e#522#523#0" expanded="true" />
+            <element signature="e#571#572#0" expanded="true" />
+            <element signature="e#1685#1908#0" expanded="true" />
+            <element signature="e#1907#1908#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportShowFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_select.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="97" column="3" selection-start-line="97" selection-start-column="3" selection-end-line="97" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Home/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="83" column="39" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="571" column="67" selection-start-line="571" selection-start-column="67" selection-end-line="571" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -836,51 +1065,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunDataFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="255">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunManager.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunViewActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state relative-caret-position="150">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunAdapter.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/Report.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="25" column="35" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDeserializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="46" column="22" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_run_data.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_list.xml">
       <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_show.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/report_list_item.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="171">
+          <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="92" column="55" selection-start-line="92" selection-start-column="55" selection-end-line="92" selection-end-column="55" />
+          <folding>
+            <element signature="e#996#997#0" expanded="true" />
+            <element signature="e#1034#1035#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

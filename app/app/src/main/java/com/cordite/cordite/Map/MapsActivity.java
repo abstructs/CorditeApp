@@ -8,6 +8,7 @@ import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,6 +35,7 @@ import com.cordite.cordite.Deserializers.ReportDistanceDeserializer;
 import com.cordite.cordite.Entities.Report;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
+import com.cordite.cordite.Report.ReportListFragment;
 import com.cordite.cordite.Report.ReportSelectFragment;
 import com.cordite.cordite.Report.ReportShowFragment;
 import com.cordite.cordite.Report.ReportType;
@@ -70,12 +72,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 
+    private List<Report> mapReports;
+
     private RunService runService;
     private ReportService reportService;
 
     private Fragment showReportFragment;
     private Fragment selectReportFragment;
-    private Fragment runDataFragment;
+    private Fragment listReportFragment;
+//    private Fragment runDataFragment;
 
     private Polygon circleHighlight;
 
@@ -88,6 +93,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         this.runService = APIClient.getClient().create(RunService.class);
         this.reportService = APIClient.getClient().create(ReportService.class);
+
+        this.mapReports = new ArrayList<>();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -137,7 +144,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 for(JsonElement element : body) {
                     Report report = reportDeserializer.deserialize(element, Report.class, null);
-
+                    mapReports.add(report);
                     addReportToMap(report);
                 }
             }
@@ -530,11 +537,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setSupportActionBar(bottomAppBar);
     }
 
-    private void clear4004000() {
-        showReportFragment = null;
-        removeCircleHighlight();
-    }
-
     @Override
     public void onBackPressed() {
         if(showReportFragment != null) {
@@ -563,6 +565,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    private void showReportListFragment() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        ReportListFragment fragment = ReportListFragment.newInstance(mapReports);
+
+        this.listReportFragment = fragment;
+
+//        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
+        transaction.replace(R.id.reportListLayout, fragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+    }
+
     private void showReportSelectionFragment() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -583,6 +600,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         switch(item.getItemId()) {
             case R.id.sendReportItem:
                 showReportSelectionFragment();
+                return true;
+            case R.id.exploreItem:
+                showReportListFragment();
                 return true;
         }
 

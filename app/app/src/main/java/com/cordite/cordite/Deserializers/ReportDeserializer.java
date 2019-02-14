@@ -28,8 +28,10 @@ public class ReportDeserializer implements JsonDeserializer<Report> {
         JsonObject reportObj = json.getAsJsonObject();
 
         String typeStr = reportObj.get("type").getAsString();
+        String address = reportObj.get("address").getAsString();
         JsonElement locationElement = reportObj.get("location");
 
+        report.address = address;
         report.type = ReportType.valueOf(typeStr);
         report.location = locationDeserializer.deserialize(locationElement, Location.class, context);
 

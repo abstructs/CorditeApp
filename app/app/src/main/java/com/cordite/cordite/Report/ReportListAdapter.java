@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -44,6 +45,7 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.My
         public TextView reportTypeTxt;
         public TextView addressTxt;
         public ImageView reportTypeImage;
+        public LinearLayout layout;
 
         public MyViewHolder(final View v) {
             super(v);
@@ -71,7 +73,7 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.My
         final Report report = reports.get(position);
 
         holder.addressTxt.setText(report.address);
-        holder.reportTypeTxt.setText(report.type.toString());
+        holder.reportTypeTxt.setText(report.getTypeString());
 
         switch(report.type) {
             case beCareful:

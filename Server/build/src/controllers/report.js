@@ -11,6 +11,7 @@ exports.saveReport = function (req, res) {
     var decoded = jwt.decode(token);
     var user_id = decoded["id"];
     var report = req.body;
+    console.log(req.body);
     report.user = user_id;
     Report_1["default"].create(report, function (err, report) {
         if (err) {

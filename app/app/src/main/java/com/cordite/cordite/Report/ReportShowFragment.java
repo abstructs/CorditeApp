@@ -68,17 +68,10 @@ public class ReportShowFragment extends Fragment {
         TextView addressTxt = view.findViewById(R.id.addressTxt);
         TextView timeStamp = view.findViewById(R.id.timestampTxt);
 
-
-        try {
-            addressTxt.setText(getAddress(report.location.getLatitude(), report.location.getLongitude()));
-        } catch(IOException e) {
-            // todo: inform user with toast
-            e.printStackTrace();
-        }
-
+        addressTxt.setText(report.address);
         distanceTxt.setText(String.valueOf(report.distanceTo));
         distanceTxt.append(getString(R.string.KM));
-        typeTxt.setText(fromCamelCase(report.type.toString()));
+        typeTxt.setText(report.getTypeString());
         timeStamp.setText(String.valueOf(report.timestamp));
 
         layout.setOnClickListener(new View.OnClickListener() {
@@ -89,31 +82,5 @@ public class ReportShowFragment extends Fragment {
         });
     }
 
-    private String fromCamelCase(String str) {
-        if(str.length() == 0) return "";
-
-        StringBuilder builder = new StringBuilder();
-
-        builder.append(Character.toUpperCase(str.charAt(0)));
-
-        for(int i = 1; i < str.length(); i++) {
-            char strChar = str.charAt(i);
-
-            if(Character.isUpperCase(strChar)) {
-                builder.append(" ");
-                builder.append(strChar);
-            } else {
-                builder.append(strChar);
-            }
-        }
-        return builder.toString();
-    }
-
-    private String getAddress(double latitude, double longitude) throws IOException{
-
-        Geocoder geocoder = new Geocoder(this.getContext(), Locale.getDefault());
-        List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-        return addresses.get(0).getAddressLine(0);
-    }
 
 }

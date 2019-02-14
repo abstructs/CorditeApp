@@ -17,6 +17,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -60,8 +62,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -100,11 +105,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
 
 
-        if(mapFragment != null) {
-            mapFragment.getMapAsync(this);
-        } else {
-            Log.wtf("map", "Map was null");
-        }
+        mapFragment.getMapAsync(this);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
     }
@@ -242,10 +243,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if(location != null) {
                     Report report = new Report();
 
-                    report.location = location;
-                    report.type = reportType;
+                    new Runnable() {
+                        @Override
+                        public void run() {
 
-                    saveReportAndAddToMap(report);
+                        }
+                    };
+
+                    try {
+                        report.location = location;
+                        report.type = reportType;
+                        report.address = report.getAddress(MapsActivity.this, location);
+
+                        saveReportAndAddToMap(report);
+                    } catch(IOException e) {
+                        Toast.makeText(MapsActivity.this, "Something went wrong getting the address",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -262,6 +276,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 ReportDeserializer reportDeserializer = new ReportDeserializer();
 
                 Report report = reportDeserializer.deserialize(reportObj, Report.class, null);
+
+                mapReports.add(report);
 
                 addReportToMap(report);
             }
@@ -544,6 +560,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             showRunDataFragment();
         } else if(selectReportFragment != null) {
             selectReportFragment = null;
+            showRunDataFragment();
+        } else if(listReportFragment != null) {
+            listReportFragment = null;
+            showRunDataFragment();
         } else if(runManager.trackingEnabled()) {
             showStopTrackingDialog();
             return;
@@ -573,9 +593,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         this.listReportFragment = fragment;
 
-//        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
+        transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in, R.anim.slide_out);
         transaction.replace(R.id.reportListLayout, fragment);
         transaction.addToBackStack(null);
+
+        hideRunDataFragment();
 
         transaction.commit();
     }
@@ -586,11 +608,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         ReportSelectFragment fragment = ReportSelectFragment.newInstance();
 
-        selectReportFragment = fragment;
+        this.selectReportFragment = fragment;
 
         transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
         transaction.replace(R.id.reportSelectLayout, fragment);
         transaction.addToBackStack(null);
+
+        hideRunDataFragment();
 
         transaction.commit();
     }

@@ -4,6 +4,7 @@ import { UserModel } from "./User";
 
 export type ReportModel = mongoose.Document & {
     user: UserModel | Number,
+    address: String,
     location: LocationModel,
     type: ReportType
 };
@@ -24,6 +25,10 @@ const reportSchema = new mongoose.Schema({
     },
     location: {
         type: LocationSchema,
+        required: true
+    },
+    address: {
+        type: String,
         required: true
     },
     type: { 

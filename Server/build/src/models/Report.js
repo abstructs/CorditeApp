@@ -20,6 +20,10 @@ var reportSchema = new mongoose.Schema({
         type: Location_1.LocationSchema,
         required: true
     },
+    address: {
+        type: String,
+        required: true
+    },
     type: {
         type: String,
         "enum": [ReportType.trailClosed, ReportType.photo, ReportType.construction,

@@ -1,8 +1,5 @@
 package com.cordite.cordite.Deserializers;
 
-import android.content.Intent;
-
-import com.cordite.cordite.Entities.Report;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;

@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.cordite.cordite.Api.APIClient;
@@ -28,6 +30,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -75,14 +78,39 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void populateJournal(ArrayList<Run> runs) {
+        if(runs.size() > 0) {
+            this.runAdapter = new RunAdapter(runs);
+            this.layoutManager = new LinearLayoutManager(HomeActivity.this);
+            this.recyclerView = findViewById(R.id.recyclerView);
 
-        this.runAdapter = new RunAdapter(runs);
-        this.layoutManager = new LinearLayoutManager(HomeActivity.this);
-        this.recyclerView = findViewById(R.id.recyclerView);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setAdapter(runAdapter);
+            hideGetStarted();
+        } else {
+            showGetStarted();
+        }
+    }
 
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(runAdapter);
+    private void hideGetStarted() {
+        CardView cardView = findViewById(R.id.getStartedLayout);
+
+        cardView.setVisibility(View.GONE);
+    }
+
+    private void showGetStarted() {
+        CardView cardView = findViewById(R.id.getStartedLayout);
+
+        cardView.setVisibility(View.VISIBLE);
+
+        Button recordRunBtn = findViewById(R.id.recordRunBtn);
+
+        recordRunBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMapActivity();
+            }
+        });
     }
 
     private ArrayList<Run> convertJsonToRuns(JsonArray jsonArray) {
@@ -151,6 +179,12 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
+    private void openMapActivity() {
+        Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
+
+        startActivity(intent);
+    }
+
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -177,9 +211,7 @@ public class HomeActivity extends AppCompatActivity {
                         logout();
                         return true;
                     case R.id.play:
-                        Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
-
-                        startActivity(intent);
+                        openMapActivity();
                         return true;
                 }
 

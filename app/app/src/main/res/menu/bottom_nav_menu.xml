@@ -8,5 +8,8 @@
         <item
             android:id="@+id/exploreItem"
             android:title="Explore" />
+        <item
+            android:id="@+id/cancelRun"
+            android:title="Cancel Run" />
     </group>
 </menu>

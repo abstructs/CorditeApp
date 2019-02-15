@@ -623,6 +623,30 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         transaction.commit();
     }
 
+    private void showCancelRunDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+
+        builder.setMessage("Cancel this run?")
+                .setPositiveButton("Yes, exit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(runManager.trackingEnabled()) {
+                            stopTracking();
+                        }
+                    }
+                })
+                .setNegativeButton("No, continue", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
@@ -632,6 +656,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.exploreItem:
                 showReportListFragment();
                 return true;
+            case R.id.cancelRun:
+                showCancelRunDialog();
+                break;
         }
 
         return super.onOptionsItemSelected(item);

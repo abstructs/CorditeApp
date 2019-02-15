@@ -6,26 +6,18 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="532c799d-54ae-4585-a647-460b3606fbb0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Server/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/app.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/build/src/controllers/report.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/build/src/controllers/report.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/build/src/models/Report.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/build/src/models/Report.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/models/Report.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/models/Report.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDeserializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDistanceDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDistanceDeserializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/Report.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportShowFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportShowFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/report_list_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/report_list_item.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,32 +49,32 @@
         <counts>
           <entry key="class" value="2" />
           <entry key="gradle" value="2" />
-          <entry key="java" value="42" />
+          <entry key="java" value="51" />
           <entry key="properties" value="1" />
-          <entry key="xml" value="24" />
+          <entry key="xml" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="Groovy" value="2" />
-          <entry key="JAVA" value="42" />
+          <entry key="JAVA" value="51" />
           <entry key="Properties" value="1" />
-          <entry key="XML" value="24" />
+          <entry key="XML" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2828" />
-          <entry key="txt" value="95" />
-          <entry key="xml" value="119" />
+          <entry key="java" value="3318" />
+          <entry key="txt" value="123" />
+          <entry key="xml" value="120" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2828" />
-          <entry key="PLAIN_TEXT" value="95" />
-          <entry key="XML" value="119" />
+          <entry key="JAVA" value="3318" />
+          <entry key="PLAIN_TEXT" value="123" />
+          <entry key="XML" value="120" />
         </counts>
       </usages-collector>
     </session>
@@ -149,11 +141,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+            <state relative-caret-position="340">
+              <caret line="86" column="13" lean-forward="true" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
               <folding>
-                <element signature="e#996#997#0" expanded="true" />
-                <element signature="e#1034#1035#0" expanded="true" />
+                <element signature="e#2616#2855#0" expanded="true" />
+                <element signature="e#3854#3855#0" expanded="true" />
+                <element signature="e#3891#3892#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -162,48 +155,64 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="63" column="11" lean-forward="true" selection-start-line="63" selection-start-column="11" selection-end-line="63" selection-end-column="11" />
+            <state relative-caret-position="59">
+              <caret line="48" column="26" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1817#1979#0" expanded="true" />
-                <element signature="e#1978#1979#0" expanded="true" />
+                <element signature="e#1774#1936#0" expanded="true" />
+                <element signature="e#1935#1936#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/anim/slide_in.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="55" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
+            <state relative-caret-position="323">
+              <caret line="518" selection-start-line="518" selection-end-line="518" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/anim/slide_out.xml">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.1.0-alpha01/7d1adf1f577b2c9c6ee06d1797a9d1a1169f14a9/appcompat-1.1.0-alpha01-sources.jar!/androidx/appcompat/app/AppCompatActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            <state relative-caret-position="153">
+              <caret line="61" column="49" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha02/b81436c82dc8e5481dcadfef7f5747942218f6f6/fragment-1.1.0-alpha02-sources.jar!/androidx/fragment/app/FragmentActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
+            <state relative-caret-position="153">
+              <caret line="66" column="43" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
             </state>
           </provider>
-          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/animator/slide_out_top.xml">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.activity/activity/1.0.0-alpha02/9ca838793742a645448bddddb441d439b11fcb26/activity-1.0.0-alpha02-sources.jar!/androidx/activity/ComponentActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/report_list_item.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="4" column="38" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="38" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -217,29 +226,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_select.xml">
-          <provider editor-type-id="text-editor" />
-          <provider selected="true" editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportShowFragment.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="755">
-              <caret line="73" column="46" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportSelectFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="34" column="3" selection-start-line="34" selection-start-column="3" selection-end-line="108" selection-end-column="5" />
-              <folding>
-                <element signature="e#522#523#0" expanded="true" />
-                <element signature="e#571#572#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="90">
+              <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -256,9 +246,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ShowReportFragment</find>
-      <find>tracker</find>
-      <find>showReportFragment</find>
       <find>onActivityResult</find>
       <find>report.location</find>
       <find>(report)</find>
@@ -274,7 +261,6 @@
       <find>getreports</find>
       <find>reports =</find>
       <find>getitemcount</find>
-      <find>adapter</find>
       <find>layoutmanager</find>
       <find>getaddr</find>
       <find>saverre</find>
@@ -286,6 +272,10 @@
       <find>onbackpress</find>
       <find>showreportselect</find>
       <find>showreportlist</find>
+      <find>permission</find>
+      <find>showreport</find>
+      <find>adapter</find>
+      <find>showreportfragment</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -295,7 +285,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_run_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunAdapter.java" />
@@ -308,17 +297,19 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_show.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_select.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDeserializer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDistanceDeserializer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Entities/Report.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportShowFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/report_list_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/anim/slide_in.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/anim/slide_out.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_report_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportSelectFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/report_list_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListAdapter.java" />
       </list>
@@ -470,6 +461,16 @@
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cordite" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -532,6 +533,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="setting&#9;ACTION&#9;WelcomeScreen.Settings&#10;avd&#9;ACTION&#9;WelcomeScreen.RunAndroidAvdManager&#10;SDK&#9;ACTION&#9;WelcomeScreen.RunAndroidSdkManager" />
+    <property name="android.project.structure.last.selected" value="SDK Location" />
+    <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="device.picker.selection" value="Pixel_API_26" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -637,7 +640,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.11137441" side_tool="true" weight="0.1802949" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.63380283" visible="true" weight="0.30543634" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.63380283" visible="true" weight="0.30543634" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.36619717" side_tool="true" weight="0.30563003" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -645,7 +648,7 @@
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.32880434" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49377593" visible="true" weight="0.3396739" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.49377593" visible="true" weight="0.3396739" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.49788433" weight="0.32744566" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49435824" weight="0.32744566" />
@@ -666,36 +669,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/SignUpActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="91" column="90" selection-start-line="91" selection-start-column="90" selection-end-line="91" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunVisualizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2227">
-          <caret line="156" selection-start-line="156" selection-end-line="156" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/text/DateFormat.java" />
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/view/Menu.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="130" lean-forward="true" selection-start-line="130" selection-end-line="130" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha02/b81436c82dc8e5481dcadfef7f5747942218f6f6/fragment-1.1.0-alpha02-sources.jar!/androidx/fragment/app/Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8823">
-          <caret line="612" column="39" lean-forward="true" selection-start-line="612" selection-start-column="39" selection-end-line="612" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.5.0/5c17035548a41ec60f00291163d36596a23ddd1a/retrofit-2.5.0-sources.jar!/retrofit2/Call.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="421">
@@ -810,13 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/ReportService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -845,13 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDeserializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/RunDeserializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
@@ -862,28 +821,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/report_list_item.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="38" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="38" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/anim/fade_in.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="595" column="108" selection-start-line="595" selection-start-column="108" selection-end-line="595" selection-end-column="108" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -927,14 +868,6 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_list.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_select.xml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
@@ -957,25 +890,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Deserializers/ReportDeserializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="63" column="11" lean-forward="true" selection-start-line="63" selection-start-column="11" selection-end-line="63" selection-end-column="11" />
+        <state relative-caret-position="146">
+          <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/User/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.activity/activity/1.0.0-alpha02/9ca838793742a645448bddddb441d439b11fcb26/activity-1.0.0-alpha02-sources.jar!/androidx/activity/ComponentActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha02/b81436c82dc8e5481dcadfef7f5747942218f6f6/fragment-1.1.0-alpha02-sources.jar!/androidx/fragment/app/FragmentActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="66" column="43" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.1.0-alpha01/7d1adf1f577b2c9c6ee06d1797a9d1a1169f14a9/appcompat-1.1.0-alpha01-sources.jar!/androidx/appcompat/app/AppCompatActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="61" column="49" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Map/MapsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="518" selection-start-line="518" selection-end-line="518" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1817#1979#0" expanded="true" />
-            <element signature="e#1978#1979#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Api/APIClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/report_list_item.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="38" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report_list.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="708" column="13" selection-start-line="708" selection-start-column="13" selection-end-line="708" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="48" column="26" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1774#1936#0" expanded="true" />
+            <element signature="e#1935#1936#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Report/ReportListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+        <state relative-caret-position="340">
+          <caret line="86" column="13" lean-forward="true" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
           <folding>
-            <element signature="e#996#997#0" expanded="true" />
-            <element signature="e#1034#1035#0" expanded="true" />
+            <element signature="e#2616#2855#0" expanded="true" />
+            <element signature="e#3854#3855#0" expanded="true" />
+            <element signature="e#3891#3892#0" expanded="true" />
           </folding>
         </state>
       </provider>

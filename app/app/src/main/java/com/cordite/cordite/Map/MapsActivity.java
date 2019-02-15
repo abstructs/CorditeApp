@@ -499,6 +499,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         circleHighlight = mMap.addPolygon(polygonOptions);
     }
 
+    public void showReportViewOnMap(Report report) {
+        animateMapCameraToLocation(report.location);
+
+        addCircleHighlight(report.location);
+        showReportFragment(report);
+    }
+
     private void setupMap() throws SecurityException {
         mMap.setMyLocationEnabled(true);
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.map_style));
@@ -509,11 +516,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Report report = (Report) marker.getTag();
 
             if(report != null) {
-                animateMapCameraToLocation(report.location);
 
-                addCircleHighlight(report.location);
-                showReportFragment(report);
-
+                showReportViewOnMap(report);
                 return true;
             }
 

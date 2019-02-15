@@ -48,7 +48,7 @@ public class ReportListFragment extends Fragment {
 
         FrameLayout layout = view.findViewById(R.id.reportListLayout);
 
-        ReportListAdapter adapter = new ReportListAdapter(reports);
+        ReportListAdapter adapter = new ReportListAdapter(reports, mapsActivity);
 
         LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
 

@@ -1,5 +1,6 @@
 package com.cordite.cordite.Report;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.cordite.cordite.Entities.Report;
 import com.cordite.cordite.Entities.Run;
+import com.cordite.cordite.Map.MapsActivity;
 import com.cordite.cordite.R;
 import com.google.android.material.button.MaterialButton;
 
@@ -33,8 +35,12 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.My
     private List<Report> reports;
 
 
-    public ReportListAdapter(List<Report> reports) {
+    private MapsActivity mapsActivity;
+
+    public ReportListAdapter(List<Report> reports, MapsActivity mapsActivity) {
         this.reports = reports;
+
+        this.mapsActivity = mapsActivity;
     }
 
     // Provide a reference to the views for each data item
@@ -53,6 +59,7 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.My
             this.reportTypeTxt = v.findViewById(R.id.reportTypeTxt);
             this.addressTxt = v.findViewById(R.id.addressTxt);
             this.reportTypeImage = v.findViewById(R.id.reportTypeImage);
+            this.layout = v.findViewById(R.id.reportLayout);
         }
     }
 
@@ -71,6 +78,15 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.My
     @Override
     public void onBindViewHolder(final @NonNull MyViewHolder holder, int position) {
         final Report report = reports.get(position);
+
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mapsActivity.onBackPressed();
+                mapsActivity.showReportViewOnMap(report);
+            }
+        });
+
 
         holder.addressTxt.setText(report.address);
         holder.reportTypeTxt.setText(report.getTypeString());

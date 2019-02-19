@@ -35,12 +35,13 @@ public class ReportDeserializer implements JsonDeserializer<Report> {
         report.type = ReportType.valueOf(typeStr);
         report.location = locationDeserializer.deserialize(locationElement, Location.class, context);
 
+
         SimpleDateFormat dateObj = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
         dateObj.setTimeZone(TimeZone.getTimeZone("UTC"));
 
         try {
-            Date mongoDate = dateObj.parse(reportObj.get("updatedAt").getAsString());
-            report.timestamp = mongoDate.toString();
+            Date mongoDate = dateObj.parse(reportObj.get("createdAt").getAsString());
+            report.timestamp = String.valueOf(mongoDate.getTime());
 
         } catch (ParseException e) {
             e.printStackTrace();

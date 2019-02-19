@@ -33,7 +33,6 @@ import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.ReportService;
 import com.cordite.cordite.Api.RunService;
 import com.cordite.cordite.Deserializers.ReportDeserializer;
-import com.cordite.cordite.Deserializers.ReportDistanceDeserializer;
 import com.cordite.cordite.Entities.Report;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
@@ -67,6 +66,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
+import static android.text.format.DateUtils.WEEK_IN_MILLIS;
+import static android.text.format.DateUtils.getRelativeDateTimeString;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -396,6 +399,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void showReportFragment(final Report report) {
         hideRunDataFragment();
+//        setTimeStamp(report);
 
         Task<Location> userLocation = getLastKnownLocation();
         userLocation.addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -404,6 +408,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                report.distanceTo = getDistance(report,location);
             }
         });
+
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -418,6 +423,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         transaction.commit();
     }
+
+
+
     private double getDistance(Report report, Location location){
         double lon1 = report.location.getLongitude();
         double lon2 = location.getLongitude();

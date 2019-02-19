@@ -21,6 +21,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
+import static android.text.format.DateUtils.WEEK_IN_MILLIS;
+import static android.text.format.DateUtils.getRelativeDateTimeString;
+
 public class Report implements Parcelable {
     @SerializedName("location")
     public Location location;
@@ -113,6 +117,14 @@ public class Report implements Parcelable {
         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
 
         return addresses.get(0).getAddressLine(0);
+    }
+
+    public String getTimeSinceNow(Context context) {
+        long time = Long.parseLong(this.timestamp);
+        String fullTimestamp = (String) getRelativeDateTimeString(context,time,MINUTE_IN_MILLIS,WEEK_IN_MILLIS,0);
+        String[] splitTimestamp = fullTimestamp.trim().split("\\s*,\\s*");
+
+        return splitTimestamp[0];
     }
 
     @Override

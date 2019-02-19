@@ -41,8 +41,9 @@ public class RunDeserializer implements JsonDeserializer<Run> {
             dateObj.setTimeZone(TimeZone.getTimeZone("UTC"));
 
             Date mongoDate = dateObj.parse(obj.get("createdAt").getAsString());
+            String[] splitDate = mongoDate.toString().trim().split(" ");
 
-            run.date = mongoDate.toString();
+            run.date = splitDate[0]+ " " + splitDate[1]+ " " + splitDate[2]+ ": " + splitDate[3];
 
         } catch (ParseException e) {
             e.printStackTrace();

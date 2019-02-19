@@ -72,7 +72,7 @@ public class ReportShowFragment extends Fragment {
         distanceTxt.setText(String.valueOf(report.distanceTo));
         distanceTxt.append(getString(R.string.KM));
         typeTxt.setText(report.getTypeString());
-        timeStamp.setText(String.valueOf(report.timestamp));
+        timeStamp.setText(report.getTimeSinceNow(getContext()));
 
         layout.setOnClickListener(new View.OnClickListener() {
             @Override

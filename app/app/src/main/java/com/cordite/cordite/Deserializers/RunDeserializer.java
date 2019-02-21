@@ -43,7 +43,7 @@ public class RunDeserializer implements JsonDeserializer<Run> {
             Date mongoDate = dateObj.parse(obj.get("createdAt").getAsString());
             String[] splitDate = mongoDate.toString().trim().split(" ");
 
-            run.date = splitDate[0]+ " " + splitDate[1]+ " " + splitDate[2]+ ": " + splitDate[3];
+            run.date = splitDate[0]+ " " + splitDate[1]+ " " + splitDate[2];
 
         } catch (ParseException e) {
             e.printStackTrace();

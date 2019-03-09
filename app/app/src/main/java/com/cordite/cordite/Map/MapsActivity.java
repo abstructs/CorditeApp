@@ -8,7 +8,6 @@ import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,8 +16,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +30,6 @@ import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.ReportService;
 import com.cordite.cordite.Api.RunService;
 import com.cordite.cordite.Deserializers.ReportDeserializer;
-import com.cordite.cordite.Deserializers.ReportDistanceDeserializer;
 import com.cordite.cordite.Entities.Report;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
@@ -54,6 +50,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -66,7 +64,6 @@ import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -89,10 +86,34 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private Polygon circleHighlight;
 
+    private boolean viewMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        boolean inViewMode = getIntent().getBooleanExtra("viewMode", false);
+
+        this.viewMode = inViewMode;
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+
+        if(this.viewMode) {
+            final Run run = getIntent().getParcelableExtra("run");
+
+            mapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    setupViewRunMap(run, googleMap);
+                }
+            });
+
+            return;
+        }
+
+        mapFragment.getMapAsync(this);
 
         setupToolbar();
 
@@ -101,14 +122,38 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         this.mapReports = new ArrayList<>();
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-
-
-        mapFragment.getMapAsync(this);
-
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
     }
+
+
+    private void setupViewRunMap(Run run, GoogleMap map) {
+        if(run.locations.size() == 0) {
+            return;
+        }
+
+        hideRunDataFragment();
+        hideBottomToolbar();
+
+        setupMapStyles(map);
+
+        Location firstLocation = run.locations.get(0);
+
+        Polyline polylinePath = map.addPolyline(new PolylineOptions()
+                .color(MapsActivity.this.getColor(R.color.pathColour))
+                .width(12));
+
+
+        List<LatLng> points = new ArrayList<>();
+
+        for(Location location : run.locations) {
+            points.add(new LatLng(location.getLatitude(), location.getLongitude()));
+        }
+
+        polylinePath.setPoints(points);
+
+        animateMapCameraToLocation(map, firstLocation);
+    }
+
 
 //    private void setupFragments() {
 //        FrameLayout showReportLayout = findViewById(R.id.reportShowLayout);
@@ -218,6 +263,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void animateMapCameraToLocation(Location location) {
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 16f));
+    }
+
+    private void animateMapCameraToLocation(GoogleMap map, Location location) {
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 16f));
     }
 
     private String[] getLocationProvider() {
@@ -378,12 +427,29 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         runManager = new RunManager(getSupportFragmentManager(), mFusedLocationClient, mMap);
     }
 
-    private void hideRunDataFragment() {
+    private void animHideRunDataFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         final View view = fragmentManager.findFragmentById(R.id.runDataFragment).getView();
 
         view.animate().alpha(0).setDuration(400).setInterpolator(new DecelerateInterpolator()).start();
+    }
+
+    private void hideRunDataFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        final View view = fragmentManager.findFragmentById(R.id.runDataFragment).getView();
+
+        view.setVisibility(View.GONE);
+    }
+
+    private void hideBottomToolbar() {
+        BottomAppBar bottomAppBar = findViewById(R.id.bottomAppBar);
+        FloatingActionButton trackFab = findViewById(R.id.trackFab);
+
+
+        bottomAppBar.setVisibility(View.GONE);
+        trackFab.setVisibility(View.GONE);
     }
 
     private void showRunDataFragment() {
@@ -395,7 +461,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void showReportFragment(final Report report) {
-        hideRunDataFragment();
+        animHideRunDataFragment();
 
         Task<Location> userLocation = getLastKnownLocation();
         userLocation.addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -418,6 +484,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         transaction.commit();
     }
+
     private double getDistance(Report report, Location location){
         double lon1 = report.location.getLongitude();
         double lon2 = location.getLongitude();
@@ -506,9 +573,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         showReportFragment(report);
     }
 
+    private void setupMapStyles(GoogleMap map) {
+        map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.map_style));
+    }
+
     private void setupMap() throws SecurityException {
         mMap.setMyLocationEnabled(true);
-        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.map_style));
+
+        setupMapStyles(mMap);
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -530,7 +602,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                getReportsAndAddToMap(location);
+            getReportsAndAddToMap(location);
             }
         });
 
@@ -568,7 +640,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else if(listReportFragment != null) {
             listReportFragment = null;
             showRunDataFragment();
-        } else if(runManager.trackingEnabled()) {
+        } else if(runManager != null && runManager.trackingEnabled()) {
             showStopTrackingDialog();
             return;
         }
@@ -601,7 +673,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         transaction.replace(R.id.reportListLayout, fragment);
         transaction.addToBackStack(null);
 
-        hideRunDataFragment();
+        animHideRunDataFragment();
 
         transaction.commit();
     }
@@ -618,7 +690,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         transaction.replace(R.id.reportSelectLayout, fragment);
         transaction.addToBackStack(null);
 
-        hideRunDataFragment();
+        animHideRunDataFragment();
 
         transaction.commit();
     }

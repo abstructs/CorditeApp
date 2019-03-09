@@ -2,8 +2,6 @@ package com.cordite.cordite.Run;
 
 import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
-import android.media.Rating;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +12,8 @@ import android.widget.TextView;
 
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
-import com.google.android.material.button.MaterialButton;
 
-import org.w3c.dom.Text;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.TimeZone;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -85,7 +77,12 @@ public class RunAdapter extends RecyclerView.Adapter<RunAdapter.MyViewHolder> {
         holder.viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View ref) {
-                holder.context.startActivity(setJournalItemIntent(run, holder.context));
+
+                Intent intent = new Intent(holder.context, RunViewActivity.class);
+
+                intent.putExtra("run", run);
+
+                holder.context.startActivity(intent);
             }
         });
     }
@@ -95,19 +92,20 @@ public class RunAdapter extends RecyclerView.Adapter<RunAdapter.MyViewHolder> {
         return runs.size();
     }
 
-    private Intent setJournalItemIntent(Run run, Context context) {
-        Intent intent = new Intent(context, RunViewActivity.class);
-
-        String runViewDateTxt = String.valueOf(run.date);
-        String runViewDistanceTxt = String.valueOf(run.distanceTravelled);
-        String runViewAvgSpeedTxt = String.valueOf(run.averageSpeed);
-        String runViewTimeTxt = String.valueOf(run.timeElapsed);
-
-        intent.putExtra("runViewDateTxt", runViewDateTxt);
-        intent.putExtra("runViewDistanceTxt", runViewDistanceTxt);
-        intent.putExtra("runViewAvgSpeedTxt", runViewAvgSpeedTxt);
-        intent.putExtra("runViewTimeTxt", runViewTimeTxt);
-
-        return intent;
-    }
+//    private Intent getJournalItemIntent(Run run, Context context) {
+////        Intent intent = new Intent(context, RunViewActivity.class);
+////        ;
+////        String distance = String.valueOf(run.distanceTravelled);
+////        String averageSpeed = String.valueOf(run.averageSpeed);
+////        String timeElapsed = String.valueOf(run.timeElapsed);
+////
+////        intent.putExtra("date", date);
+////        intent.putExtra("distance", distance);
+////        intent.putExtra("averageSpeed", averageSpeed);
+////        intent.putExtra("timeElapsed", timeElap
+////        String date = String.valueOf(run.date)sed);
+////        intent.putExtra("run", run);
+//
+//        return intent;
+//    }
 }

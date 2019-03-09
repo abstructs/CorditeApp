@@ -52,9 +52,9 @@ class RunVisualizer {
         this.distance = distance;
     }
 
-    void setSpeed(float speed) {
-        this.speed = speed;
-    }
+//    void setSpeed(float speed) {
+//        this.speed = speed;
+//    }
 
     void setSpeedTxt(float speed) {
         TextView speedTxt = fragmentView.findViewById(R.id.speedTxt);

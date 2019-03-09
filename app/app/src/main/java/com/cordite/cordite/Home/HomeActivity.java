@@ -132,9 +132,14 @@ public class HomeActivity extends AppCompatActivity {
         request.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                ArrayList<Run> runs = convertJsonToRuns(response.body().getAsJsonArray());
+                if(response.code() == 401) {
+                    Toast.makeText(HomeActivity.this, "You have been logged out.", Toast.LENGTH_SHORT).show();
+                    logout();
+                } else {
+                    ArrayList<Run> runs = convertJsonToRuns(response.body().getAsJsonArray());
 
-                populateJournal(runs);
+                    populateJournal(runs);
+                }
             }
 
             @Override

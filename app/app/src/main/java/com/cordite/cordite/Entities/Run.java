@@ -6,8 +6,10 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.sql.Array;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -32,6 +34,33 @@ public class Run implements Parcelable {
     @SerializedName("rating")
     public int rating;
 
+    public Run() {
+
+    }
+
+    protected Run(Parcel in) {
+        this.locations = new ArrayList<>();
+
+        in.readTypedList(this.locations, Location.CREATOR);
+        averageSpeed = in.readDouble();
+        timeElapsed = in.readInt();
+        distanceTravelled = in.readDouble();
+        date = in.readString();
+        rating = in.readInt();
+    }
+
+    public static final Creator<Run> CREATOR = new Creator<Run>() {
+        @Override
+        public Run createFromParcel(Parcel in) {
+            return new Run(in);
+        }
+
+        @Override
+        public Run[] newArray(int size) {
+            return new Run[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
@@ -39,7 +68,7 @@ public class Run implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeList(locations);
+        dest.writeTypedList(locations);
         dest.writeDouble(averageSpeed);
         dest.writeInt(timeElapsed);
         dest.writeDouble(distanceTravelled);

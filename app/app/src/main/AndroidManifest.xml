@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Run.RunViewActivity"></activity>
+        <activity android:name=".Run.RunGraphViewActivity"></activity>
+        <activity android:name=".Run.RunViewActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

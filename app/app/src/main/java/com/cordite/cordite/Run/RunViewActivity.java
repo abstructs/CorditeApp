@@ -45,9 +45,11 @@ public class RunViewActivity extends AppCompatActivity {
         System.out.println(run.averageSpeed);
         System.out.println(run.distanceTravelled);
         System.out.println(run.timeElapsed);
-//        System.out.println(run.);
+
+        System.out.println(run.locations);
 
         Button viewBtn = findViewById(R.id.viewBtn);
+        Button graphBtn = findViewById(R.id.graphs);
 
         viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,17 @@ public class RunViewActivity extends AppCompatActivity {
                 Intent intent = new Intent(RunViewActivity.this, MapsActivity.class);
 
                 intent.putExtra("viewMode", true);
+                intent.putExtra("run", run);
+
+                startActivity(intent);
+            }
+        });
+
+        graphBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RunViewActivity.this, RunGraphViewActivity.class);
+
                 intent.putExtra("run", run);
 
                 startActivity(intent);

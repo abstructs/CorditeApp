@@ -79,7 +79,10 @@ public class RunAdapter extends RecyclerView.Adapter<RunAdapter.MyViewHolder> {
             public void onClick(View ref) {
 
                 Intent intent = new Intent(holder.context, RunViewActivity.class);
-
+//                System.out.println("***************************");
+//                System.out.println();
+//                System.out.println(run.locations.get(0));
+//                System.out.println("***************************");
                 intent.putExtra("run", run);
 
                 holder.context.startActivity(intent);

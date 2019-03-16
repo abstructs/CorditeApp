@@ -41,6 +41,7 @@ public class RunDeserializer implements JsonDeserializer<Run> {
         int timeElapsed = obj.get("timeElapsed").getAsInt();
         int rating = obj.get("rating").getAsInt();
         double distanceTravelled = obj.get("distanceTravelled").getAsDouble();
+
         JsonArray objArray = obj.getAsJsonArray("locations");
 
         try {
@@ -59,8 +60,8 @@ public class RunDeserializer implements JsonDeserializer<Run> {
         List<Location> locations = new ArrayList<>();
 
         for(JsonElement locationElement : objArray) {
+            System.out.println(locationElement);
             Location location = locationDeserializer.deserialize(locationElement, Location.class, null);
-
             locations.add(location);
         }
 

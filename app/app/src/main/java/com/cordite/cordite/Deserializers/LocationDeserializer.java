@@ -21,6 +21,7 @@ public class LocationDeserializer implements JsonDeserializer<Location> {
         double latitude = obj.get("mLatitude").getAsDouble();
         double longitude = obj.get("mLongitude").getAsDouble();
 
+
         Location location = new Location(provider);
 
         location.setLongitude(longitude);

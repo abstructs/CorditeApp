@@ -11,16 +11,39 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/graphTxtView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="226dp"
-            android:text="TextView" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+            <Button
+                android:id="@+id/weekViewBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Last Week" />
+
+            <Button
+                android:id="@+id/monthViewBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Last Month" />
+
+            <Button
+                android:id="@+id/allViewBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="All time" />
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="228dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

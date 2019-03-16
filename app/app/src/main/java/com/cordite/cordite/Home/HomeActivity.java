@@ -22,6 +22,7 @@ import com.cordite.cordite.MainActivity;
 import com.cordite.cordite.Map.MapsActivity;
 import com.cordite.cordite.R;
 import com.cordite.cordite.Run.RunAdapter;
+import com.cordite.cordite.Run.RunGraphViewActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -119,6 +120,7 @@ public class HomeActivity extends AppCompatActivity {
         RunDeserializer deserializer = new RunDeserializer();
 
         for(JsonElement element : jsonArray) {
+
             Run run = deserializer.deserialize(element, Run.class, null);
             runs.add(run);
         }
@@ -231,6 +233,10 @@ public class HomeActivity extends AppCompatActivity {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            case R.id.graphView:
+                Intent intent = new Intent(this, RunGraphViewActivity.class);
+                this.startActivity(intent);
+                break;
         }
 
         return super.onOptionsItemSelected(item);

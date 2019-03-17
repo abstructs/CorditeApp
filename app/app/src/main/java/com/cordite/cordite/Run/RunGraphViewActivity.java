@@ -1,6 +1,11 @@
 package com.cordite.cordite.Run;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -8,11 +13,11 @@ import retrofit2.Response;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.location.Location;
 import android.os.Bundle;
+import android.util.SparseArray;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cordite.cordite.Api.APIClient;
@@ -21,12 +26,10 @@ import com.cordite.cordite.Deserializers.RunDeserializer;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.EntryXComparator;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -41,17 +44,97 @@ public class RunGraphViewActivity extends AppCompatActivity {
     private  LineChart chart;
     private LineData lineData;
     private List<Entry> entries = new ArrayList<>();
+    private static final int NUM_PAGES = 5;
+
+    private ViewPager mPager;
+
+    private PagerAdapter pagerAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_graph_view);
-        setup();
+
+        pagerAdapter = new RunGraphViewActivity.ScreenSlidePagerAdapter(getSupportFragmentManager());
+
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setAdapter(pagerAdapter);
+
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                // Here's your instance
+                Fragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter).getRegisteredFragment(position);
+                setup(((RunGraphViewFragment) fragment).getChart());
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
     }
 
-    private void setup(){
-        chart = (LineChart) findViewById(R.id.chart);
+    @Override
+    public void onBackPressed() {
+        if (mPager.getCurrentItem() == 0) {
+            // If the user is currently looking at the first step, allow the system to handle the
+            // Back button. This calls finish() on this activity and pops the back stack.
+            super.onBackPressed();
+        } else {
+            // Otherwise, select the previous step.
+            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+        }
+    }
+
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        SparseArray<Fragment> registeredFragments = new SparseArray<>();
+
+        public ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return new RunGraphViewFragment();
+        }
+
+        @Override
+        public int getCount() {
+            return NUM_PAGES;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            Fragment fragment = (Fragment) super.instantiateItem(container, position);
+            registeredFragments.put(position, fragment);
+            return fragment;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            registeredFragments.remove(position);
+            super.destroyItem(container, position, object);
+        }
+
+        public Fragment getRegisteredFragment(int position) {
+            return registeredFragments.get(position);
+        }
+    }
+
+    ///graph logic
+    private void setup(LineChart chart){
+
+        this.chart = chart;
 
         this.runService = APIClient.getClient().create(RunService.class);
 
@@ -82,8 +165,11 @@ public class RunGraphViewActivity extends AppCompatActivity {
         });
     }
 
+    //runs gathered from DB are based on timeframe which is hardcoded on button click,
+    // if String is tampered do nothing
+
     private void graphRuns(String timeframe) {
-        clearGraph(); // clear previous graph
+        clearGraph(); // clear previous graph this may need to be on each screen load of the view pager
 
         Call<JsonArray> request = runService.getUserRuns(getToken());
 
@@ -107,16 +193,21 @@ public class RunGraphViewActivity extends AppCompatActivity {
     }
 
     private void createChart(ArrayList<Run> data){
+        //if screen one then:populateTimeVsAvgSpeedEntries
+        //else populateTimeVsDistanceEntries
 
-        lineData = populateEntries(data); //get new data each time
+        lineData = populateTimeVsAvgSpeedEntries(data); //get new data each time
+
         lineData.setValueTextColor(Color.WHITE);
-        chart.setData(lineData);
-        chart.notifyDataSetChanged();
-        chart.invalidate();
+
+
+        this.chart.setData(lineData);
+        this.chart.notifyDataSetChanged();
+        this.chart.invalidate();
 
     }
 
-    private LineData populateEntries(ArrayList<Run> data) {
+    private LineData populateTimeVsAvgSpeedEntries(ArrayList<Run> data) {
 
         int size =data.size();
 
@@ -130,16 +221,39 @@ public class RunGraphViewActivity extends AppCompatActivity {
             entries.add(point);
         }
 
+        return sortLineData(entries);
+    }
+
+    private LineData populateTimeVsDistanceEntries(ArrayList<Run> data) {
+
+        int size =data.size();
+
+        for (int i = 0; i < size; i++) {
+
+            int x = data.get(i).timeElapsed / 1000;
+            int y = (int)data.get(i).distanceTravelled;
+
+            Entry point = new Entry(x,y);
+
+            entries.add(point);
+        }
+        return sortLineData(entries);
+    }
+
+    public LineData sortLineData(List<Entry> entries ){
+
         Collections.sort(entries, new EntryXComparator());
 
         LineDataSet dataSet = new LineDataSet(entries, "Time vs Speed"); // add entries to dataset
         dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+        dataSet.setLineWidth(4f);
 
-        dataSet.setColor(Color.BLACK);
+        dataSet.setColor(Color.RED);
+        dataSet.setValueTextSize(12f);
         dataSet.setValueTextColor(0);
 
         lineData = new LineData(dataSet);
-        return lineData;
+        return  lineData;
     }
 
     private void clearGraph(){

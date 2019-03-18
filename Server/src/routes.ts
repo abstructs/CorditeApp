@@ -42,6 +42,8 @@ routes.post('/users/login', userController.login);
 
 routes.post('/runs', authenticateUser, runController.saveRun);
 routes.post('/runs/myRuns', authenticateUser, runController.getRuns);
+routes.post('/runs/graphRuns', authenticateUser, runController.getSortedRuns);
+
 
 routes.post('/reports', authenticateUser, reportController.saveReport);
 routes.post('/reports/aroundMe', authenticateUser, reportController.getReports);

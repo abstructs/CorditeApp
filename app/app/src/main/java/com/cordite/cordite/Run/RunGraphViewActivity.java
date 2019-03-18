@@ -24,6 +24,7 @@ import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.RunService;
 import com.cordite.cordite.Deserializers.RunDeserializer;
 import com.cordite.cordite.Entities.Run;
+import com.cordite.cordite.Entities.TimeFrame;
 import com.cordite.cordite.R;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -47,6 +48,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
     private LineData lineData;
     private List<Entry> entries = new ArrayList<>();
     private static final int NUM_PAGES = 2;
+    private String time;
 
     private ViewPager mPager;
 
@@ -57,28 +59,61 @@ public class RunGraphViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_graph_view);
 
-
-
         pagerAdapter = new RunGraphViewActivity.ScreenSlidePagerAdapter(getSupportFragmentManager());
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(pagerAdapter);
 
+        createButtons();
+
+    }
+
+    private void createButtons() {
         Button allViewBtn = (Button) findViewById(R.id.allViewBtn);
+        Button weekViewBtn = (Button) findViewById(R.id.weekViewBtn);
+        Button monthViewBtn = (Button) findViewById(R.id.monthViewBtn);
 
         allViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View ref) {
+                time = "all";
+                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
+                        .getRegisteredFragment(mPager.getCurrentItem());
 
-                Fragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter).getRegisteredFragment(mPager.getCurrentItem());
-                System.out.print(fragment);
-                LineChart data =((RunGraphViewFragment) fragment).getChart();
-
+                LineChart data = fragment.getChart();
                 setup(data);
 
-                graphRuns("all");
+                graphRuns(time);
             }
         });
+        weekViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View ref) {
+                time = "week";
+                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
+                        .getRegisteredFragment(mPager.getCurrentItem());
+
+                LineChart data = fragment.getChart();
+                setup(data);
+
+                graphRuns(time);
+            }
+        });
+        monthViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View ref) {
+                time = "month";
+                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
+                        .getRegisteredFragment(mPager.getCurrentItem());
+
+                LineChart data = fragment.getChart();
+                setup(data);
+
+                graphRuns(time);
+            }
+        });
+
+
     }
 
     @Override
@@ -140,7 +175,6 @@ public class RunGraphViewActivity extends AppCompatActivity {
         }
     }
 
-    ///graph logic
     private void setup(LineChart chart){
 
         this.chart = chart;
@@ -149,14 +183,12 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
     }
 
-    //runs gathered from DB are based on timeframe which is hardcoded on button click,
-    // if String is tampered do nothing
+    private void graphRuns(String time) {
+        clearGraph();
 
-    public void graphRuns(String timeframe) {
-        System.out.println("i was called");
-        clearGraph(); // clear previous graph this may need to be on each screen load of the view pager
+        TimeFrame timeFrame = new TimeFrame(time);
 
-        Call<JsonArray> request = runService.getUserRuns(getToken());
+        Call<JsonArray> request = runService.graphRuns(getToken(), timeFrame);
 
         request.enqueue(new Callback<JsonArray>() {
             @Override
@@ -233,7 +265,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
         return sortLineData(entries,"Time VS Distance");
     }
 
-    public LineData sortLineData(List<Entry> entries, String label ){
+    private LineData sortLineData(List<Entry> entries, String label ){
 
         Collections.sort(entries, new EntryXComparator());
 

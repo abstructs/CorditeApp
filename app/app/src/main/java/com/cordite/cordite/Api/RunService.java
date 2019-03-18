@@ -1,6 +1,7 @@
 package com.cordite.cordite.Api;
 
 import com.cordite.cordite.Entities.Run;
+import com.cordite.cordite.Entities.TimeFrame;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -17,5 +18,5 @@ public interface RunService {
     Call<JsonArray> getUserRuns(@Header("Authorization") String token);
 
     @POST("runs/graphRuns")
-    Call<JsonArray> graphRuns(@Header("Authorization") String token , @Body String timeframe);
+    Call<JsonArray> graphRuns(@Header("Authorization") String token , @Body TimeFrame timeFrame);
 }

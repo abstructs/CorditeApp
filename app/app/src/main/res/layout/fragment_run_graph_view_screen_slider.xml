@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+    <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
@@ -16,6 +16,6 @@
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="2dp"
             tools:layout_editor_absoluteY="228dp" />
-    </ScrollView>
+    <!--</ScrollView>-->
 
 </LinearLayout>

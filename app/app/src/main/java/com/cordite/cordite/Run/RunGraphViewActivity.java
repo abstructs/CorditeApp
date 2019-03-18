@@ -25,7 +25,9 @@ import com.cordite.cordite.Api.RunService;
 import com.cordite.cordite.Deserializers.RunDeserializer;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -44,44 +46,39 @@ public class RunGraphViewActivity extends AppCompatActivity {
     private  LineChart chart;
     private LineData lineData;
     private List<Entry> entries = new ArrayList<>();
-    private static final int NUM_PAGES = 5;
+    private static final int NUM_PAGES = 2;
 
     private ViewPager mPager;
 
     private PagerAdapter pagerAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_graph_view);
 
+
+
         pagerAdapter = new RunGraphViewActivity.ScreenSlidePagerAdapter(getSupportFragmentManager());
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(pagerAdapter);
 
-        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        Button allViewBtn = (Button) findViewById(R.id.allViewBtn);
 
+        allViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onClick(View ref) {
 
-            }
+                Fragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter).getRegisteredFragment(mPager.getCurrentItem());
+                System.out.print(fragment);
+                LineChart data =((RunGraphViewFragment) fragment).getChart();
 
-            @Override
-            public void onPageSelected(int position) {
-                // Here's your instance
-                Fragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter).getRegisteredFragment(position);
-                setup(((RunGraphViewFragment) fragment).getChart());
+                setup(data);
 
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
+                graphRuns("all");
             }
         });
-
     }
 
     @Override
@@ -114,11 +111,23 @@ public class RunGraphViewActivity extends AppCompatActivity {
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(ViewGroup container, final int position) {
             Fragment fragment = (Fragment) super.instantiateItem(container, position);
             registeredFragments.put(position, fragment);
+            System.out.println(position);
+//            Button allViewBtn = (Button) findViewById(R.id.allViewBtn);
+//
+//            allViewBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View ref) {
+//                graphRuns("all");
+//
+//            }
+//            });
+
             return fragment;
         }
+
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
@@ -138,37 +147,13 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
         this.runService = APIClient.getClient().create(RunService.class);
 
-//        Button weekViewBtn = (Button) findViewById(R.id.weekViewBtn);
-//        Button monthViewBtn = (Button) findViewById(R.id.monthViewBtn);
-        Button allViewBtn = (Button) findViewById(R.id.allViewBtn);
-
-//        weekViewBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View ref) {
-//                graphRuns("week");
-//            }
-//        });
-//
-//        monthViewBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View ref) {
-//                graphRuns("month");
-//
-//            }
-//        });
-
-        allViewBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View ref) {
-                graphRuns("all");
-            }
-        });
     }
 
     //runs gathered from DB are based on timeframe which is hardcoded on button click,
     // if String is tampered do nothing
 
-    private void graphRuns(String timeframe) {
+    public void graphRuns(String timeframe) {
+        System.out.println("i was called");
         clearGraph(); // clear previous graph this may need to be on each screen load of the view pager
 
         Call<JsonArray> request = runService.getUserRuns(getToken());
@@ -193,17 +178,24 @@ public class RunGraphViewActivity extends AppCompatActivity {
     }
 
     private void createChart(ArrayList<Run> data){
-        //if screen one then:populateTimeVsAvgSpeedEntries
-        //else populateTimeVsDistanceEntries
 
-        lineData = populateTimeVsAvgSpeedEntries(data); //get new data each time
+        if(mPager.getCurrentItem() == 1){
+            lineData = populateTimeVsDistanceEntries(data); //get new data each time
+        }
+
+        if(mPager.getCurrentItem() ==0 ){
+            lineData = populateTimeVsAvgSpeedEntries(data); //get new data each time
+
+        }
+
 
         lineData.setValueTextColor(Color.WHITE);
 
+        chart.setData(lineData);
 
-        this.chart.setData(lineData);
-        this.chart.notifyDataSetChanged();
-        this.chart.invalidate();
+        chart.invalidate();
+
+
 
     }
 
@@ -221,7 +213,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
             entries.add(point);
         }
 
-        return sortLineData(entries);
+        return sortLineData(entries, "Time VS Speed");
     }
 
     private LineData populateTimeVsDistanceEntries(ArrayList<Run> data) {
@@ -237,29 +229,50 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
             entries.add(point);
         }
-        return sortLineData(entries);
+
+        return sortLineData(entries,"Time VS Distance");
     }
 
-    public LineData sortLineData(List<Entry> entries ){
+    public LineData sortLineData(List<Entry> entries, String label ){
 
         Collections.sort(entries, new EntryXComparator());
 
-        LineDataSet dataSet = new LineDataSet(entries, "Time vs Speed"); // add entries to dataset
+        LineDataSet dataSet = new LineDataSet(entries, label); // add entries to dataset
         dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
         dataSet.setLineWidth(4f);
 
         dataSet.setColor(Color.RED);
         dataSet.setValueTextSize(12f);
         dataSet.setValueTextColor(0);
+        dataSet.setLineWidth(12f);
+        Legend chartLegend = chart.getLegend();
+
+        chartLegend.setTextSize(16f);
+        chartLegend.setTextColor(Color.WHITE);
+
 
         lineData = new LineData(dataSet);
         return  lineData;
     }
 
     private void clearGraph(){
-        chart.invalidate();
-        chart.clear();
+        if(lineData !=null){
+            lineData.clearValues();
 
+        }
+        entries.clear();
+        chart.invalidate();
+
+
+
+        if(lineData != null){
+            lineData.clearValues();
+        }
+
+        if(chart != null){
+            chart.invalidate();
+            chart.clear();
+        }
     }
 
     private String getToken() {

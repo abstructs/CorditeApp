@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 public class RunGraphViewFragment extends Fragment {
 
-    private LineChart chart;
+    public LineChart chart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,4 +31,6 @@ public class RunGraphViewFragment extends Fragment {
     public LineChart getChart(){
       return chart;
     }
+
+
 }

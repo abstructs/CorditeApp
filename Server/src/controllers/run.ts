@@ -40,13 +40,22 @@ export const getSortedRuns = (req: Request, res: Response) => {
     const timeframe = req.body;
 
     let query;
+    var dt = new Date();
+    
 
     if (timeframe["timeFrame"] == "week") {
-       query = { user: user_id};
+
+        dt.setDate( dt.getDate() - 7 );
+
+       query = { user: user_id,
+        createdAt : { $gte : dt } };
     }
 
     else if (timeframe["timeFrame"] == "month") {
-        query = { user: user_id};
+        dt.setDate( dt.getDate() - 30 );
+
+        query = { user: user_id,
+         createdAt : { $gte : dt } };
     }
 
     else if (timeframe["timeFrame"] == "all") {

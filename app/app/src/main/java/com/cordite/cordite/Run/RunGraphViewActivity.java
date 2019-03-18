@@ -44,14 +44,14 @@ import java.util.List;
 public class RunGraphViewActivity extends AppCompatActivity {
 
     private RunService runService;
-    private  LineChart chart;
+
+    private LineChart chart;
     private LineData lineData;
     private List<Entry> entries = new ArrayList<>();
+
     private static final int NUM_PAGES = 2;
     private String time;
-
     private ViewPager mPager;
-
     private PagerAdapter pagerAdapter;
 
     @Override
@@ -68,52 +68,10 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
     }
 
-    private void createButtons() {
-        Button allViewBtn = (Button) findViewById(R.id.allViewBtn);
-        Button weekViewBtn = (Button) findViewById(R.id.weekViewBtn);
-        Button monthViewBtn = (Button) findViewById(R.id.monthViewBtn);
-
-        allViewBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View ref) {
-                time = "all";
-                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
-                        .getRegisteredFragment(mPager.getCurrentItem());
-
-                LineChart data = fragment.getChart();
-                setup(data);
-
-                graphRuns(time);
-            }
-        });
-        weekViewBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View ref) {
-                time = "week";
-                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
-                        .getRegisteredFragment(mPager.getCurrentItem());
-
-                LineChart data = fragment.getChart();
-                setup(data);
-
-                graphRuns(time);
-            }
-        });
-        monthViewBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View ref) {
-                time = "month";
-                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
-                        .getRegisteredFragment(mPager.getCurrentItem());
-
-                LineChart data = fragment.getChart();
-                setup(data);
-
-                graphRuns(time);
-            }
-        });
-
-
+    @Override
+    protected void onPause() {
+        clearGraph();
+        super.onPause();
     }
 
     @Override
@@ -173,6 +131,54 @@ public class RunGraphViewActivity extends AppCompatActivity {
         public Fragment getRegisteredFragment(int position) {
             return registeredFragments.get(position);
         }
+    }
+
+    private void createButtons() {
+        Button allViewBtn = (Button) findViewById(R.id.allViewBtn);
+        Button weekViewBtn = (Button) findViewById(R.id.weekViewBtn);
+        Button monthViewBtn = (Button) findViewById(R.id.monthViewBtn);
+
+        allViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View ref) {
+                time = "all";
+                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
+                        .getRegisteredFragment(mPager.getCurrentItem());
+
+                LineChart data = fragment.getChart();
+                setup(data);
+
+                graphRuns(time);
+            }
+        });
+        weekViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View ref) {
+                time = "week";
+                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
+                        .getRegisteredFragment(mPager.getCurrentItem());
+
+                LineChart data = fragment.getChart();
+                setup(data);
+
+                graphRuns(time);
+            }
+        });
+        monthViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View ref) {
+                time = "month";
+                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
+                        .getRegisteredFragment(mPager.getCurrentItem());
+
+                LineChart data = fragment.getChart();
+                setup(data);
+
+                graphRuns(time);
+            }
+        });
+
+
     }
 
     private void setup(LineChart chart){

@@ -1,5 +1,6 @@
 package com.cordite.cordite.Run;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -89,7 +90,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         SparseArray<Fragment> registeredFragments = new SparseArray<>();
 
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
+        ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -103,32 +104,23 @@ public class RunGraphViewActivity extends AppCompatActivity {
             return NUM_PAGES;
         }
 
+        @NonNull
         @Override
-        public Object instantiateItem(ViewGroup container, final int position) {
+        public Object instantiateItem(@NonNull ViewGroup container, final int position) {
             Fragment fragment = (Fragment) super.instantiateItem(container, position);
             registeredFragments.put(position, fragment);
-            System.out.println(position);
-//            Button allViewBtn = (Button) findViewById(R.id.allViewBtn);
-//
-//            allViewBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View ref) {
-//                graphRuns("all");
-//
-//            }
-//            });
 
             return fragment;
         }
 
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             registeredFragments.remove(position);
             super.destroyItem(container, position, object);
         }
 
-        public Fragment getRegisteredFragment(int position) {
+        Fragment getRegisteredFragment(int position) {
             return registeredFragments.get(position);
         }
     }
@@ -142,7 +134,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View ref) {
                 time = "all";
-                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
+                RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
                         .getRegisteredFragment(mPager.getCurrentItem());
 
                 LineChart data = fragment.getChart();
@@ -155,7 +147,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View ref) {
                 time = "week";
-                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
+                RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
                         .getRegisteredFragment(mPager.getCurrentItem());
 
                 LineChart data = fragment.getChart();
@@ -168,7 +160,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View ref) {
                 time = "month";
-                RunGraphViewFragment fragment =(RunGraphViewFragment)((ScreenSlidePagerAdapter) pagerAdapter)
+                RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
                         .getRegisteredFragment(mPager.getCurrentItem());
 
                 LineChart data = fragment.getChart();
@@ -181,7 +173,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
     }
 
-    private void setup(LineChart chart){
+    private void setup(LineChart chart) {
 
         this.chart = chart;
 
@@ -199,7 +191,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
         request.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                if(response.code() == 401) {
+                if (response.code() == 401) {
                     Toast.makeText(RunGraphViewActivity.this, "Error Retrieving runs", Toast.LENGTH_SHORT).show();
                 } else {
 
@@ -215,38 +207,32 @@ public class RunGraphViewActivity extends AppCompatActivity {
         });
     }
 
-    private void createChart(ArrayList<Run> data){
+    private void createChart(ArrayList<Run> data) {
 
-        if(mPager.getCurrentItem() == 1){
+        if (mPager.getCurrentItem() == 1) {
             lineData = populateTimeVsDistanceEntries(data); //get new data each time
         }
-
-        if(mPager.getCurrentItem() ==0 ){
+        if (mPager.getCurrentItem() == 0) {
             lineData = populateTimeVsAvgSpeedEntries(data); //get new data each time
-
         }
-
 
         lineData.setValueTextColor(Color.WHITE);
 
         chart.setData(lineData);
 
         chart.invalidate();
-
-
-
     }
 
     private LineData populateTimeVsAvgSpeedEntries(ArrayList<Run> data) {
 
-        int size =data.size();
+        int size = data.size();
 
         for (int i = 0; i < size; i++) {
 
             int x = data.get(i).timeElapsed / 1000;
-            int y = (int)data.get(i).averageSpeed;
+            int y = (int) data.get(i).averageSpeed;
 
-            Entry point = new Entry(x,y);
+            Entry point = new Entry(x, y);
 
             entries.add(point);
         }
@@ -256,58 +242,53 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
     private LineData populateTimeVsDistanceEntries(ArrayList<Run> data) {
 
-        int size =data.size();
+        int size = data.size();
 
         for (int i = 0; i < size; i++) {
 
             int x = data.get(i).timeElapsed / 1000;
-            int y = (int)data.get(i).distanceTravelled;
+            int y = (int) data.get(i).distanceTravelled;
 
-            Entry point = new Entry(x,y);
+            Entry point = new Entry(x, y);
 
             entries.add(point);
         }
 
-        return sortLineData(entries,"Time VS Distance");
+        return sortLineData(entries, "Time VS Distance");
     }
 
-    private LineData sortLineData(List<Entry> entries, String label ){
+    private LineData sortLineData(List<Entry> entries, String label) {
 
         Collections.sort(entries, new EntryXComparator());
 
         LineDataSet dataSet = new LineDataSet(entries, label); // add entries to dataset
+
         dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
         dataSet.setLineWidth(4f);
-
         dataSet.setColor(Color.RED);
         dataSet.setValueTextSize(12f);
         dataSet.setValueTextColor(0);
         dataSet.setLineWidth(12f);
+
         Legend chartLegend = chart.getLegend();
 
         chartLegend.setTextSize(16f);
         chartLegend.setTextColor(Color.WHITE);
 
-
         lineData = new LineData(dataSet);
-        return  lineData;
+        return lineData;
     }
 
-    private void clearGraph(){
-        if(lineData !=null){
-            lineData.clearValues();
+    private void clearGraph() {
 
-        }
-        entries.clear();
-        chart.invalidate();
-
-
-
-        if(lineData != null){
+        if (lineData != null) {
             lineData.clearValues();
         }
+        if ( entries != null){
+            entries.clear();
 
-        if(chart != null){
+        }
+        if (chart != null) {
             chart.invalidate();
             chart.clear();
         }
@@ -325,7 +306,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
         RunDeserializer deserializer = new RunDeserializer();
 
-        for(JsonElement element : jsonArray) {
+        for (JsonElement element : jsonArray) {
 
             Run run = deserializer.deserialize(element, Run.class, null);
             runs.add(run);

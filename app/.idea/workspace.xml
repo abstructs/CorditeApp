@@ -11,7 +11,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6379218c-26ea-4959-8904-206d0c321cd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunGraphViewActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunGraphViewActivity.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,13 +50,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2802" />
+          <entry key="java" value="2831" />
           <entry key="xml" value="68" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2802" />
+          <entry key="JAVA" value="2831" />
           <entry key="XML" value="68" />
         </counts>
       </usages-collector>
@@ -68,21 +67,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunGraphViewActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+            <state relative-caret-position="179">
+              <caret line="92" column="8" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="8" />
               <folding>
                 <element signature="method#onCreate#0;class#RunGraphViewActivity#0" />
                 <element signature="method#onPause#0;class#RunGraphViewActivity#0" />
                 <element signature="method#onBackPressed#0;class#RunGraphViewActivity#0" />
-                <element signature="class#ScreenSlidePagerAdapter#0;class#RunGraphViewActivity#0" />
-                <element signature="method#createButtons#0;class#RunGraphViewActivity#0" />
-                <element signature="method#setup#0;class#RunGraphViewActivity#0" />
+                <element signature="e#3940#3941#0" expanded="true" />
+                <element signature="e#4004#4005#0" expanded="true" />
+                <element signature="e#4559#5010#0" expanded="true" />
+                <element signature="e#5009#5010#0" expanded="true" />
                 <element signature="method#graphRuns#0;class#RunGraphViewActivity#0" />
-                <element signature="method#createChart#0;class#RunGraphViewActivity#0" />
-                <element signature="method#populateTimeVsAvgSpeedEntries#0;class#RunGraphViewActivity#0" />
                 <element signature="method#populateTimeVsDistanceEntries#0;class#RunGraphViewActivity#0" />
-                <element signature="method#sortLineData#0;class#RunGraphViewActivity#0" />
-                <element signature="method#clearGraph#0;class#RunGraphViewActivity#0" />
                 <element signature="method#getToken#0;class#RunGraphViewActivity#0" />
                 <element signature="method#convertJsonToRuns#0;class#RunGraphViewActivity#0" />
               </folding>
@@ -580,21 +576,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cordite/cordite/Run/RunGraphViewActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+        <state relative-caret-position="179">
+          <caret line="92" column="8" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="8" />
           <folding>
             <element signature="method#onCreate#0;class#RunGraphViewActivity#0" />
             <element signature="method#onPause#0;class#RunGraphViewActivity#0" />
             <element signature="method#onBackPressed#0;class#RunGraphViewActivity#0" />
-            <element signature="class#ScreenSlidePagerAdapter#0;class#RunGraphViewActivity#0" />
-            <element signature="method#createButtons#0;class#RunGraphViewActivity#0" />
-            <element signature="method#setup#0;class#RunGraphViewActivity#0" />
+            <element signature="e#3940#3941#0" expanded="true" />
+            <element signature="e#4004#4005#0" expanded="true" />
+            <element signature="e#4559#5010#0" expanded="true" />
+            <element signature="e#5009#5010#0" expanded="true" />
             <element signature="method#graphRuns#0;class#RunGraphViewActivity#0" />
-            <element signature="method#createChart#0;class#RunGraphViewActivity#0" />
-            <element signature="method#populateTimeVsAvgSpeedEntries#0;class#RunGraphViewActivity#0" />
             <element signature="method#populateTimeVsDistanceEntries#0;class#RunGraphViewActivity#0" />
-            <element signature="method#sortLineData#0;class#RunGraphViewActivity#0" />
-            <element signature="method#clearGraph#0;class#RunGraphViewActivity#0" />
             <element signature="method#getToken#0;class#RunGraphViewActivity#0" />
             <element signature="method#convertJsonToRuns#0;class#RunGraphViewActivity#0" />
           </folding>

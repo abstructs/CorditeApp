@@ -75,7 +75,7 @@ export const getSortedRuns = (req: Request, res: Response) => {
         res.status(200).json(runs).end();
 
     });
-}
+};
 
 export const saveRun = (req: Request, res: Response) => {
     const token = req.get("Authorization");

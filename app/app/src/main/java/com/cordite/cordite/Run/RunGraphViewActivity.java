@@ -60,11 +60,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_graph_view);
 
-        pagerAdapter = new RunGraphViewActivity.ScreenSlidePagerAdapter(getSupportFragmentManager());
-
-        mPager = (ViewPager) findViewById(R.id.pager);
-        mPager.setAdapter(pagerAdapter);
-
+        createPager(); // set pager
         createButtons();
 
     }
@@ -85,6 +81,24 @@ public class RunGraphViewActivity extends AppCompatActivity {
             // Otherwise, select the previous step.
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
+    }
+
+    private void createPager(){
+        pagerAdapter = new RunGraphViewActivity.ScreenSlidePagerAdapter(getSupportFragmentManager());
+
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setAdapter(pagerAdapter);
+
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                clearGraph();
+            }
+
+            public void onPageSelected(int position) {
+            }
+        });
+
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
@@ -113,7 +127,6 @@ public class RunGraphViewActivity extends AppCompatActivity {
             return fragment;
         }
 
-
         @Override
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             registeredFragments.remove(position);
@@ -134,11 +147,13 @@ public class RunGraphViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View ref) {
                 time = "all";
+
                 RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
                         .getRegisteredFragment(mPager.getCurrentItem());
 
                 LineChart data = fragment.getChart();
-                setup(data);
+
+                setupChart(data);
 
                 graphRuns(time);
             }
@@ -147,11 +162,13 @@ public class RunGraphViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View ref) {
                 time = "week";
+
                 RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
                         .getRegisteredFragment(mPager.getCurrentItem());
 
                 LineChart data = fragment.getChart();
-                setup(data);
+
+                setupChart(data);
 
                 graphRuns(time);
             }
@@ -160,24 +177,24 @@ public class RunGraphViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View ref) {
                 time = "month";
+
                 RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
                         .getRegisteredFragment(mPager.getCurrentItem());
 
                 LineChart data = fragment.getChart();
-                setup(data);
+
+                setupChart(data);
 
                 graphRuns(time);
             }
         });
-
-
     }
 
-    private void setup(LineChart chart) {
+    private void setupChart(LineChart chart) {
 
-        this.chart = chart;
+        this.chart = chart; //set chart
 
-        this.runService = APIClient.getClient().create(RunService.class);
+        this.runService = APIClient.getClient().create(RunService.class); // set client
 
     }
 
@@ -190,13 +207,14 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
         request.enqueue(new Callback<JsonArray>() {
             @Override
-            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+            public void onResponse(@NonNull Call<JsonArray> call, @NonNull Response<JsonArray> response) {
                 if (response.code() == 401) {
                     Toast.makeText(RunGraphViewActivity.this, "Error Retrieving runs", Toast.LENGTH_SHORT).show();
                 } else {
 
+                    assert response.body() != null;
                     ArrayList<Run> runs = convertJsonToRuns(response.body().getAsJsonArray());
-                    createChart(runs);
+                    setChartData(runs);
                 }
             }
 
@@ -207,7 +225,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
         });
     }
 
-    private void createChart(ArrayList<Run> data) {
+    private void setChartData(ArrayList<Run> data) {
 
         if (mPager.getCurrentItem() == 1) {
             lineData = populateTimeVsDistanceEntries(data); //get new data each time

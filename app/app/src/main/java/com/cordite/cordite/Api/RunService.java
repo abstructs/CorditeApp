@@ -18,5 +18,5 @@ public interface RunService {
     Call<JsonArray> getUserRuns(@Header("Authorization") String token);
 
     @POST("runs/graphRuns")
-    Call<JsonArray> graphRuns(@Header("Authorization") String token , @Body TimeFrame timeFrame);
+    Call<JsonArray> graphRuns(@Header("Authorization") String token, @Body TimeFrame timeFrame);
 }

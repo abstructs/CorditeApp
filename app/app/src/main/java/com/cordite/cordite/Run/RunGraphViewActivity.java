@@ -27,7 +27,6 @@ import com.cordite.cordite.Deserializers.RunDeserializer;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.Entities.TimeFrame;
 import com.cordite.cordite.R;
-import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.YAxis;
@@ -51,9 +50,19 @@ public class RunGraphViewActivity extends AppCompatActivity {
     private List<Entry> entries = new ArrayList<>();
 
     private static final int NUM_PAGES = 2;
-    private String time;
+    private TimeFrameType timeFrameType;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
+
+    private LineData avgSpeedEntries;
+    private LineData avgDistanceEntries;
+
+    private enum TimeFrameType {
+        ALL, MONTH, WEEK
+    }
+
+    private final int FIRST_PAGE = 0;
+    private final int SECOND_PAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +95,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
     private void createPager(){
         pagerAdapter = new RunGraphViewActivity.ScreenSlidePagerAdapter(getSupportFragmentManager());
 
-        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager = findViewById(R.id.pager);
         mPager.setAdapter(pagerAdapter);
 
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -139,14 +148,14 @@ public class RunGraphViewActivity extends AppCompatActivity {
     }
 
     private void createButtons() {
-        Button allViewBtn = (Button) findViewById(R.id.allViewBtn);
-        Button weekViewBtn = (Button) findViewById(R.id.weekViewBtn);
-        Button monthViewBtn = (Button) findViewById(R.id.monthViewBtn);
+        Button allViewBtn = findViewById(R.id.allViewBtn);
+        Button weekViewBtn = findViewById(R.id.weekViewBtn);
+        Button monthViewBtn = findViewById(R.id.monthViewBtn);
 
         allViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View ref) {
-                time = "all";
+                timeFrameType = TimeFrameType.ALL;
 
                 RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
                         .getRegisteredFragment(mPager.getCurrentItem());
@@ -155,13 +164,13 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
                 setupChart(data);
 
-                graphRuns(time);
+                graphRuns(timeFrameType);
             }
         });
         weekViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View ref) {
-                time = "week";
+                timeFrameType = TimeFrameType.WEEK;
 
                 RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
                         .getRegisteredFragment(mPager.getCurrentItem());
@@ -170,13 +179,13 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
                 setupChart(data);
 
-                graphRuns(time);
+                graphRuns(timeFrameType);
             }
         });
         monthViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View ref) {
-                time = "month";
+                timeFrameType = TimeFrameType.MONTH;
 
                 RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
                         .getRegisteredFragment(mPager.getCurrentItem());
@@ -185,7 +194,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
                 setupChart(data);
 
-                graphRuns(time);
+                graphRuns(timeFrameType);
             }
         });
     }
@@ -198,24 +207,22 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
     }
 
-    private void graphRuns(String time) {
+    private void graphRuns(TimeFrameType timeFrameType) {
         clearGraph();
 
-        TimeFrame timeFrame = new TimeFrame(time);
-
-        Call<JsonArray> request = runService.graphRuns(getToken(), timeFrame);
+//        System.out.println(timeFrameType.toString());
+        Call<JsonArray> request = runService.graphRuns(getToken(), new TimeFrame(timeFrameType.toString()));
 
         request.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(@NonNull Call<JsonArray> call, @NonNull Response<JsonArray> response) {
                 if (response.code() == 401) {
                     Toast.makeText(RunGraphViewActivity.this, "Error Retrieving runs", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    assert response.body() != null;
-                    ArrayList<Run> runs = convertJsonToRuns(response.body().getAsJsonArray());
-                    setChartData(runs);
+                    return;
                 }
+
+                ArrayList<Run> runs = convertJsonToRuns(response.body().getAsJsonArray());
+                setChartData(runs);
             }
 
             @Override
@@ -227,11 +234,12 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
     private void setChartData(ArrayList<Run> data) {
 
-        if (mPager.getCurrentItem() == 1) {
-            lineData = populateTimeVsDistanceEntries(data); //get new data each time
+        if (mPager.getCurrentItem() == FIRST_PAGE) {
+            lineData = populateTimeVsAvgSpeedEntries(data); //get new data each timeFrameType
         }
-        if (mPager.getCurrentItem() == 0) {
-            lineData = populateTimeVsAvgSpeedEntries(data); //get new data each time
+
+        if (mPager.getCurrentItem() == SECOND_PAGE) {
+            lineData = populateTimeVsDistanceEntries(data); //get new data each timeFrameType
         }
 
         lineData.setValueTextColor(Color.WHITE);
@@ -242,6 +250,10 @@ public class RunGraphViewActivity extends AppCompatActivity {
     }
 
     private LineData populateTimeVsAvgSpeedEntries(ArrayList<Run> data) {
+
+        if(avgSpeedEntries != null && !entries.isEmpty()) {
+            return avgSpeedEntries;
+        }
 
         int size = data.size();
 
@@ -255,10 +267,16 @@ public class RunGraphViewActivity extends AppCompatActivity {
             entries.add(point);
         }
 
-        return sortLineData(entries, "Time VS Speed");
+        avgSpeedEntries = sortLineData(entries, "Time VS Speed");
+
+        return avgSpeedEntries;
     }
 
     private LineData populateTimeVsDistanceEntries(ArrayList<Run> data) {
+
+        if(avgDistanceEntries != null & !entries.isEmpty()) {
+            return avgDistanceEntries;
+        }
 
         int size = data.size();
 
@@ -272,7 +290,9 @@ public class RunGraphViewActivity extends AppCompatActivity {
             entries.add(point);
         }
 
-        return sortLineData(entries, "Time VS Distance");
+        avgDistanceEntries = sortLineData(entries, "Time VS Distance");
+
+        return avgDistanceEntries;
     }
 
     private LineData sortLineData(List<Entry> entries, String label) {
@@ -302,9 +322,8 @@ public class RunGraphViewActivity extends AppCompatActivity {
         if (lineData != null) {
             lineData.clearValues();
         }
-        if ( entries != null){
+        if (entries != null){
             entries.clear();
-
         }
         if (chart != null) {
             chart.invalidate();

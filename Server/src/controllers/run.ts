@@ -2,6 +2,12 @@ import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import Run, { RunModel } from '../models/Run';
 
+enum TimeFrame {
+    WEEK = "WEEK",
+    MONTH = "MONTH",
+    ALL = "ALL"
+}
+
 export const getRuns = (req: Request, res: Response) => {
     const token = req.get("Authorization");
 
@@ -25,7 +31,7 @@ export const getRuns = (req: Request, res: Response) => {
     });
 };
 
-export const getSortedRuns = (req: Request, res: Response) => {
+export const graphRuns = (req: Request, res: Response) => {
     const token = req.get("Authorization");
 
     if (!token) {
@@ -37,34 +43,32 @@ export const getSortedRuns = (req: Request, res: Response) => {
 
     const user_id = decoded["id"];
 
-    const timeframe = req.body;
+    const timeFrame: TimeFrame = req.body["timeFrame"];
 
-    let query;
-    var dt = new Date();
-    
-
-    if (timeframe["timeFrame"] == "week") {
-
-        dt.setDate( dt.getDate() - 7 );
-
-       query = { user: user_id,
-        createdAt : { $gte : dt } };
+    if (!timeFrame) {
+        res.status(400).end();
+        return;
     }
 
-    else if (timeframe["timeFrame"] == "month") {
-        dt.setDate( dt.getDate() - 30 );
+    const currentDate = new Date();
 
-        query = { user: user_id,
-         createdAt : { $gte : dt } };
+    switch (timeFrame) {
+        case TimeFrame.WEEK:
+            currentDate.setDate(currentDate.getDate() - 7);
+            break;
+        case TimeFrame.MONTH:
+            currentDate.setDate(currentDate.getDate() - 30);
+            break;
+        case TimeFrame.ALL:
+            // 10 years
+            currentDate.setDate(currentDate.getDate() - 3650); 
+            break;
+        default:
+            res.status(400).end();
+            return;
     }
 
-    else if (timeframe["timeFrame"] == "all") {
-         query = { user: user_id }; 
-    }
-
-    else {
-        res.status(401).end();
-    }
+    const query = { user: user_id, createdAt: { $gte: currentDate } };
 
     Run.find(query, (err, runs) => {
         if (err) {
@@ -72,8 +76,8 @@ export const getSortedRuns = (req: Request, res: Response) => {
             res.status(500).end();
             return;
         }
-        res.status(200).json(runs).end();
 
+        res.status(200).json(runs).end();
     });
 };
 

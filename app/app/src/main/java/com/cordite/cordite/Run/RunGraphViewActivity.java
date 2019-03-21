@@ -2,6 +2,7 @@ package com.cordite.cordite.Run;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -57,6 +58,9 @@ public class RunGraphViewActivity extends AppCompatActivity {
     private LineData avgSpeedEntries;
     private LineData avgDistanceEntries;
 
+    private int text;
+    private int lineColor;
+
     private enum TimeFrameType {
         ALL, MONTH, WEEK
     }
@@ -69,6 +73,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_graph_view);
 
+        createColors();
         createPager(); // set pager
         createButtons();
 
@@ -97,16 +102,6 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
         mPager = findViewById(R.id.pager);
         mPager.setAdapter(pagerAdapter);
-
-        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            public void onPageScrollStateChanged(int state) {}
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                clearGraph();
-            }
-
-            public void onPageSelected(int position) {
-            }
-        });
 
     }
 
@@ -145,6 +140,12 @@ public class RunGraphViewActivity extends AppCompatActivity {
         Fragment getRegisteredFragment(int position) {
             return registeredFragments.get(position);
         }
+    }
+
+    private void createColors(){
+
+        text =  ContextCompat.getColor(this, R.color.primaryText);
+        lineColor = ContextCompat.getColor(this, R.color.pathColour);
     }
 
     private void createButtons() {
@@ -267,7 +268,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
             entries.add(point);
         }
 
-        avgSpeedEntries = sortLineData(entries, "Time VS Speed");
+        avgSpeedEntries = setupLineData(entries, "Time VS Speed");
 
         return avgSpeedEntries;
     }
@@ -290,31 +291,46 @@ public class RunGraphViewActivity extends AppCompatActivity {
             entries.add(point);
         }
 
-        avgDistanceEntries = sortLineData(entries, "Time VS Distance");
+        avgDistanceEntries = setupLineData(entries, "Time VS Distance");
 
         return avgDistanceEntries;
     }
 
-    private LineData sortLineData(List<Entry> entries, String label) {
+    private LineData setupLineData(List<Entry> entries, String label) {
 
         Collections.sort(entries, new EntryXComparator());
-
+        
         LineDataSet dataSet = new LineDataSet(entries, label); // add entries to dataset
-
-        dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
-        dataSet.setLineWidth(4f);
-        dataSet.setColor(Color.RED);
-        dataSet.setValueTextSize(12f);
-        dataSet.setValueTextColor(0);
-        dataSet.setLineWidth(12f);
-
         Legend chartLegend = chart.getLegend();
-
-        chartLegend.setTextSize(16f);
-        chartLegend.setTextColor(Color.WHITE);
+        
+        styleDataSet(dataSet);
+        styledChart(chartLegend);
 
         lineData = new LineData(dataSet);
+
         return lineData;
+    }
+
+    private void styledChart(Legend chartLegend) {
+        chartLegend.setFormSize(11f); // set the size of the legend forms/shapes
+        chartLegend.setForm(Legend.LegendForm.CIRCLE); // set what type of form/shape should be used
+
+        chartLegend.setTextSize(13f);
+        chartLegend.setXEntrySpace(5f); // set the space between the legend entries on the x-axis
+        chartLegend.setYEntrySpace(5f); // set the space between the legend entries on the y-axis
+    }
+
+    private void styleDataSet(LineDataSet dataSet) {
+
+        dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+        dataSet.setLineWidth(2f);
+        dataSet.setValueTextSize(13f);
+        dataSet.setValueTextColor(text);
+        dataSet.setLineWidth(7f);
+        dataSet.setCircleRadius(8f);
+        dataSet.setValueTextSize(7f);
+
+        dataSet.setColors(lineColor);
     }
 
     private void clearGraph() {

@@ -13,12 +13,22 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +40,7 @@ import com.cordite.cordite.Api.APIClient;
 import com.cordite.cordite.Api.ReportService;
 import com.cordite.cordite.Api.RunService;
 import com.cordite.cordite.Deserializers.ReportDeserializer;
+import com.cordite.cordite.Deserializers.RunDeserializer;
 import com.cordite.cordite.Entities.Report;
 import com.cordite.cordite.Entities.Run;
 import com.cordite.cordite.R;
@@ -38,6 +49,7 @@ import com.cordite.cordite.Report.ReportSelectFragment;
 import com.cordite.cordite.Report.ReportShowFragment;
 import com.cordite.cordite.Report.ReportType;
 import com.cordite.cordite.Run.RunManager;
+import com.cordite.cordite.Run.RunSummaryActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -84,6 +96,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Fragment listReportFragment;
 //    private Fragment runDataFragment;
 
+    private TrackerService trackerService;
+    private boolean trackerServiceBound = false;
+
     private Polygon circleHighlight;
 
     private boolean viewMode;
@@ -106,7 +121,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mapFragment.getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
-                    setupViewRunMap(run, googleMap);
+                setupViewRunMap(run, googleMap);
                 }
             });
 
@@ -121,10 +136,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         this.reportService = APIClient.getClient().create(ReportService.class);
 
         this.mapReports = new ArrayList<>();
-
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
     }
 
+//    protected void onStop() {
+//        if(trackerServiceBound) {
+//            unbindService(connection);
+//            trackerServiceBound = false;
+//        }
+//
+//        super.onStop();
+//    }
+//    @Override
 
     private void setupViewRunMap(Run run, GoogleMap map) {
         if(run.locations.size() == 0) {
@@ -342,6 +364,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         FloatingActionButton trackFab = findViewById(R.id.trackFab);
 
         trackFab.setImageDrawable(getDrawable(R.drawable.ic_stop));
+//        runManager.startTracking();
         runManager.startTracking();
     }
 
@@ -349,6 +372,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         FloatingActionButton trackFab = findViewById(R.id.trackFab);
 
         trackFab.setImageDrawable(getDrawable(R.drawable.ic_play));
+//        runManager.stopTracking();
         runManager.stopTracking();
     }
 
@@ -391,6 +415,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 stopTracking();
+
+                JsonObject body = response.body();
+
+                JsonElement runElement = body.get("run");
+
+                Run run = new RunDeserializer().deserialize(runElement, Run.class, null);
+
+                Intent intent = new Intent(MapsActivity.this, RunSummaryActivity.class);
+
+                intent.putExtra("run", run);
+
+                startActivity(intent);
+
+                finish();
             }
 
             @Override
@@ -423,8 +461,63 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         dialog.show();
     }
 
-    private void setupTracker(GoogleMap mMap) {
-        runManager = new RunManager(getSupportFragmentManager(), mFusedLocationClient, mMap);
+//    private ServiceConnection connection = new ServiceConnection() {
+//
+//        @Override
+//        public void onServiceConnected(ComponentName className,
+//                                       IBinder service) {
+//            // We've bound to LocalService, cast the IBinder and get LocalService instance
+//            TrackerService.LocalBinder binder = (TrackerService.LocalBinder) service;
+//            trackerService = binder.getService();
+//            trackerService.setupFusedLocationClient(getSupportFragmentManager(), mMap);
+//            trackerServiceBound = true;
+//
+//            // setup map stuff, these relies on tracker
+//            setupButtons();
+//            setupMap();
+//            goToMyLocation();
+//        }
+//
+//        @Override
+//        public void onServiceDisconnected(ComponentName arg0) {
+//            trackerServiceBound = false;
+//        }
+//    };
+
+    private void setupTracker() {
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        runManager = new RunManager(MapsActivity.this, getSupportFragmentManager(), mFusedLocationClient, mMap);
+
+        BroadcastReceiver broadcastReceiver = new TrackerService(runManager);
+
+        IntentFilter filter = new IntentFilter();
+
+        filter.addAction(TrackerService.ACTION_PROCESS_UPDATE);
+
+        System.out.println("added");
+
+//        filter.addAction(TrackerService.ACTION_PROCESS_UPDATE);
+
+        registerReceiver(broadcastReceiver, filter);
+
+//        Intent intent = new Intent(this, TrackerService.class);
+
+//
+
+//        intent.setAction(TrackerService.ACTION_PROCESS_UPDATE);
+
+
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast()
+
+//        runManager = new RunManager(getSupportFragmentManager(), mFusedLocationClient, mMap);
+//        this.trackerService = new TrackerService();
+
+//        Intent intent = new Intent(this, TrackerService.class);
+
+//        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+
+//        startForegroundService(intent);
     }
 
     private void animHideRunDataFragment() {
@@ -602,7 +695,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-            getReportsAndAddToMap(location);
+                getReportsAndAddToMap(location);
             }
         });
 
@@ -611,13 +704,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        // methods below rely on this
         mMap = googleMap;
-        try {
-            setupButtons();
-            setupTracker(mMap);
-            setupMap();
 
+        try {
+            System.out.println("map ready");
+            setupTracker();
+            setupButtons();
+            setupMap();
             goToMyLocation();
+
         } catch(SecurityException e) {
             requestLocationPermissions();
         }

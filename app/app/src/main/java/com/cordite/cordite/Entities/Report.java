@@ -115,6 +115,26 @@ public class Report implements Parcelable {
         return addresses.get(0).getAddressLine(0);
     }
 
+    public String getDescription() {
+        switch(this.type) {
+            case construction:
+                return "There is construction in this area";
+            case trailClosed:
+                return "The trail around this point is closed";
+//            case photo:
+//                bitmap = BitmapDescriptorFactory.fromBitmap(convertToBitmap(R.drawable.ic_photo));
+//                break;
+            case coolPlace:
+                return "Someone thinks this is a pretty cool place";
+            case beCareful:
+                return "You should be careful while in this area";
+            case waterFountain:
+                return "There's a water fountain here to get hydrated";
+            default:
+                return "";
+        }
+    }
+
     @Override
     public int describeContents() {
         return 0;

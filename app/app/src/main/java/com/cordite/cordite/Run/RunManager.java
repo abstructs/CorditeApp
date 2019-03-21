@@ -1,16 +1,23 @@
 package com.cordite.cordite.Run;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 
+import com.cordite.cordite.Map.MapsActivity;
+import com.cordite.cordite.Map.TrackerService;
 import com.cordite.cordite.R;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 
 import java.util.Stack;
@@ -32,15 +39,18 @@ public class RunManager {
 
     private final int LOCATION_UPDATE_INTERVAL = 2500;
 
-//    private Context context;
+    PendingIntent pendingIntent;
 
-    public RunManager(FragmentManager fragmentManager, FusedLocationProviderClient mFusedLocationClient, GoogleMap mMap) {
+    private Context context;
+
+    public RunManager(Context context, FragmentManager fragmentManager, FusedLocationProviderClient mFusedLocationClient, GoogleMap mMap) {
         this.mFusedLocationClient = mFusedLocationClient;
 
         this.visualizer = new RunVisualizer(fragmentManager, mMap);
         this.tracker = new RunTracker();
 
         this.trackingEnabled = false;
+        this.context = context;
     }
 
     private boolean getTrackingEnabled() {
@@ -65,7 +75,8 @@ public class RunManager {
         return this.visualizer.getLocationStack();
     }
 
-    private void handleLocationUpdate(Location location) {
+    public void handleLocationUpdate(Location location) {
+        System.out.println("location updated");
         visualizer.update(location);
     }
 
@@ -95,7 +106,12 @@ public class RunManager {
     private void setupTracker() throws SecurityException {
         locationCallback = getLocationCallback();
         visualizer.startTimer();
-        mFusedLocationClient.requestLocationUpdates(getLocationRequest(), locationCallback, Looper.myLooper());
+
+        Intent intent = new Intent(TrackerService.ACTION_PROCESS_UPDATE);
+
+        pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+
+        mFusedLocationClient.requestLocationUpdates(getLocationRequest(), pendingIntent);
     }
 
     private void teardownTracker() {
@@ -107,5 +123,7 @@ public class RunManager {
         if(locationCallback != null) {
             mFusedLocationClient.removeLocationUpdates(locationCallback);
         }
+
+        mFusedLocationClient.removeLocationUpdates(pendingIntent);
     }
 }

@@ -44,7 +44,7 @@ public class ReportSelectFragment extends Fragment {
         FrameLayout layout = view.findViewById(R.id.reportSelectLayout);
 
         ImageButton trailClosedBtn = view.findViewById(R.id.trailClosedBtn);
-        ImageButton photoBtn = view.findViewById(R.id.photoBtn);
+//        ImageButton photoBtn = view.findViewById(R.id.photoBtn);
 
         ImageButton constructionBtn = view.findViewById(R.id.constructionBtn);
         ImageButton coolPlaceBtn = view.findViewById(R.id.coolPlaceBtn);
@@ -60,13 +60,13 @@ public class ReportSelectFragment extends Fragment {
             }
         });
 
-        photoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mapsActivity.saveReport(ReportType.photo);
-                activity.onBackPressed();
-            }
-        });
+//        photoBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mapsActivity.saveReport(ReportType.photo);
+//                activity.onBackPressed();
+//            }
+//        });
 
         constructionBtn.setOnClickListener(new View.OnClickListener() {
             @Override

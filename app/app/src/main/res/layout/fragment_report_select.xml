@@ -60,35 +60,6 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/photoBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_photo" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/photo" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="@dimen/reportSelectItemSize"
-                android:layout_height="@dimen/reportSelectItemSize"
-                android:orientation="vertical">
-
-                <ImageButton
                     android:id="@+id/constructionBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,6 +74,16 @@
                     android:gravity="center"
                     android:text="@string/construction" />
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
 
             <LinearLayout
                 android:layout_width="@dimen/reportSelectItemSize"
@@ -126,14 +107,6 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
             <LinearLayout
                 android:layout_width="@dimen/reportSelectItemSize"
                 android:layout_height="@dimen/reportSelectItemSize"
@@ -155,6 +128,14 @@
                     android:text="@string/beCareful" />
 
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="@dimen/reportSelectItemSize"

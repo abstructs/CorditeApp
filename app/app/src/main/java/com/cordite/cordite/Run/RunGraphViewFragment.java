@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.cordite.cordite.Api.APIClient;
@@ -26,7 +25,6 @@ import com.github.mikephil.charting.utils.EntryXComparator;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,8 +32,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,20 +40,15 @@ import retrofit2.Response;
 public class RunGraphViewFragment extends Fragment {
 
     private LineChart chart;
-    private String des = "Weekly Progress";
+    private String graphDescription = "Weekly Progress";
     private RunService runService;
 
     private LineData lineData;
     private List<Entry> entries = new ArrayList<>();
 
-    private static final int NUM_PAGES = 2;
-
     public enum TimeFrameType {
         ALL, MONTH, WEEK
     }
-
-    private ViewPager mPager;
-    private PagerAdapter pagerAdapter;
 
     private LineData avgSpeedEntries;
     private LineData avgDistanceEntries;
@@ -68,10 +59,9 @@ public class RunGraphViewFragment extends Fragment {
     private int text;
     private int lineColor;
 
-    public void setdes(String des){
-        this.des = des;
+    public void setDescription(String description){
+        this.graphDescription = description;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -106,6 +96,7 @@ public class RunGraphViewFragment extends Fragment {
         graphRuns(timeFrameType,position);
 
     }
+
     private void setupChart(LineChart chart) {
 
         this.chart = chart; //set chart
@@ -140,18 +131,14 @@ public class RunGraphViewFragment extends Fragment {
     }
 
     private void setChartData(ArrayList<Run> data, int position) {
-//        if(mPager == null){
-//            lineData = populateTimeVsAvgSpeedEntries(data); //get new data each timeFrameType
-//
-//        }else {
-            if (position == FIRST_PAGE) {
-                lineData = populateTimeVsAvgSpeedEntries(data); //get new data each timeFrameType
-            }
 
-            if (position == SECOND_PAGE) {
-                lineData = populateTimeVsDistanceEntries(data); //get new data each timeFrameType
-            }
-//        }
+        if (position == FIRST_PAGE) {
+            lineData = populateTimeVsAvgSpeedEntries(data);
+        }
+
+        if (position == SECOND_PAGE) {
+            lineData = populateTimeVsDistanceEntries(data);
+        }
         lineData.setValueTextColor(Color.WHITE);
 
         chart.setData(lineData);
@@ -209,9 +196,15 @@ public class RunGraphViewFragment extends Fragment {
 
         Collections.sort(entries, new EntryXComparator());
 
-        LineDataSet dataSet = new LineDataSet(entries, label); // add entries to dataset
+        LineDataSet dataSet = new LineDataSet(entries, label);
+
         Legend chartLegend = chart.getLegend();
-        chart.getDescription().setText(des);
+        chartLegend.setTextColor(text);
+        chartLegend.setTextSize(12f);
+
+        chart.getDescription().setText(graphDescription);
+        chart.getDescription().setTextSize(10f);
+        chart.getDescription().setTextColor(text);
 
 
         styleDataSet(dataSet);
@@ -223,12 +216,12 @@ public class RunGraphViewFragment extends Fragment {
     }
 
     private void styledChart(Legend chartLegend) {
-        chartLegend.setFormSize(11f); // set the size of the legend forms/shapes
-        chartLegend.setForm(Legend.LegendForm.CIRCLE); // set what type of form/shape should be used
+        chartLegend.setFormSize(11f);
+        chartLegend.setForm(Legend.LegendForm.CIRCLE);
 
         chartLegend.setTextSize(13f);
-        chartLegend.setXEntrySpace(5f); // set the space between the legend entries on the x-axis
-        chartLegend.setYEntrySpace(5f); // set the space between the legend entries on the y-axis
+        chartLegend.setXEntrySpace(5f);
+        chartLegend.setYEntrySpace(5f);
     }
 
     private void styleDataSet(LineDataSet dataSet) {

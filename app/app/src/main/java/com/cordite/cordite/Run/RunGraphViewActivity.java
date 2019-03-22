@@ -44,44 +44,22 @@ import java.util.List;
 
 public class RunGraphViewActivity extends AppCompatActivity {
 
-    private RunService runService;
-
-    private LineChart chart;
-    private LineData lineData;
-    private List<Entry> entries = new ArrayList<>();
-
     private static final int NUM_PAGES = 2;
-    private TimeFrameType timeFrameType;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
-
-    private LineData avgSpeedEntries;
-    private LineData avgDistanceEntries;
-
-    private int text;
-    private int lineColor;
-
-    private enum TimeFrameType {
-        ALL, MONTH, WEEK
-    }
-
-    private final int FIRST_PAGE = 0;
-    private final int SECOND_PAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_graph_view);
 
-        createColors();
         createPager(); // set pager
         createButtons();
-
     }
 
     @Override
     protected void onPause() {
-        clearGraph();
+//        clearGraph();
         super.onPause();
     }
 
@@ -102,10 +80,19 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
         mPager = findViewById(R.id.pager);
         mPager.setAdapter(pagerAdapter);
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            public void onPageSelected(int position) {
+                RunGraphViewFragment.TimeFrameType timeFrameType = RunGraphViewFragment.TimeFrameType.WEEK;
+                createGraph(timeFrameType,"Weekly Progress");
+            }
+        });
 
     }
 
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+    public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         SparseArray<Fragment> registeredFragments = new SparseArray<>();
 
         ScreenSlidePagerAdapter(FragmentManager fm) {
@@ -142,12 +129,6 @@ public class RunGraphViewActivity extends AppCompatActivity {
         }
     }
 
-    private void createColors(){
-
-        text =  ContextCompat.getColor(this, R.color.primaryText);
-        lineColor = ContextCompat.getColor(this, R.color.pathColour);
-    }
-
     private void createButtons() {
         Button allViewBtn = findViewById(R.id.allViewBtn);
         Button weekViewBtn = findViewById(R.id.weekViewBtn);
@@ -156,216 +137,34 @@ public class RunGraphViewActivity extends AppCompatActivity {
         allViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View ref) {
-                timeFrameType = TimeFrameType.ALL;
-
-                RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
-                        .getRegisteredFragment(mPager.getCurrentItem());
-
-                LineChart data = fragment.getChart();
-
-                setupChart(data);
-
-                graphRuns(timeFrameType);
+                RunGraphViewFragment.TimeFrameType timeFrameType = RunGraphViewFragment.TimeFrameType.ALL;
+                createGraph(timeFrameType, "All Time Progress");
             }
         });
         weekViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View ref) {
-                timeFrameType = TimeFrameType.WEEK;
-
-                RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
-                        .getRegisteredFragment(mPager.getCurrentItem());
-
-                LineChart data = fragment.getChart();
-
-                setupChart(data);
-
-                graphRuns(timeFrameType);
+                RunGraphViewFragment.TimeFrameType timeFrameType = RunGraphViewFragment.TimeFrameType.WEEK;
+                createGraph(timeFrameType,"Weekly Progress");
             }
         });
         monthViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View ref) {
-                timeFrameType = TimeFrameType.MONTH;
-
-                RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
-                        .getRegisteredFragment(mPager.getCurrentItem());
-
-                LineChart data = fragment.getChart();
-
-                setupChart(data);
-
-                graphRuns(timeFrameType);
+                RunGraphViewFragment.TimeFrameType timeFrameType = RunGraphViewFragment.TimeFrameType.MONTH;
+                createGraph(timeFrameType, "Monthly Progress");
             }
+
         });
     }
 
-    private void setupChart(LineChart chart) {
+    public void createGraph(RunGraphViewFragment.TimeFrameType  timeFrame, String des){
 
-        this.chart = chart; //set chart
+        RunGraphViewFragment fragment = (RunGraphViewFragment) ((ScreenSlidePagerAdapter) pagerAdapter)
+                .getRegisteredFragment(mPager.getCurrentItem());
 
-        this.runService = APIClient.getClient().create(RunService.class); // set client
-
-    }
-
-    private void graphRuns(TimeFrameType timeFrameType) {
-        clearGraph();
-
-//        System.out.println(timeFrameType.toString());
-        Call<JsonArray> request = runService.graphRuns(getToken(), new TimeFrame(timeFrameType.toString()));
-
-        request.enqueue(new Callback<JsonArray>() {
-            @Override
-            public void onResponse(@NonNull Call<JsonArray> call, @NonNull Response<JsonArray> response) {
-                if (response.code() == 401) {
-                    Toast.makeText(RunGraphViewActivity.this, "Error Retrieving runs", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                ArrayList<Run> runs = convertJsonToRuns(response.body().getAsJsonArray());
-                setChartData(runs);
-            }
-
-            @Override
-            public void onFailure(Call<JsonArray> call, Throwable t) {
-                Toast.makeText(RunGraphViewActivity.this, "Server error", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void setChartData(ArrayList<Run> data) {
-
-        if (mPager.getCurrentItem() == FIRST_PAGE) {
-            lineData = populateTimeVsAvgSpeedEntries(data); //get new data each timeFrameType
-        }
-
-        if (mPager.getCurrentItem() == SECOND_PAGE) {
-            lineData = populateTimeVsDistanceEntries(data); //get new data each timeFrameType
-        }
-
-        lineData.setValueTextColor(Color.WHITE);
-
-        chart.setData(lineData);
-
-        chart.invalidate();
-    }
-
-    private LineData populateTimeVsAvgSpeedEntries(ArrayList<Run> data) {
-
-        if(avgSpeedEntries != null && !entries.isEmpty()) {
-            return avgSpeedEntries;
-        }
-
-        int size = data.size();
-
-        for (int i = 0; i < size; i++) {
-
-            int x = data.get(i).timeElapsed / 1000;
-            int y = (int) data.get(i).averageSpeed;
-
-            Entry point = new Entry(x, y);
-
-            entries.add(point);
-        }
-
-        avgSpeedEntries = setupLineData(entries, "Time VS Speed");
-
-        return avgSpeedEntries;
-    }
-
-    private LineData populateTimeVsDistanceEntries(ArrayList<Run> data) {
-
-        if(avgDistanceEntries != null & !entries.isEmpty()) {
-            return avgDistanceEntries;
-        }
-
-        int size = data.size();
-
-        for (int i = 0; i < size; i++) {
-
-            int x = data.get(i).timeElapsed / 1000;
-            int y = (int) data.get(i).distanceTravelled;
-
-            Entry point = new Entry(x, y);
-
-            entries.add(point);
-        }
-
-        avgDistanceEntries = setupLineData(entries, "Time VS Distance");
-
-        return avgDistanceEntries;
-    }
-
-    private LineData setupLineData(List<Entry> entries, String label) {
-
-        Collections.sort(entries, new EntryXComparator());
-        
-        LineDataSet dataSet = new LineDataSet(entries, label); // add entries to dataset
-        Legend chartLegend = chart.getLegend();
-        
-        styleDataSet(dataSet);
-        styledChart(chartLegend);
-
-        lineData = new LineData(dataSet);
-
-        return lineData;
-    }
-
-    private void styledChart(Legend chartLegend) {
-        chartLegend.setFormSize(11f); // set the size of the legend forms/shapes
-        chartLegend.setForm(Legend.LegendForm.CIRCLE); // set what type of form/shape should be used
-
-        chartLegend.setTextSize(13f);
-        chartLegend.setXEntrySpace(5f); // set the space between the legend entries on the x-axis
-        chartLegend.setYEntrySpace(5f); // set the space between the legend entries on the y-axis
-    }
-
-    private void styleDataSet(LineDataSet dataSet) {
-
-        dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
-        dataSet.setLineWidth(2f);
-        dataSet.setValueTextSize(13f);
-        dataSet.setValueTextColor(text);
-        dataSet.setLineWidth(7f);
-        dataSet.setCircleRadius(8f);
-        dataSet.setValueTextSize(7f);
-
-        dataSet.setColors(lineColor);
-    }
-
-    private void clearGraph() {
-
-        if (lineData != null) {
-            lineData.clearValues();
-        }
-        if (entries != null){
-            entries.clear();
-        }
-        if (chart != null) {
-            chart.invalidate();
-            chart.clear();
-        }
-    }
-
-    private String getToken() {
-        SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_preferences_key),
-                Context.MODE_PRIVATE);
-
-        return preferences.getString("token", "");
-    }
-
-    private ArrayList<Run> convertJsonToRuns(JsonArray jsonArray) {
-        ArrayList<Run> runs = new ArrayList<>();
-
-        RunDeserializer deserializer = new RunDeserializer();
-
-        for (JsonElement element : jsonArray) {
-
-            Run run = deserializer.deserialize(element, Run.class, null);
-            runs.add(run);
-        }
-
-        return runs;
+        fragment.setdes(des);
+        fragment.enableGraph(timeFrame, mPager.getCurrentItem());
     }
 
 }

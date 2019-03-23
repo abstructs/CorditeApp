@@ -59,7 +59,7 @@ public class RunGraphViewFragment extends Fragment {
     private int text;
     private int lineColor;
 
-    public void setDescription(String description){
+    protected void setDescription(String description){
         this.graphDescription = description;
     }
 
@@ -87,7 +87,7 @@ public class RunGraphViewFragment extends Fragment {
     }
 
 
-    public void enableGraph(TimeFrameType timeFrameType, int position){
+    protected void enableGraph(TimeFrameType timeFrameType, int position){
 
         LineChart data = this.getChart();
 

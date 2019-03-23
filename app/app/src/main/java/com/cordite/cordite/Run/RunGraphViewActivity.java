@@ -17,14 +17,18 @@ import android.widget.TextView;
 
 import com.cordite.cordite.R;
 
-import java.text.BreakIterator;
-
 public class RunGraphViewActivity extends AppCompatActivity {
 
     private static final int NUM_PAGES = 2;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
+
     private TextView graphTitle;
+
+    private final String all = "All Time Progress";
+    private final String week = "Weekly Progress";
+    private final String month = "Monthly Progress";
+
 
 
     @Override
@@ -33,25 +37,21 @@ public class RunGraphViewActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_run_graph_view);
         graphTitle = findViewById(R.id.graphTxtView);
-        graphTitle.setText("Time Vs Speed");
+        graphTitle.setText(getString(R.string.time_vs_Avg_Speed_Graph));
         createPager(); // set pager
         createButtons();
     }
 
     @Override
     protected void onPause() {
-//        clearGraph();
         super.onPause();
     }
 
     @Override
     public void onBackPressed() {
         if (mPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed();
         } else {
-            // Otherwise, select the previous step.
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
     }
@@ -68,14 +68,14 @@ public class RunGraphViewActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
 
                 RunGraphViewFragment.TimeFrameType timeFrameType = RunGraphViewFragment.TimeFrameType.WEEK;
-                createGraph(timeFrameType,"Weekly Progress");
+                createGraph(timeFrameType,week);
 
                 if(position == 0){
-                    graphTitle.setText("Time Vs Avg Speed");
+                    graphTitle.setText(getString(R.string.time_vs_Avg_Speed_Graph));
 
                 }
                 if(position == 1){
-                    graphTitle.setText("Time Vs Distance");
+                    graphTitle.setText(getString(R.string.time_vs_distance));
                 }
             }
         });
@@ -89,6 +89,7 @@ public class RunGraphViewActivity extends AppCompatActivity {
             super(fm);
         }
 
+        @NonNull
         @Override
         public Fragment getItem(int position) {
             return new RunGraphViewFragment();
@@ -128,21 +129,21 @@ public class RunGraphViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View ref) {
                 RunGraphViewFragment.TimeFrameType timeFrameType = RunGraphViewFragment.TimeFrameType.ALL;
-                createGraph(timeFrameType, "All Time Progress");
+                createGraph(timeFrameType, all);
             }
         });
         weekViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View ref) {
                 RunGraphViewFragment.TimeFrameType timeFrameType = RunGraphViewFragment.TimeFrameType.WEEK;
-                createGraph(timeFrameType,"Weekly Progress");
+                createGraph(timeFrameType,week);
             }
         });
         monthViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View ref) {
                 RunGraphViewFragment.TimeFrameType timeFrameType = RunGraphViewFragment.TimeFrameType.MONTH;
-                createGraph(timeFrameType, "Monthly Progress");
+                createGraph(timeFrameType, month);
             }
 
         });

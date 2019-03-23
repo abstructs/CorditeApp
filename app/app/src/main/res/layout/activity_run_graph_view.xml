@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,24 +17,27 @@
 
             <Button
                 android:id="@+id/weekViewBtn"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Last Week" />
+                android:text="@string/graph_btn_last_week" />
 
             <Button
                 android:id="@+id/monthViewBtn"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Last Month" />
+                android:text="@string/graph_btn_last_month" />
 
             <Button
                 android:id="@+id/allViewBtn"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="All time" />
+                android:text="@string/graph_btn_all_time" />
         </LinearLayout>
 
         <TextView
@@ -44,7 +46,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingBottom="20sp"
-            android:text="TextView"
+            android:text="@string/graph_text_view"
             android:textSize="24sp" />
 
         <androidx.viewpager.widget.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"

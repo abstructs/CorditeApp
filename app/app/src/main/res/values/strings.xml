@@ -18,6 +18,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_screen_slide_pager">ScreenSlidePagerActivity</string>
+    <string name="graph_btn_last_week">Last Week</string>
+    <string name="graph_btn_last_month">Last Month</string>
+    <string name="graph_btn_all_time">All time</string>
+    <string name="graph_text_view">TextView</string>
+    <string name="time_vs_Avg_Speed_Graph">Time Vs Avg Speed</string>
+    <string name="time_vs_distance">Time Vs Distance</string>
     <!-- </report-types>-->
 
 </resources>

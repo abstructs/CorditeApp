@@ -20,5 +20,4 @@ public interface ReportService {
 
     @POST("reports/aroundMe")
     Call<JsonArray> getReports(@Header("Authorization") String token, @Body Location location);
-
 }

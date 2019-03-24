@@ -12,11 +12,11 @@
     <string name="coolPlace">Cool Place</string>
 
     <string name="beCareful">Be Careful</string>
-    <string name="waterFountain">Water</string>
+    <string name="waterFountain">Water Fountain</string>
     <string name="KM">KM Away</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--<string name="hello_blank_fragment">Hello blank fragment</string>-->
     <string name="title_activity_screen_slide_pager">ScreenSlidePagerActivity</string>
     <string name="graph_btn_last_week">Last Week</string>
     <string name="graph_btn_last_month">Last Month</string>
@@ -24,6 +24,10 @@
     <string name="graph_text_view">TextView</string>
     <string name="time_vs_Avg_Speed_Graph">Time Vs Avg Speed</string>
     <string name="time_vs_distance">Time Vs Distance</string>
+
+    <!--&lt;!&ndash; TODO: Remove or change this placeholder text &ndash;&gt;-->
+    <!--<string name="hello_blank_fragment">Hello blank fragment</string>-->
+
     <!-- </report-types>-->
 
 </resources>

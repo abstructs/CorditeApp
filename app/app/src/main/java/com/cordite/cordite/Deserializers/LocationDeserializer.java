@@ -10,7 +10,7 @@ import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
 
-public class LocationDeserializer implements JsonDeserializer<Location> {
+public class    LocationDeserializer implements JsonDeserializer<Location> {
     @Override
     public Location deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 

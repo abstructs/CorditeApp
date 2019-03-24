@@ -67,12 +67,14 @@ public class ReportShowFragment extends Fragment {
         TextView distanceTxt = view.findViewById(R.id.distanceToTxt);
         TextView addressTxt = view.findViewById(R.id.addressTxt);
         TextView timeStamp = view.findViewById(R.id.timestampTxt);
+        TextView descriptionTxt = view.findViewById(R.id.descriptionTxt);
 
         addressTxt.setText(report.address);
         distanceTxt.setText(String.valueOf(report.distanceTo));
         distanceTxt.append(getString(R.string.KM));
         typeTxt.setText(report.getTypeString());
         timeStamp.setText(String.valueOf(report.timestamp));
+        descriptionTxt.setText(report.getDescription());
 
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +83,4 @@ public class ReportShowFragment extends Fragment {
             }
         });
     }
-
-
 }

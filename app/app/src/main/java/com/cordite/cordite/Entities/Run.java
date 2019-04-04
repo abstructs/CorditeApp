@@ -38,6 +38,23 @@ public class Run implements Parcelable {
 
     }
 
+    public String getTime() {
+
+        long milliseconds = timeElapsed / 1000;
+
+        long s = milliseconds % 60;
+        long m = (milliseconds / 60) % 60;
+        long h = (milliseconds / (60 * 60)) % 24;
+
+        if(h > 0) {
+            return String.format("%d hour, %d minutes", h, m);
+        } else if(m > 0) {
+            return String.format("%d minutes", h, m);
+        } else {
+            return String.format("%d seconds", s);
+        }
+    }
+
     protected Run(Parcel in) {
         this.locations = new ArrayList<>();
 

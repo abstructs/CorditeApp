@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/card_spacing"
-    android:minHeight="200dp"
+    android:minHeight="150dp"
     app:contentPadding="@dimen/card_padding">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="8dp"
+        android:orientation="vertical"
 
-        android:orientation="vertical">
+        android:paddingLeft="8dp">
 
         <TextView
             android:id="@+id/dateTxt"
@@ -22,16 +22,6 @@
             android:layout_height="wrap_content"
             android:text="January 10th, 2019"
             android:textSize="24sp" />
-
-        <RatingBar
-            android:id="@+id/ratingBar"
-            style="@style/Widget.AppCompat.RatingBar.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:numStars="5"
-            android:rating="0"
-            android:stepSize="1" />
 
         <TextView
             android:id="@+id/distanceTxt"
@@ -46,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="13KM Average Speed" />
-
 
 
     </LinearLayout>

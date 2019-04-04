@@ -103,6 +103,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private boolean viewMode;
 
+    private BroadcastReceiver broadcastReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -374,6 +376,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         trackFab.setImageDrawable(getDrawable(R.drawable.ic_play));
 //        runManager.stopTracking();
         runManager.stopTracking();
+
+        unregisterReceiver(broadcastReceiver);
     }
 
     private void setupButtons() {
@@ -425,6 +429,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Intent intent = new Intent(MapsActivity.this, RunSummaryActivity.class);
 
                 intent.putExtra("run", run);
+
+                unregisterReceiver(broadcastReceiver);
 
                 startActivity(intent);
 
@@ -489,7 +495,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         runManager = new RunManager(MapsActivity.this, getSupportFragmentManager(), mFusedLocationClient, mMap);
 
-        BroadcastReceiver broadcastReceiver = new TrackerService(runManager);
+        broadcastReceiver = new TrackerService(runManager);
 
         IntentFilter filter = new IntentFilter();
 

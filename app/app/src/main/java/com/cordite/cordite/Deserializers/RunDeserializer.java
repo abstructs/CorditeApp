@@ -49,7 +49,11 @@ public class RunDeserializer implements JsonDeserializer<Run> {
 
             Date date = dateObj.parse(obj.get("createdAt").getAsString());
 
-            run.date = date.toString();
+            SimpleDateFormat df = new SimpleDateFormat("EEE MMM d, yyyy", Locale.getDefault());
+
+//            System.out.println();
+
+            run.date = df.format(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -59,7 +63,6 @@ public class RunDeserializer implements JsonDeserializer<Run> {
         List<Location> locations = new ArrayList<>();
 
         for(JsonElement locationElement : objArray) {
-            System.out.println(locationElement);
             Location location = locationDeserializer.deserialize(locationElement, Location.class, null);
             locations.add(location);
         }

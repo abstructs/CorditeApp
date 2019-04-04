@@ -142,7 +142,7 @@ class RunVisualizer {
 
     private void updateSpeed(Location location) {
         TextView speedTxt = fragmentView.findViewById(R.id.speedTxt);
-        speed = location.getSpeed();
+        speed = location.getSpeed() * 3.6f;
 
         speedTxt.setText((String.valueOf(speed) + " km/h"));
     }

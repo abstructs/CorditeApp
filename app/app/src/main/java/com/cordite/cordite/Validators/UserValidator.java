@@ -34,7 +34,7 @@ public class UserValidator extends Validator {
     public static List<String> getPasswordErrors(String password) {
         ArrayList<String> errors = new ArrayList<>();
 
-        if(!validLength(password, 1, 50)) {
+        if(!validLength(password, 6, 50)) {
             errors.add("Password should be between 1 and 50 characters");
         }
 

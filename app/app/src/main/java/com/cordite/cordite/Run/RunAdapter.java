@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.cordite.cordite.Entities.Run;
@@ -35,7 +34,6 @@ public class RunAdapter extends RecyclerView.Adapter<RunAdapter.MyViewHolder> {
         public TextView avgSpeedTxt;
         public TextView distanceTxt;
         public Button viewBtn;
-        public RatingBar ratingBar;
         public Context context;
         public ImageView imageView;
 
@@ -46,7 +44,6 @@ public class RunAdapter extends RecyclerView.Adapter<RunAdapter.MyViewHolder> {
             this.avgSpeedTxt = v.findViewById(R.id.speedTxt);
             this.distanceTxt = v.findViewById(R.id.distanceTxt);
             this.viewBtn = v.findViewById(R.id.viewBtn);
-            this.ratingBar = v.findViewById(R.id.ratingBar);
             this.imageView = v.findViewById(R.id.imageView);
             this.context = v.getContext();
 
@@ -70,8 +67,7 @@ public class RunAdapter extends RecyclerView.Adapter<RunAdapter.MyViewHolder> {
         final Run run = runs.get(position);
 
         holder.dateTxt.setText(run.date);
-        holder.ratingBar.setRating(run.rating);
-        holder.distanceTxt.setText(String.valueOf(run.distanceTravelled) + "KM in " + run.timeElapsed + "ms");
+        holder.distanceTxt.setText(String.valueOf(run.distanceTravelled) + "KM in " + run.getTime());
         holder.avgSpeedTxt.setText(String.valueOf(run.averageSpeed) + "KM/h Average Speed");
 
         holder.viewBtn.setOnClickListener(new View.OnClickListener() {

@@ -47,11 +47,11 @@ public class Run implements Parcelable {
         long h = (milliseconds / (60 * 60)) % 24;
 
         if(h > 0) {
-            return String.format("%d hour, %d minutes", h, m);
+            return String.format(Locale.getDefault(),"%d hour, %d minutes", h, m);
         } else if(m > 0) {
-            return String.format("%d minutes", h, m);
+            return String.format(Locale.getDefault(), "%d minutes, %d seconds", m, s);
         } else {
-            return String.format("%d seconds", s);
+            return String.format(Locale.getDefault(), "%d seconds", s);
         }
     }
 

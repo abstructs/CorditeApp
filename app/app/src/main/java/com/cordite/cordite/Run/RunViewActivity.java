@@ -3,9 +3,12 @@ package com.cordite.cordite.Run;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cordite.cordite.Entities.Run;
@@ -20,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
@@ -41,13 +45,6 @@ public class RunViewActivity extends AppCompatActivity {
 
         this.run = run;
 
-        System.out.println(run.date);
-        System.out.println(run.averageSpeed);
-        System.out.println(run.distanceTravelled);
-        System.out.println(run.timeElapsed);
-
-        System.out.println(run.locations);
-
         Button viewBtn = findViewById(R.id.viewBtn);
 
         viewBtn.setOnClickListener(new View.OnClickListener() {
@@ -67,17 +64,31 @@ public class RunViewActivity extends AppCompatActivity {
         String date = run.date;
         String distance = String.valueOf(run.distanceTravelled);
         String averageSpeed = String.valueOf(run.averageSpeed);
-        String timeElapsed = String.valueOf(run.timeElapsed);
+//        String timeElapsed = String.valueOf(run.timeElapsed);
 
 
         TextView dateTxt = findViewById(R.id.dateTxt);
         TextView infoTxt = findViewById(R.id.infoTxt);
         TextView timeElapsedTxt = findViewById(R.id.timeElapsedTxt);
 
-        long minutesRan = TimeUnit.MILLISECONDS.toMinutes(Integer.parseInt(timeElapsed));
+        ImageView imageView = findViewById(R.id.imageView);
+
+//        long minutesRan = TimeUnit.MILLISECONDS.toMinutes(Integer.parseInt(timeElapsed));
+
+        TypedArray journalImages = getResources().obtainTypedArray(R.array.journalImages);
+
+        Random r = new Random();
+
+        int i = r.nextInt(journalImages.length());
+
+        int imageId = journalImages.getResourceId(i, 1);
+
+//        System.out.println(imageId);
+
+        imageView.setImageResource(imageId);
 
         String avgMessage = "You traveled a distance of " + distance + " KM, at an average speed of " + averageSpeed + " KM/h";
-        String timeMessage = "The journey took you " + minutesRan + " minutes.";
+        String timeMessage = "The journey took you " + run.getTime();
 
         dateTxt.setText(date);
         infoTxt.setText(avgMessage);

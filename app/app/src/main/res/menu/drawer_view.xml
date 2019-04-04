@@ -7,6 +7,10 @@
             android:id="@+id/play"
             android:icon="@drawable/ic_play"
             android:title="Go For A Run" />
+        <item
+            android:id="@+id/stats"
+            android:icon="@drawable/ic_chart"
+            android:title="View Stats" />
     </group>
     <group
         android:id="@+id/user"

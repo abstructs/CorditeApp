@@ -728,6 +728,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void setupToolbar() {
         BottomAppBar bottomAppBar = findViewById(R.id.bottomAppBar);
 
+        bottomAppBar.setNavigationIcon(null);
+
         setSupportActionBar(bottomAppBar);
     }
 
@@ -745,6 +747,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else if(runManager != null && runManager.trackingEnabled()) {
             showStopTrackingDialog();
             return;
+        }
+
+        if(broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
         }
 
         super.onBackPressed();

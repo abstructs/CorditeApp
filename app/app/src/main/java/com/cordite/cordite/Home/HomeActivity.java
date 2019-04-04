@@ -179,12 +179,12 @@ public class HomeActivity extends AppCompatActivity {
         finish();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main_menu, menu);
+//
+//        return true;
+//    }
 
     private void openMapActivity() {
         Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
@@ -220,6 +220,10 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.play:
                         openMapActivity();
                         return true;
+                    case R.id.stats:
+                        Intent intent = new Intent(getApplicationContext(), RunGraphViewActivity.class);
+                        startActivity(intent);
+                        return true;
                 }
 
                 return false;
@@ -233,10 +237,6 @@ public class HomeActivity extends AppCompatActivity {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            case R.id.graphView:
-                Intent intent = new Intent(this, RunGraphViewActivity.class);
-                this.startActivity(intent);
-                break;
         }
 
         return super.onOptionsItemSelected(item);

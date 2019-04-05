@@ -144,7 +144,7 @@ class RunVisualizer {
         TextView speedTxt = fragmentView.findViewById(R.id.speedTxt);
         speed = location.getSpeed() * 1.8f;
 
-        speedTxt.setText((String.valueOf(speed) + " km/h"));
+        speedTxt.setText(String.format(Locale.getDefault(), "%.2f km/h", speed));
     }
 
     private void updatePolylinePoints(Location location) {

@@ -209,13 +209,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         request.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                ReportDeserializer reportDeserializer = new ReportDeserializer();
-                JsonArray body = response.body();
+                if(response.code() == 200) {
+                    ReportDeserializer reportDeserializer = new ReportDeserializer();
 
-                for(JsonElement element : body) {
-                    Report report = reportDeserializer.deserialize(element, Report.class, null);
-                    mapReports.add(report);
-                    addReportToMap(report);
+                    JsonArray body = response.body();
+
+                    for(JsonElement element : body) {
+                        Report report = reportDeserializer.deserialize(element, Report.class, null);
+                        mapReports.add(report);
+                        addReportToMap(report);
+                    }
+                } else {
+                    Toast.makeText(MapsActivity.this, "Network error, please try again", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -344,15 +349,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         request.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                JsonElement reportObj = response.body().get("report");
 
-                ReportDeserializer reportDeserializer = new ReportDeserializer();
+                if(response.code() == 200) {
+                    JsonElement reportObj = response.body().get("report");
 
-                Report report = reportDeserializer.deserialize(reportObj, Report.class, null);
+                    ReportDeserializer reportDeserializer = new ReportDeserializer();
 
-                mapReports.add(report);
+                    Report report = reportDeserializer.deserialize(reportObj, Report.class, null);
 
-                addReportToMap(report);
+                    mapReports.add(report);
+
+                    addReportToMap(report);
+                } else {
+                    Toast.makeText(MapsActivity.this, "Network error, please try again", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -366,7 +376,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         FloatingActionButton trackFab = findViewById(R.id.trackFab);
 
         trackFab.setImageDrawable(getDrawable(R.drawable.ic_stop));
-//        runManager.startTracking();
+
+        broadcastReceiver = new TrackerService(runManager);
+
+        IntentFilter filter = new IntentFilter();
+
+        filter.addAction(TrackerService.ACTION_PROCESS_UPDATE);
+
+        registerReceiver(broadcastReceiver, filter);
+
         runManager.startTracking();
     }
 
@@ -377,7 +395,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //        runManager.stopTracking();
         runManager.stopTracking();
 
-        unregisterReceiver(broadcastReceiver);
+        try {
+            unregisterReceiver(broadcastReceiver);
+        } catch(IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+
+        broadcastReceiver = null;
     }
 
     private void setupButtons() {
@@ -411,36 +435,39 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void saveRunAndExit(final Run run) {
-        System.out.println(run);
-
         Call<JsonObject> request = runService.saveRun(getToken(), run);
 
         request.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                stopTracking();
+                if(response.code() == 200) {
+                    stopTracking();
 
-                JsonObject body = response.body();
+                    JsonObject body = response.body();
 
-                JsonElement runElement = body.get("run");
+                    JsonElement runElement = body.get("run");
 
-                Run run = new RunDeserializer().deserialize(runElement, Run.class, null);
+                    Run run = new RunDeserializer().deserialize(runElement, Run.class, null);
 
-                Intent intent = new Intent(MapsActivity.this, RunSummaryActivity.class);
+                    Intent intent = new Intent(MapsActivity.this, RunSummaryActivity.class);
 
-                intent.putExtra("run", run);
+                    intent.putExtra("run", run);
 
-                unregisterReceiver(broadcastReceiver);
+//                    unregisterReceiver(broadcastReceiver);
 
-                startActivity(intent);
+                    startActivity(intent);
 
-                finish();
+                    finish();
+                } else {
+                    Toast.makeText(MapsActivity.this, "Network error, please try again", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 // TODO: save locally for upload later
-                Toast.makeText(MapsActivity.this, "Network error! :(", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapsActivity.this, "Network error, please try again", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -452,13 +479,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .setPositiveButton("Yes, save and exit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        saveRunAndExit(getRun());
+                    saveRunAndExit(getRun());
                     }
                 })
                 .setNegativeButton("No, continue", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                    dialog.cancel();
                     }
                 });
 
@@ -495,17 +522,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         runManager = new RunManager(MapsActivity.this, getSupportFragmentManager(), mFusedLocationClient, mMap);
 
-        broadcastReceiver = new TrackerService(runManager);
-
-        IntentFilter filter = new IntentFilter();
-
-        filter.addAction(TrackerService.ACTION_PROCESS_UPDATE);
-
-        System.out.println("added");
 
 //        filter.addAction(TrackerService.ACTION_PROCESS_UPDATE);
 
-        registerReceiver(broadcastReceiver, filter);
 
 //        Intent intent = new Intent(this, TrackerService.class);
 
@@ -679,6 +698,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void setupMap() throws SecurityException {
         mMap.setMyLocationEnabled(true);
 
+        mMap.setPadding(0, 100, 100, 140);
+
         setupMapStyles(mMap);
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -747,10 +768,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else if(runManager != null && runManager.trackingEnabled()) {
             showStopTrackingDialog();
             return;
-        }
-
-        if(broadcastReceiver != null) {
-            unregisterReceiver(broadcastReceiver);
         }
 
         super.onBackPressed();

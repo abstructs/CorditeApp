@@ -137,10 +137,12 @@ public class HomeActivity extends AppCompatActivity {
                 if(response.code() == 401) {
                     Toast.makeText(HomeActivity.this, "You have been logged out.", Toast.LENGTH_SHORT).show();
                     logout();
-                } else {
+                } else if (response.code() == 200) {
                     ArrayList<Run> runs = convertJsonToRuns(response.body().getAsJsonArray());
 
                     populateJournal(runs);
+                } else {
+                    Toast.makeText(HomeActivity.this, "Network error, let us know!", Toast.LENGTH_SHORT).show();
                 }
             }
 
